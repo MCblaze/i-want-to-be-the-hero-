@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+node_modules/
+*.csproj
+*.sln
+*.suo
+*.user
+previews/frame-*.png
+web-preview-*.png
+unity/Library/
+unity/Temp/
+unity/Obj/
+unity/Logs/
+unity/UserSettings/
+unity/Build/
+unity/Builds/

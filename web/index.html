@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#102b2a">
+  <title>I Want to Be the Hero</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="game-shell" aria-label="I Want to Be the Hero game">
+    <canvas id="game" width="1280" height="720" aria-label="Pixel-art platform game starring Logan"></canvas>
+
+    <section id="title-screen" class="panel visible" aria-labelledby="game-title">
+      <div class="title-card">
+        <p class="eyebrow">Logan's First Quest</p>
+        <h1 id="game-title">I Want to Be<br><span>the Hero</span></h1>
+        <p class="story">The Hero Spark is waiting in the Sunleaf Ruins. Find it, master its power, and prove your courage to the ancient Mossback Guardian.</p>
+        <button id="start-button" class="primary">Begin the quest</button>
+        <p class="controls-hint">Move: A/D or arrows · Jump: Space · Attack: J/X · Dash: Shift/K</p>
+      </div>
+    </section>
+
+    <section id="result-screen" class="panel" aria-live="polite">
+      <div class="result-card">
+        <p id="result-kicker" class="eyebrow">Quest complete</p>
+        <h2 id="result-title">Hero of Sunleaf!</h2>
+        <p id="result-copy"></p>
+        <button id="restart-button" class="primary">Play again</button>
+      </div>
+    </section>
+
+    <div id="touch-controls" aria-label="Touch controls">
+      <div class="touch-group movement">
+        <button data-control="left" aria-label="Move left">◀</button>
+        <button data-control="right" aria-label="Move right">▶</button>
+      </div>
+      <div class="touch-group actions">
+        <button data-control="dash" class="dash" aria-label="Dash">Dash</button>
+        <button data-control="attack" class="attack" aria-label="Attack">Hit</button>
+        <button data-control="jump" class="jump" aria-label="Jump">Jump</button>
+      </div>
+    </div>
+
+    <button id="pause-button" aria-label="Pause game">Ⅱ</button>
+    <div id="rotate-notice">For the best adventure, turn your tablet sideways.</div>
+  </main>
+  <script src="animation-data.js"></script>
+  <script src="animations.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
