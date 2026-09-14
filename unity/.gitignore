@@ -17,3 +17,7 @@
 *.mdb
 *.opendb
 *.VC.db
+
+# Local editor workspace files
+.vscode/
+*.slnx
