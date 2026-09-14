@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 18:57:58Z" end-time="2026-09-14 18:58:00Z" duration="1.8513761">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-14 18:57:58Z" end-time="2026-09-14 18:58:00Z" duration="1.851376" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1014" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-14 18:57:59Z" end-time="2026-09-14 18:58:00Z" duration="0.981380" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-14 18:57:59Z" end-time="2026-09-14 18:58:00Z" duration="0.966960" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1016" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-14 18:57:59Z" end-time="2026-09-14 18:58:00Z" duration="0.946727" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="LifecycleTests" fullname="IWantToBeTheHero.Tests.LifecycleTests" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 18:57:03Z" end-time="2026-09-14 18:57:05Z" duration="2.223291" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="LethalDamage_RespawnsAndClearsTheBossAttempt" fullname="IWantToBeTheHero.Tests.LifecycleTests.LethalDamage_RespawnsAndClearsTheBossAttempt" methodname="LethalDamage_RespawnsAndClearsTheBossAttempt" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="365284515" result="Passed" start-time="2026-09-14 18:56:33Z" end-time="2026-09-14 18:56:44Z" duration="11.105554" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="RestartAfterLostSceneCallback_RebuildsWorld" fullname="IWantToBeTheHero.Tests.LifecycleTests.RestartAfterLostSceneCallback_RebuildsWorld" methodname="RestartAfterLostSceneCallback_RebuildsWorld" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="41203215" result="Passed" start-time="2026-09-14 18:56:44Z" end-time="2026-09-14 18:56:51Z" duration="6.228165" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" fullname="IWantToBeTheHero.Tests.LifecycleTests.TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" methodname="TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="2820377" result="Passed" start-time="2026-09-14 18:56:51Z" end-time="2026-09-14 18:56:57Z" duration="6.442648" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" fullname="IWantToBeTheHero.Tests.LifecycleTests.TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" methodname="TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="262586018" result="Passed" start-time="2026-09-14 18:56:57Z" end-time="2026-09-14 18:57:05Z" duration="8.003270" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1006" name="MovementTests" fullname="IWantToBeTheHero.Tests.MovementTests" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-14 18:57:59Z" end-time="2026-09-14 18:58:00Z" duration="0.921582" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1009" name="Backflip_DamageWindowHasVulnerableRecovery" fullname="IWantToBeTheHero.Tests.MovementTests.Backflip_DamageWindowHasVulnerableRecovery" methodname="Backflip_DamageWindowHasVulnerableRecovery" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="1603028075" result="Passed" start-time="2026-09-14 18:57:05Z" end-time="2026-09-14 18:57:13Z" duration="7.692728" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="Evade_DirectionAndSharedCooldownPreserveAirBudget" fullname="IWantToBeTheHero.Tests.MovementTests.Evade_DirectionAndSharedCooldownPreserveAirBudget" methodname="Evade_DirectionAndSharedCooldownPreserveAirBudget" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="676807560" result="Passed" start-time="2026-09-14 18:57:13Z" end-time="2026-09-14 18:57:21Z" duration="7.790788" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="JumpMeasurements_OneAirJumpAndShortHop" fullname="IWantToBeTheHero.Tests.MovementTests.JumpMeasurements_OneAirJumpAndShortHop" methodname="JumpMeasurements_OneAirJumpAndShortHop" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="1240020184" result="Passed" start-time="2026-09-14 18:57:21Z" end-time="2026-09-14 18:57:31Z" duration="10.219567" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="LabReset_ClearsProjectilesInputsAndPreservesSingleSession" fullname="IWantToBeTheHero.Tests.MovementTests.LabReset_ClearsProjectilesInputsAndPreservesSingleSession" methodname="LabReset_ClearsProjectilesInputsAndPreservesSingleSession" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="1378922240" result="Failed" start-time="2026-09-14 18:57:31Z" end-time="2026-09-14 18:57:37Z" duration="6.187514" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: <empty>
+  But was:  < <Sunseed (IWantToBeTheHero.SunseedProjectile)> >
+]]></message>
+                <stack-trace><![CDATA[at IWantToBeTheHero.Tests.MovementTests+<LabReset_ClearsProjectilesInputsAndPreservesSingleSession>d__20.MoveNext () [0x000fe] in C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Assets\Tests\Editor\MovementTests.cs:266
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1012" name="Platforms_OneWayLandingMovingCarryAndLowCeiling" fullname="IWantToBeTheHero.Tests.MovementTests.Platforms_OneWayLandingMovingCarryAndLowCeiling" methodname="Platforms_OneWayLandingMovingCarryAndLowCeiling" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="964829143" result="Passed" start-time="2026-09-14 18:57:37Z" end-time="2026-09-14 18:57:46Z" duration="8.527286" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="Sword_OneHitPerSwingAndSwapCannotConvertAttack" fullname="IWantToBeTheHero.Tests.MovementTests.Sword_OneHitPerSwingAndSwapCannotConvertAttack" methodname="Sword_OneHitPerSwingAndSwapCannotConvertAttack" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="910064348" result="Passed" start-time="2026-09-14 18:57:46Z" end-time="2026-09-14 18:57:52Z" duration="6.751313" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="Weapons_SwapPreservesCooldownAndProjectileHits" fullname="IWantToBeTheHero.Tests.MovementTests.Weapons_SwapPreservesCooldownAndProjectileHits" methodname="Weapons_SwapPreservesCooldownAndProjectileHits" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="1149532114" result="Passed" start-time="2026-09-14 18:57:52Z" end-time="2026-09-14 18:58:00Z" duration="7.118338" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

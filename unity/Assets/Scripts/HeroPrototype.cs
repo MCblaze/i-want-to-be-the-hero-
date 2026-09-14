@@ -44,6 +44,7 @@ namespace IWantToBeTheHero
         public bool Started { get; private set; }
         public bool Won { get; private set; }
         public float Elapsed { get; private set; }
+        public MovementLab Lab { get; private set; }
 
         private GameObject sparkGate;
         private readonly List<HeroTarget> targets = new();
@@ -54,6 +55,7 @@ namespace IWantToBeTheHero
 
         private void Awake()
         {
+            Lab = GetComponent<MovementLab>();
             MobileInput.Reset();
             Application.targetFrameRate = 60;
             Screen.autorotateToPortrait = false;
@@ -63,7 +65,7 @@ namespace IWantToBeTheHero
             Screen.orientation = ScreenOrientation.AutoRotation;
             Physics2D.gravity = new Vector2(0f, -24f);
             BuildCameraAndBackdrop();
-            BuildWorld();
+            if (Lab == null) BuildWorld();
             BuildActors();
             UI = PrototypeUI.Create(this);
         }
@@ -91,6 +93,7 @@ namespace IWantToBeTheHero
         public void ResetQuest()
         {
             MobileInput.Reset();
+            if (Lab != null) { Lab.Restart(); return; }
             // Editor recompilation can clear static event subscriptions during Play Mode.
             PrototypeBootstrap.SubscribeToSceneLoads();
             SceneManager.LoadScene(gameObject.scene.path);
@@ -98,6 +101,12 @@ namespace IWantToBeTheHero
 
         public void ResetEncounters()
         {
+            if (Lab != null)
+            {
+                foreach (var target in targets)
+                    if (target is TrainingTarget dummy) dummy.ResetTarget();
+                return;
+            }
             // Preserve the hero, checkpoint and collected Spark; rebuild combat state.
             foreach (var target in targets.ToArray())
             {
@@ -144,6 +153,7 @@ namespace IWantToBeTheHero
 
         public string CurrentObjective()
         {
+            if (Lab != null) return "Movement and feel practice";
             if (Won) return "Sunleaf Ruins restored!";
             if (!Hero.HasSpark) return "Find the Hero Spark";
             if (!Boss.Awake) return "Dash onward to the ancient gate";
@@ -159,6 +169,14 @@ namespace IWantToBeTheHero
 
         private void BuildCameraAndBackdrop()
         {
+            if (Lab != null)
+            {
+                MainCamera = Lab.previewCamera;
+                var cameraFollow = MainCamera.GetComponent<CameraFollow>();
+                if (cameraFollow == null) cameraFollow = MainCamera.gameObject.AddComponent<CameraFollow>();
+                cameraFollow.Game = this;
+                return;
+            }
             var cameraObject = new GameObject("Main Camera");
             cameraObject.tag = "MainCamera";
             MainCamera = cameraObject.AddComponent<Camera>();
@@ -217,12 +235,15 @@ namespace IWantToBeTheHero
         {
             var heroObject = new GameObject("Logan");
             heroObject.transform.position = new Vector3(1.2f, -2.8f, 0f);
+            if (Lab != null) heroObject.transform.position = Lab.spawn.position;
             var heroRenderer = heroObject.AddComponent<SpriteRenderer>();
             heroRenderer.sprite = PrototypeArt.Load("Art/logan", 1.62f);
             heroRenderer.sortingOrder = 20;
             var heroBody = heroObject.AddComponent<Rigidbody2D>();
             heroBody.gravityScale = 1f;
             heroBody.freezeRotation = true;
+            // Ground contact timestamps must continue updating while Logan is idle.
+            heroBody.sleepMode = RigidbodySleepMode2D.NeverSleep;
             heroBody.interpolation = RigidbodyInterpolation2D.Interpolate;
             heroBody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             var heroCollider = heroObject.AddComponent<CapsuleCollider2D>();
@@ -235,6 +256,12 @@ namespace IWantToBeTheHero
 
         private void BuildEnemies()
         {
+            if (Lab != null)
+            {
+                foreach (var target in UnityEngine.Object.FindObjectsByType<TrainingTarget>(FindObjectsSortMode.None))
+                    RegisterTarget(target);
+                return;
+            }
             CreateThornling(5.8f, 4.4f, 7f);
             CreateThornling(10.6f, 8.8f, 13.8f);
             CreateThornling(17.4f, 15.7f, 21.8f);
@@ -405,10 +432,21 @@ namespace IWantToBeTheHero
         public bool HasSpark { get; private set; }
         public int Health { get; private set; } = 5;
         public int MaxHealth => 5;
+        public HeroWeapon Weapon { get; private set; }
+        public bool AirJumpAvailable => HasSpark && Settings != null && !airJumpUsed;
+        public bool Grounded => IsGrounded;
+        public bool Backflipping => flipRemaining > 0f;
+        public bool Dashing => dashRemaining > 0f;
+        public float Facing => facing;
+        public float EvadeCooldown => Mathf.Max(0f, dashCooldown);
+        public float WandCooldown => Mathf.Max(0f, wandCooldown);
+        public int SeedsFired { get; private set; }
+        private HeroTuning Settings => Game != null && Game.Lab != null ? Game.Lab.tuning : null;
 
         private Rigidbody2D body;
         private SpriteRenderer sprite;
         private PixelSpriteAnimator visual;
+        private Rigidbody2D support;
         private float facing = 1f;
         private float lastGrounded = -10f;
         private float lastJumpPressed = -10f;
@@ -420,6 +458,10 @@ namespace IWantToBeTheHero
         private float hurtRemaining;
         private float landingRemaining;
         private float ghostCooldown;
+        private bool airJumpUsed;
+        private float flipRemaining, flipDirection, wandCooldown;
+        private HeroWeapon attackWeapon;
+        private readonly List<SunseedProjectile> seeds = new();
         private const float AttackDuration = .32f;
         private readonly HashSet<HeroTarget> attackHits = new HashSet<HeroTarget>();
         private Vector2 respawn = new(1.2f, -2.8f);
@@ -442,34 +484,70 @@ namespace IWantToBeTheHero
             hurtRemaining = Mathf.Max(0f, hurtRemaining - Time.deltaTime);
             landingRemaining = Mathf.Max(0f, landingRemaining - Time.deltaTime);
             ghostCooldown -= Time.deltaTime;
+            wandCooldown = Mathf.Max(0f, wandCooldown - Time.deltaTime);
+
+            if (Settings != null && SwapPressed())
+                Weapon = Weapon == HeroWeapon.Sword ? HeroWeapon.SunseedWand : HeroWeapon.Sword;
 
             if (JumpPressed()) lastJumpPressed = Time.time;
 
-            if (AttackPressed() && attackCooldown <= 0f && dashRemaining <= 0f && hurtRemaining <= 0f)
+            if (AttackPressed() && dashRemaining <= 0f && flipRemaining <= 0f && hurtRemaining <= 0f && attackRemaining <= 0f)
             {
-                attackCooldown = AttackDuration;
-                attackRemaining = AttackDuration;
-                attackHits.Clear();
+                if (Weapon == HeroWeapon.Sword && attackCooldown <= 0f)
+                {
+                    attackWeapon = Weapon;
+                    attackCooldown = AttackDuration;
+                    attackRemaining = AttackDuration;
+                    attackHits.Clear();
+                }
+                else if (Weapon == HeroWeapon.SunseedWand && Settings != null && wandCooldown <= 0f)
+                {
+                    seeds.RemoveAll(seed => seed == null);
+                    if (seeds.Count < Settings.maxSeeds)
+                    {
+                        attackWeapon = Weapon;
+                        attackRemaining = .2f;
+                        wandCooldown = Settings.wandCooldown;
+                        var seedObject = new GameObject("Sunseed");
+                        seedObject.transform.position = transform.position;
+                        var seed = seedObject.AddComponent<SunseedProjectile>();
+                        seed.Initialize(this, facing, Settings.seedSpeed, Settings.seedRange);
+                        seeds.Add(seed);
+                        SeedsFired++;
+                    }
+                }
             }
 
             if (DashPressed() && HasSpark && dashCooldown <= 0f && hurtRemaining <= 0f)
             {
-                dashCooldown = .65f;
-                dashRemaining = .17f;
+                dashCooldown = Settings != null ? Settings.evadeCooldown : .65f;
+                if (Settings != null && IsGrounded && Mathf.Abs(HorizontalInput()) < .1f)
+                {
+                    flipRemaining = Settings.flipDuration;
+                    flipDirection = -facing;
+                    body.linearVelocity = new Vector2(flipDirection * Settings.flipSpeed, Settings.flipJumpSpeed);
+                    lastGrounded = -10f;
+                }
+                else
+                {
+                    float horizontal = HorizontalInput();
+                    if (Settings != null && Mathf.Abs(horizontal) > .1f) facing = Mathf.Sign(horizontal);
+                    dashRemaining = Settings != null ? Settings.dashDuration : .17f;
+                }
                 attackRemaining = 0f;
                 ghostCooldown = 0f;
             }
 
             // Wind-up is frame 1; only frames 2 and the beginning of 3 deal damage.
             float attackAge = AttackDuration - attackRemaining;
-            if (attackRemaining > 0f && attackAge >= .08f && attackAge < .20f)
+            if (attackWeapon == HeroWeapon.Sword && attackRemaining > 0f && attackAge >= .08f && attackAge < .20f)
             {
                 var center = transform.position + Vector3.right * facing * .72f;
                 Game.HeroAttack(new Bounds(center, new Vector3(1.15f, 1.05f, 1f)),
-                    HasSpark ? 2 : 1, new Vector2(facing * 4.5f, 2.2f), attackHits);
+                    Settings == null && HasSpark ? 2 : 1, new Vector2(facing * 4.5f, 2.2f), attackHits);
             }
 
-            if (!JumpHeld() && body.linearVelocity.y > 4f)
+            if (!JumpHeld() && body.linearVelocity.y > 4f && flipRemaining <= 0f)
                 body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * .55f);
 
             if (transform.position.y < -8f) Respawn();
@@ -486,7 +564,13 @@ namespace IWantToBeTheHero
             if (dashRemaining > 0f)
             {
                 dashRemaining -= Time.fixedDeltaTime;
-                body.linearVelocity = new Vector2(facing * 12.5f, 0f);
+                body.linearVelocity = new Vector2(facing * (Settings != null ? Settings.dashSpeed : 12.5f), 0f);
+                return;
+            }
+            if (flipRemaining > 0f)
+            {
+                flipRemaining = Mathf.Max(0f, flipRemaining - Time.fixedDeltaTime);
+                body.linearVelocity = new Vector2(flipDirection * Settings.flipSpeed, body.linearVelocity.y);
                 return;
             }
 
@@ -496,29 +580,47 @@ namespace IWantToBeTheHero
                 facing = Mathf.Sign(horizontal);
             }
 
-            float targetSpeed = horizontal * 5.2f;
+            float targetSpeed = horizontal * (Settings != null ? Settings.runSpeed : 5.2f);
             float acceleration = IsGrounded ? 42f : 27f;
+            float platformSpeed = IsGrounded ? SupportVelocity.x : 0f;
             body.linearVelocity = new Vector2(
-                Mathf.MoveTowards(body.linearVelocity.x, targetSpeed, acceleration * Time.fixedDeltaTime),
+                Mathf.MoveTowards(body.linearVelocity.x - platformSpeed, targetSpeed, acceleration * Time.fixedDeltaTime) + platformSpeed,
                 Mathf.Max(body.linearVelocity.y, -15f));
 
-            if (Time.time - lastJumpPressed <= .14f && Time.time - lastGrounded <= .12f)
+            if (Time.time - lastJumpPressed <= (Settings != null ? Settings.jumpBuffer : .14f))
             {
-                lastJumpPressed = -10f;
-                lastGrounded = -10f;
-                body.linearVelocity = new Vector2(body.linearVelocity.x, 10.6f);
+                if (Time.time - lastGrounded <= (Settings != null ? Settings.coyoteTime : .12f))
+                {
+                    lastJumpPressed = lastGrounded = -10f;
+                    body.linearVelocity = new Vector2(body.linearVelocity.x, Settings != null ? Settings.jumpSpeed : 10.6f);
+                }
+                else if (AirJumpAvailable)
+                {
+                    lastJumpPressed = -10f;
+                    airJumpUsed = true;
+                    body.linearVelocity = new Vector2(body.linearVelocity.x, Settings.secondJumpSpeed);
+                }
             }
         }
 
-        private bool IsGrounded => Time.time - lastGrounded < .09f && body.linearVelocity.y < .5f;
+        private Vector2 SupportVelocity => support == null ? Vector2.zero :
+            support.TryGetComponent<LabMovingPlatform>(out var platform) ? platform.Velocity : support.linearVelocity;
+
+        private bool IsGrounded => Time.time - lastGrounded < .09f &&
+            body.linearVelocity.y - SupportVelocity.y < .5f;
 
         private void LateUpdate()
         {
             if (visual == null || Game == null) return;
             visual.Face(facing);
+            // Temporary rotation on the visual child only; authored backflip frames follow.
+            visual.transform.localRotation = flipRemaining > 0f && Settings != null
+                ? Quaternion.Euler(0f, 0f, facing * 360f * (1f - flipRemaining / Settings.flipDuration))
+                : Quaternion.identity;
             if (Game.Won) { visual.Tick("victory", Time.deltaTime); sprite.color = Color.white; return; }
             if (!Game.Started) { visual.Tick("idle", Time.deltaTime); return; }
             if (hurtRemaining > 0f) visual.Sample("hurt", .2f - hurtRemaining);
+            else if (flipRemaining > 0f) visual.Tick("apex", Time.deltaTime);
             else if (dashRemaining > 0f) visual.Sample("dash", .17f - dashRemaining);
             else if (attackRemaining > 0f) visual.Sample("attack", AttackDuration - attackRemaining);
             else if (!IsGrounded)
@@ -534,14 +636,20 @@ namespace IWantToBeTheHero
             }
         }
 
+        private void OnCollisionEnter2D(Collision2D collision) => OnCollisionStay2D(collision);
+
         private void OnCollisionStay2D(Collision2D collision)
         {
+            if (body.linearVelocity.y - (collision.rigidbody != null ? collision.rigidbody.linearVelocity.y : 0f) > .5f ||
+                collision.gameObject.GetComponent<HeroTarget>() != null) return;
             for (int i = 0; i < collision.contactCount; i++)
             {
                 if (collision.GetContact(i).normal.y > .55f)
                 {
                     if (Time.time - lastGrounded > .12f) landingRemaining = .1f;
                     lastGrounded = Time.time;
+                    support = collision.rigidbody;
+                    airJumpUsed = false;
                     return;
                 }
             }
@@ -562,10 +670,13 @@ namespace IWantToBeTheHero
         public void Hurt(Vector2 source)
         {
             if (Game == null || !Game.Started || invulnerable > 0f || dashRemaining > 0f || Game.Won) return;
+            float flipAge = Settings != null ? Settings.flipDuration - flipRemaining : 0f;
+            if (flipRemaining > 0f && flipAge >= .08f && flipAge <= .22f) return;
             Health--;
             invulnerable = 1.05f;
             hurtRemaining = .2f;
             attackRemaining = 0f;
+            flipRemaining = 0f;
             float push = transform.position.x < source.x ? -6f : 6f;
             body.linearVelocity = new Vector2(push, 6f);
             if (Health <= 0) Invoke(nameof(Respawn), .3f);
@@ -581,15 +692,32 @@ namespace IWantToBeTheHero
             Health = MaxHealth;
             invulnerable = 1.2f;
             attackRemaining = dashRemaining = hurtRemaining = landingRemaining = 0f;
+            flipRemaining = wandCooldown = 0f;
+            airJumpUsed = false;
+            foreach (var seed in seeds) if (seed != null) Destroy(seed.gameObject);
+            seeds.Clear();
             attackCooldown = dashCooldown = ghostCooldown = 0f;
             lastGrounded = lastJumpPressed = -10f;
+            support = null;
             attackHits.Clear();
             visual.Sample("idle", 0f);
             sprite.color = Color.white;
+            visual.transform.localRotation = Quaternion.identity;
             Game.ResetEncounters();
             Game.MainCamera.GetComponent<CameraFollow>().SnapToHero();
             Game.UI.FlashMessage(HasSpark ? "TRY AGAIN!\nHero Spark kept." : "TRY AGAIN!\nBack on safe ground.", 1.5f);
         }
+
+        public void ResetTraining(Vector2 position)
+        {
+            if (Game == null || Game.Lab == null) return;
+            respawn = position;
+            Respawn();
+            Weapon = HeroWeapon.Sword;
+        }
+
+        private static bool SwapPressed() => Input.GetKeyDown(KeyCode.E) ||
+            Input.GetKeyDown(KeyCode.JoystickButton3) || MobileInput.ConsumeSwap();
 
         private static float HorizontalInput()
         {
@@ -874,15 +1002,28 @@ namespace IWantToBeTheHero
         public void SnapToHero()
         {
             velocity = Vector3.zero;
+            if (Game.Lab != null) { transform.position = LabCameraPosition(); return; }
             transform.position = new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + 2.2f, 9.5f, 41.4f), 0f, -10f);
         }
 
         private void LateUpdate()
         {
             if (Game == null || Game.Hero == null) return;
+            if (Game.Lab != null)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, LabCameraPosition(), ref velocity, .16f);
+                return;
+            }
             float desiredX = Mathf.Clamp(Game.Hero.transform.position.x + 2.2f, 9.5f, 41.4f);
             Vector3 target = new(desiredX, 0f, -10f);
             transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, .2f);
+        }
+
+        private Vector3 LabCameraPosition()
+        {
+            float halfWidth = Mathf.Min(35f, Game.MainCamera.orthographicSize * Game.MainCamera.aspect);
+            return new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + Game.Hero.Facing * 1.5f,
+                halfWidth, 70f - halfWidth), 1f, -10f);
         }
     }
 

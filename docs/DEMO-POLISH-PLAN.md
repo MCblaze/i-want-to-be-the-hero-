@@ -1,6 +1,6 @@
 # Sunleaf demo: movement feel and world polish
 
-Revision 1.1 · 14 September 2026 · planning update, implementation pending
+Revision 1.2 · 14 September 2026 · C1 practice-room prototype implemented and tested
 
 [Master demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf) · [Detailed Notion polish plan](https://app.notion.com/p/3dba2b7d211481fa9448cd95575b7db6) · [Asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) · [Bezi workflow](BEZI-DEMO-WORKFLOW.md)
 
@@ -23,7 +23,7 @@ Preserve these decisions:
 
 ## One ordered backlog
 
-Prefix the research stages **QP0–QP3** so they cannot be confused with the master plan's P0–P5. Restart/encounter reliability is already implemented; the quality tasks below remain planned.
+Prefix the research stages **QP0–QP3** so they cannot be confused with the master plan's P0–P5. Restart/encounter reliability and the C1 movement-room prototype are implemented. C1-F presentation and the later quality tasks remain planned.
 
 | Quality stage | Master plan / Bezi mapping | Owner and result | Exit evidence |
 | --- | --- | --- | --- |
@@ -100,4 +100,4 @@ Return saved paths, baseline, exact changed files, before/after evidence, Passed
 
 ## Status
 
-Research has been reviewed against the current local source and merged into the plans. No gameplay, assets, packages, Bezi tasks or Skills were executed during this planning update. The next implementation deliverable is the movement-and-feel test room, with mechanics measured first and presentation added in a separate change.
+C1 is implemented in the saved MovementAndFeel_Test scene: double jump, directional dash, neutral backflip, sword/wand switching, practice stations and adaptive camera bounds. Nine movement/camera tests and four original quest regression methods passed across the final relevant runs. See [Movement Lab](MOVEMENT-LAB.md) and its checked-in evidence for measurements and limits. C1-F presentation remains open. Bezi has received separate Canopy layout and art-handoff assignments; their outputs are reviewed separately from C1. No renderer/package migration or GitHub publication is included in this milestone.

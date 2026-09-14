@@ -13,11 +13,12 @@ namespace IWantToBeTheHero
         private static bool jumpPressed;
         private static bool attackPressed;
         private static bool dashPressed;
+        private static bool swapPressed;
 
         public static void Reset()
         {
             Left = Right = JumpHeld = false;
-            jumpPressed = attackPressed = dashPressed = false;
+            jumpPressed = attackPressed = dashPressed = swapPressed = false;
         }
 
         public static void Set(MobileAction action, bool pressed)
@@ -36,15 +37,19 @@ namespace IWantToBeTheHero
                 case MobileAction.Dash:
                     if (pressed) dashPressed = true;
                     break;
+                case MobileAction.Swap:
+                    if (pressed) swapPressed = true;
+                    break;
             }
         }
 
         public static bool ConsumeJump() { bool value = jumpPressed; jumpPressed = false; return value; }
         public static bool ConsumeAttack() { bool value = attackPressed; attackPressed = false; return value; }
         public static bool ConsumeDash() { bool value = dashPressed; dashPressed = false; return value; }
+        public static bool ConsumeSwap() { bool value = swapPressed; swapPressed = false; return value; }
     }
 
-    public enum MobileAction { Left, Right, Jump, Attack, Dash }
+    public enum MobileAction { Left, Right, Jump, Attack, Dash, Swap }
 
     public sealed class TouchHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
     {

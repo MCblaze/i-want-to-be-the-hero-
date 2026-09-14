@@ -19,12 +19,30 @@ namespace IWantToBeTheHero.Tests
         [MenuItem("Tools/Hero/Run Lifecycle Regression Tests")]
         public static void Run()
         {
+            Start(null);
+        }
+
+        [MenuItem("Tools/Hero/Run Movement Tests")]
+        public static void RunMovement()
+        {
+            Start(new[] { "IWantToBeTheHero.Tests.MovementTests" });
+        }
+
+        [MenuItem("Tools/Hero/Run Movement Camera Test")]
+        public static void RunCamera()
+        {
+            Start(new[] { "IWantToBeTheHero.Tests.MovementTests.Camera_AspectChangesKeepHeroVisibleAtBothRoomEdges" });
+        }
+
+        private static void Start(string[] names)
+        {
             SessionState.SetBool("HeroLifecycleActive", true);
             SessionState.SetString("HeroLifecycleResults", "Running lifecycle regression tests.");
             Api.Execute(new ExecutionSettings(new Filter
             {
                 testMode = TestMode.EditMode,
-                assemblyNames = new[] { "IWantToBeTheHero.EditorTests" }
+                assemblyNames = new[] { "IWantToBeTheHero.EditorTests" },
+                testNames = names
             }));
         }
 
