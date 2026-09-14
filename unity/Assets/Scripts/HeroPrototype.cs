@@ -10,7 +10,7 @@ namespace IWantToBeTheHero
         private const string MainScenePath = "Assets/Scenes/Main.unity";
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void SubscribeToSceneLoads()
+        public static void SubscribeToSceneLoads()
         {
             // Re-register safely when Enter Play Mode has domain reload disabled.
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -91,6 +91,8 @@ namespace IWantToBeTheHero
         public void ResetQuest()
         {
             MobileInput.Reset();
+            // Editor recompilation can clear static event subscriptions during Play Mode.
+            PrototypeBootstrap.SubscribeToSceneLoads();
             SceneManager.LoadScene(gameObject.scene.path);
         }
 

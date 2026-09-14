@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -97,14 +99,34 @@ namespace IWantToBeTheHero.Tests
         }
 
         [UnityTest]
+        public IEnumerator RestartAfterLostSceneCallback_RebuildsWorld()
+        {
+            // Reproduce the static subscription loss caused by Editor script reload.
+            var method = typeof(PrototypeBootstrap).GetMethod("OnSceneLoaded",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            var callback = (UnityAction<Scene, LoadSceneMode>)System.Delegate.CreateDelegate(
+                typeof(UnityAction<Scene, LoadSceneMode>), method);
+            SceneManager.sceneLoaded -= callback;
+            int previousId = Game.GetInstanceID();
+            Game.StartQuest();
+            Game.ResetQuest();
+            yield return WaitFor(() => Game != null && Game.GetInstanceID() != previousId,
+                "Restart must recover a lost scene-load callback.");
+            AssertOneWorld();
+            Assert.That(Game.Started, Is.False);
+        }
+
+        [UnityTest]
         public IEnumerator TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy()
         {
             var game = Game;
             game.StartQuest();
             // Arrange a checkpoint collision using the real trigger, not SetCheckpoint.
+            var flag = Object.FindAnyObjectByType<Checkpoint>().GetComponent<SpriteRenderer>();
+            Color inactiveFlagColor = flag.color;
             MoveHeroTo(new Vector2(24.55f, -2.75f));
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
+            yield return WaitFor(() => flag.color != inactiveFlagColor,
+                "Wait for the real checkpoint trigger and visible activation.");
             game.CollectHeroSpark();
             yield return null;
 

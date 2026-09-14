@@ -15,10 +15,14 @@ Implemented the first reliability slice of the [demo v0.2 plan](https://app.noti
 
 Unity 6000.3.6f1; baseline local commit 85f068d plus this change.
 
-Three Unity regression methods passed, with zero failures or skips:
+The initial three Unity regression methods passed, with zero failures or skips:
 1. Twenty restarts, alternating direct restart and the Play again button’s event. Verify fresh session and exactly one runtime world, plus cleared progression/input.
 2. Ten falls after activating the actual checkpoint trigger, unlocking Spark, damaging the boss and defeating an enemy. Verify safe return, retained progress, restored enemies and camera.
 3. Lethal damage with the normal immunity timer, followed by the real delayed respawn. Verify health, checkpoint, Spark and reset boss attempt.
+
+A subsequent live Editor check exposed static callback loss after scripts reload during Play Mode. Each restart now reattaches its scene-load callback before reloading Main. A fourth regression method reproduces a lost callback and verifies that Restart rebuilds the world. The expanded suite passed all four methods, with zero failures or skips. Checkpoint setup now waits for visible flag activation before starting the fall scenarios.
+
+The live Editor case was then checked with an actual `EditorUtility.RequestScriptReload()` during Play Mode, followed by the normal ResetQuest path. The fresh title screen, Logan at 5 health and a working camera were verified afterward.
 
 The tests arrange positions and damage through controlled fixtures; these are regression tests, not manual player usability sessions. The initial fixture waits were corrected to wait for actual physics, scene-load and game-time state.
 
