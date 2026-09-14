@@ -6,3 +6,7 @@
 - **Review status:** exact duplicate
 
 > Exact duplicate of [The Heart of Game Systems - Defining Gameplay Between structure and chaos (1).docx](073-the-heart-of-game-systems-defining-gameplay-between-structure-and-chaos-1.md). Its chapter notes are intentionally kept in the canonical review to avoid contradictory summaries.
+
+## Project follow-up
+
+The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).

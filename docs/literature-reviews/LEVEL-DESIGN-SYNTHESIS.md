@@ -295,3 +295,7 @@ Camera rules:
 ## Research library
 
 The full chapter-by-chapter structural index is in [Game Design Literature Review Index](README.md). It covers all 91 source files and records limitations and exact duplicates explicitly.
+
+## Project follow-up
+
+The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).

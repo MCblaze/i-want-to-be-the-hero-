@@ -6,3 +6,7 @@
 - **Review status:** exact duplicate
 
 > Exact duplicate of [annas-arch-1ea96db172b4.pdf](010-annas-arch-1ea96db172b4.md). Its chapter notes are intentionally kept in the canonical review to avoid contradictory summaries.
+
+## Project follow-up
+
+The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).

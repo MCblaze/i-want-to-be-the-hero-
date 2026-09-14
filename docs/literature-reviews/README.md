@@ -118,3 +118,7 @@ This is a working research index, not a substitute for a close human reading of 
 | 089 | [Self-Determination Theory _ Basic Psychological Needs in -- Ryan, Richard M(著);Deci, Edward L -- Feb 14, 2017 -- The Guilford Press; Guilford -- isbn13 9781462528769 -- ccec12b632628199c17c46271daf8f73 -- Anna’s Ar](089-self-determination-theory-basic-psychological-needs-in-ryan-richard-m-deci-edward-l-feb-14-2017-the-guilford-p.md) | full-text indexed | 41 | Tier 1 — motivation |
 | 090 | [The Reflective Practitioner _ How Professionals Think In -- Schon, Donald A_ -- EBL-Schweitzer, Online-ausg, 2008 -- Basic Books, Inc -- isbn13 9780465068784 -- bc0a178279d3cfc4113fc77183db2918 -- Anna’s Archive](090-the-reflective-practitioner-how-professionals-think-in-schon-donald-a-ebl-schweitzer-online-ausg-2008-basic-bo.md) | full-text indexed | 21 | Reference library |
 | 091 | [Video Game Design_ Principles and Practices from the Ground -- Salmond, Michael, author -- Required Reading Range Ser, London, 2016 -- London _ -- isbn13 9781472567482 -- 5f199b01a7b71c450da3078023646f27 -- Anna’s](091-video-game-design-principles-and-practices-from-the-ground-salmond-michael-author-required-reading-range-ser-l.md) | full-text indexed | 48 | Tier 1 — platformer principles |
+
+## Project follow-up
+
+The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).

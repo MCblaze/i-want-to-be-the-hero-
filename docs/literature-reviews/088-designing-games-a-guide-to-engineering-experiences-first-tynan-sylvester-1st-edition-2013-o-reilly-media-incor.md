@@ -6,3 +6,7 @@
 - **Review status:** exact duplicate
 
 > Exact duplicate of [Designing Games (Tynan Sylvester) (z-library.sk, 1lib.sk, z-lib.sk).pdf](017-designing-games-tynan-sylvester-z-library-sk-1lib-sk-z-lib-sk.md). Its chapter notes are intentionally kept in the canonical review to avoid contradictory summaries.
+
+## Project follow-up
+
+The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).
