@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 20:58:56Z" end-time="2026-09-14 20:59:00Z" duration="4.428285">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 20:58:56Z" end-time="2026-09-14 20:59:00Z" duration="4.428285" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1026" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 20:58:57Z" end-time="2026-09-14 20:59:00Z" duration="3.122276" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1027" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 20:58:57Z" end-time="2026-09-14 20:59:00Z" duration="3.110787" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1028" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 20:58:57Z" end-time="2026-09-14 20:59:00Z" duration="3.103154" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1008" name="LifecycleTests" fullname="IWantToBeTheHero.Tests.LifecycleTests" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 20:58:57Z" end-time="2026-09-14 20:59:00Z" duration="2.979932" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1012" name="LethalDamage_RespawnsAndClearsTheBossAttempt" fullname="IWantToBeTheHero.Tests.LifecycleTests.LethalDamage_RespawnsAndClearsTheBossAttempt" methodname="LethalDamage_RespawnsAndClearsTheBossAttempt" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="1565788074" result="Passed" start-time="2026-09-14 20:58:09Z" end-time="2026-09-14 20:58:25Z" duration="16.277717" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="RestartAfterLostSceneCallback_RebuildsWorld" fullname="IWantToBeTheHero.Tests.LifecycleTests.RestartAfterLostSceneCallback_RebuildsWorld" methodname="RestartAfterLostSceneCallback_RebuildsWorld" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="987255458" result="Passed" start-time="2026-09-14 20:58:25Z" end-time="2026-09-14 20:58:36Z" duration="10.825287" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" fullname="IWantToBeTheHero.Tests.LifecycleTests.TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" methodname="TenFalls_KeepCheckpointAndSpark_ResetEveryEnemy" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="1701917562" result="Passed" start-time="2026-09-14 20:58:36Z" end-time="2026-09-14 20:58:47Z" duration="11.062320" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" fullname="IWantToBeTheHero.Tests.LifecycleTests.TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" methodname="TwentyRestarts_RebuildExactlyOneWorldAndClearInputs" classname="IWantToBeTheHero.Tests.LifecycleTests" runstate="Runnable" seed="1039429748" result="Passed" start-time="2026-09-14 20:58:47Z" end-time="2026-09-14 20:59:00Z" duration="13.382696" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1013" name="MainSceneAuthoringTests" fullname="IWantToBeTheHero.Tests.MainSceneAuthoringTests" classname="IWantToBeTheHero.Tests.MainSceneAuthoringTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 20:59:00Z" end-time="2026-09-14 20:59:00Z" duration="0.113649" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1014" name="MainScene_ContainsEditableLevelAndSavedCamera" fullname="IWantToBeTheHero.Tests.MainSceneAuthoringTests.MainScene_ContainsEditableLevelAndSavedCamera" methodname="MainScene_ContainsEditableLevelAndSavedCamera" classname="IWantToBeTheHero.Tests.MainSceneAuthoringTests" runstate="Runnable" seed="862702237" result="Passed" start-time="2026-09-14 20:59:00Z" end-time="2026-09-14 20:59:00Z" duration="0.109926" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

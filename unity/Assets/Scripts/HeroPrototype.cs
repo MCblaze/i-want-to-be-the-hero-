@@ -45,6 +45,7 @@ namespace IWantToBeTheHero
         public bool Won { get; private set; }
         public float Elapsed { get; private set; }
         public MovementLab Lab { get; private set; }
+        public MainSceneLayout MainLayout { get; private set; }
 
         private GameObject sparkGate;
         private readonly List<HeroTarget> targets = new();
@@ -56,6 +57,7 @@ namespace IWantToBeTheHero
         private void Awake()
         {
             Lab = GetComponent<MovementLab>();
+            MainLayout = Lab == null ? UnityEngine.Object.FindAnyObjectByType<MainSceneLayout>() : null;
             MobileInput.Reset();
             Application.targetFrameRate = 60;
             Screen.autorotateToPortrait = false;
@@ -65,7 +67,8 @@ namespace IWantToBeTheHero
             Screen.orientation = ScreenOrientation.AutoRotation;
             Physics2D.gravity = new Vector2(0f, -24f);
             BuildCameraAndBackdrop();
-            if (Lab == null) BuildWorld();
+            if (Lab == null && MainLayout == null) BuildWorld();
+            else if (MainLayout != null) BindAuthoredWorld();
             BuildActors();
             UI = PrototypeUI.Create(this);
         }
@@ -177,6 +180,20 @@ namespace IWantToBeTheHero
                 cameraFollow.Game = this;
                 return;
             }
+            if (MainLayout != null && MainLayout.mainCamera != null)
+            {
+                MainCamera = MainLayout.mainCamera;
+                var cameraFollow = MainCamera.GetComponent<CameraFollow>();
+                if (cameraFollow == null) cameraFollow = MainCamera.gameObject.AddComponent<CameraFollow>();
+                cameraFollow.Game = this;
+                if (MainLayout.backdrop != null)
+                {
+                    var backdropFollow = MainLayout.backdrop.GetComponent<BackdropFollow>();
+                    if (backdropFollow == null) backdropFollow = MainLayout.backdrop.AddComponent<BackdropFollow>();
+                    backdropFollow.Target = MainCamera.transform;
+                }
+                return;
+            }
             var cameraObject = new GameObject("Main Camera");
             cameraObject.tag = "MainCamera";
             MainCamera = cameraObject.AddComponent<Camera>();
@@ -196,6 +213,32 @@ namespace IWantToBeTheHero
 
             var followCamera = cameraObject.AddComponent<CameraFollow>();
             followCamera.Game = this;
+        }
+
+        private void BindAuthoredWorld()
+        {
+            sparkGate = MainLayout.sparkGate;
+            if (MainLayout.heroPreview != null) MainLayout.heroPreview.SetActive(false);
+            foreach (var hazardObject in MainLayout.hazards)
+            {
+                if (hazardObject == null) continue;
+                var hazard = hazardObject.GetComponent<Hazard>();
+                if (hazard == null) hazard = hazardObject.AddComponent<Hazard>();
+                hazard.Game = this;
+            }
+            if (MainLayout.checkpoint != null)
+            {
+                var checkpoint = MainLayout.checkpoint.GetComponent<Checkpoint>();
+                if (checkpoint == null) checkpoint = MainLayout.checkpoint.AddComponent<Checkpoint>();
+                checkpoint.Game = this;
+                checkpoint.RespawnPosition = MainLayout.checkpointRespawnPosition;
+            }
+            if (MainLayout.heroSpark != null)
+            {
+                var spark = MainLayout.heroSpark.GetComponent<HeroSpark>();
+                if (spark == null) spark = MainLayout.heroSpark.AddComponent<HeroSpark>();
+                spark.Game = this;
+            }
         }
 
         private void BuildWorld()
@@ -236,6 +279,8 @@ namespace IWantToBeTheHero
             var heroObject = new GameObject("Logan");
             heroObject.transform.position = new Vector3(1.2f, -2.8f, 0f);
             if (Lab != null) heroObject.transform.position = Lab.spawn.position;
+            else if (MainLayout != null && MainLayout.heroSpawn != null)
+                heroObject.transform.position = MainLayout.heroSpawn.position;
             var heroRenderer = heroObject.AddComponent<SpriteRenderer>();
             heroRenderer.sprite = PrototypeArt.Load("Art/logan", 1.62f);
             heroRenderer.sortingOrder = 20;

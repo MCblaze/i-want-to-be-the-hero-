@@ -34,6 +34,21 @@ namespace IWantToBeTheHero.Tests
             Start(new[] { "IWantToBeTheHero.Tests.MovementTests.Camera_AspectChangesKeepHeroVisibleAtBothRoomEdges" });
         }
 
+        [MenuItem("Tools/Hero/Run Main Scene Authoring Tests")]
+        public static void RunMainAuthoring()
+        {
+            Start(new[] {
+                "IWantToBeTheHero.Tests.MainSceneAuthoringTests",
+                "IWantToBeTheHero.Tests.LifecycleTests"
+            });
+        }
+
+        [MenuItem("Tools/Hero/Run Main Scene Editability Test")]
+        public static void RunMainEditability()
+        {
+            Start(new[] { "IWantToBeTheHero.Tests.MainSceneAuthoringTests" });
+        }
+
         [MenuItem("Tools/Hero/Run Platform Regression Tests")]
         public static void RunPlatforms()
         {
