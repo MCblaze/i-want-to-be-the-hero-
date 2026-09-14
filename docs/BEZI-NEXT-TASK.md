@@ -1,6 +1,6 @@
 # Bezi's next task: Canopy Crossing greybox
 
-Task B1 · brief version 1.0 · 14 September 2026 · prepared, not dispatched
+Task B1 · brief version 1.1 · 14 September 2026 · polish research incorporated; prepared, not dispatched
 
 [Notion workflow and assignment](https://app.notion.com/p/3dba2b7d2114815594f3fc1fb6e6b53f) · [Reusable playbook](BEZI-PLAYBOOK.md)
 
@@ -13,6 +13,8 @@ Unity project: `C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity`. *
 Unity 6000.3.6f1; current built-in renderer. Last verified gameplay baseline: local `a564b5c`. Confirm current revision, pre-existing local changes and the exact target before editing. Codex owns existing gameplay scripts, Main, packages and settings during this task.
 
 Design source: [Sunleaf Ruins demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf), specifically Canopy Crossing, movement geometry and visual depth. Use the [asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) only for relevant naming/style context. Verify these sources are accessible in Bezi or supply dated excerpts in a Project Context Page. Pin that Page and the actual reference assets with the @ picker.
+
+Read the QP1 section of [DEMO-POLISH-PLAN.md](DEMO-POLISH-PLAN.md) for future presentation requirements. This greybox reserves their space with markers; later assignments implement loops, effects, inhabitants and lighting. The current custom sprite animator and legacy input remain Codex-owned. Full tablet work is outside this Windows-first assignment.
 
 ## Mode and objective
 
@@ -34,6 +36,8 @@ If a proposed output already exists, inspect it and report the conflict rather t
 
 Include a labelled start marker, safe teaching ledge, main platform route, lower recovery shelf, optional upper branch that rejoins, waterfall composition placeholder, camera-bound markers and a checkpoint marker. Mark the slow moving-platform intention with a labelled placeholder.
 
+Reserve labelled markers for a grass/canopy wind area, localized water response, one nonblocking ambient inhabitant and a focal-light/reveal composition. Keep them clear of landing edges and combat sightlines. These markers do not add scripts, working lights, dialogue or cutscene behavior.
+
 Create six named scenery bands: `01_Sky`, `02_FarRuins`, `03_DistantForest`, `04_NearTrunks`, `05_PlayPlane`, `06_Foreground`. They establish hierarchy and composition here; parallax motion belongs to a later integration task.
 
 Use simple distinguishable shapes and a clear legend. Differentiate solid ground, intended one-way platforms, decorative scenery and placeholders. Keep foreground clear of landings and enemy-warning space. Compose for 16:9 and provide a preview camera using existing supported components.
@@ -48,5 +52,6 @@ Label jump/dash arrangements **PROVISIONAL — movement measurements pending**. 
 4. Intended one-way platforms and nonfunctional placeholders are visibly identified. List every movement-dependent assumption; do not report successful traversal without a playable controller test.
 5. No missing-script/import/compile errors are introduced. Report actual checks and remaining errors, separating pre-existing ones.
 6. The changed-file report contains only the allowed new asset scope and its metadata. Resolve pending Bezi suggestions before handing ownership back.
+7. The future wind/water/inhabitant/light markers are present and do not obscure the route. Return a gameplay-scale readability review; mark animation, lighting, contact feedback and cutscene checks Not run at this greybox stage.
 
 Return Passed/Failed/Not run for each item, exact asset paths, evidence and unresolved assumptions. Codex then reviews the diff and integrates/tests gameplay before final art. This task does not publish to GitHub or install packages, Skills or connections.
