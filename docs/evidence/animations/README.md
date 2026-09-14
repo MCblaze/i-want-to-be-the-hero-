@@ -9,6 +9,7 @@ Baseline `5f59a80`, 14 September 2026, Unity 6000.3.6f1. All PNGs are actual Uni
 - `first-fix-results.xml`: diagonal backflip clearance and enemy test setup failures, retained as review history.
 - `gameplay-passed-cache-failed.xml`: combined 18-method run: all 13 existing movement/quest methods plus four animation methods passed; repeating the frame audit failed on a stale Sprite cache. That failure triggered the final cache fix.
 - `animation-final-passed.xml`: final six animation checks passed, including destroyed-cache recovery, all frame samples, live Logan actions, actual enemy transitions, both-facing foot clearance and weapon/tuned-dash presentation.
+- `platform-carry/`: AN-10 follow-up to `263dced`, with the user-observed running-on-a-moving-platform defect, targeted before/after results and real Unity screenshots. See its README for separate test coverage and results.
 
 Ten existing Node/browser animation tests also passed after metadata synchronization. These are distinct from Unity results. There was no single 19-method final run. Missing weapon/second-jump/backflip/defeat artwork, standalone/device testing and final art approval remain open.
 

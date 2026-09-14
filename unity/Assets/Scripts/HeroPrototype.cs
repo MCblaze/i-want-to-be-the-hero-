@@ -630,8 +630,14 @@ namespace IWantToBeTheHero
             else if (!IsGrounded)
                 visual.Tick(Mathf.Abs(body.linearVelocity.y) < 1f ? "apex" : body.linearVelocity.y > 0f ? "rise" : "fall", Time.deltaTime);
             else if (landingRemaining > 0f) visual.Tick("land", Time.deltaTime);
-            else visual.Tick(Mathf.Abs(body.linearVelocity.x) > .2f ? "run" : "idle", Time.deltaTime,
-                Mathf.Abs(body.linearVelocity.x) > .2f ? Mathf.Max(.5f, Mathf.Abs(body.linearVelocity.x) / 5.2f) : 1f);
+            else
+            {
+                // Being carried by a platform is not walking across its surface.
+                float groundSpeed = Mathf.Abs(body.linearVelocity.x - SupportVelocity.x);
+                bool running = groundSpeed > .2f;
+                visual.Tick(running ? "run" : "idle", Time.deltaTime,
+                    running ? Mathf.Max(.5f, groundSpeed / 5.2f) : 1f);
+            }
             if (flipRemaining > 0f && Settings != null)
                 visual.SetPoseRotation(facing * 360f * (1f - flipRemaining / Settings.flipDuration));
             sprite.color = new Color(1f, 1f, 1f, invulnerable > 0f && Mathf.FloorToInt(invulnerable * 18f) % 2 == 0 ? .4f : 1f);

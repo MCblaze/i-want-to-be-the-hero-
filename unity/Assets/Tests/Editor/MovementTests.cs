@@ -222,6 +222,69 @@ namespace IWantToBeTheHero.Tests
         }
 
         [UnityTest]
+        public IEnumerator MovingPlatform_AnimationUsesMovementRelativeToSupport()
+        {
+            var motion = Object.FindAnyObjectByType<LabMovingPlatform>();
+            var platform = motion.GetComponent<Rigidbody2D>();
+            var visual = Hero.GetComponentInChildren<PixelSpriteAnimator>();
+            Place(platform.position + Vector2.up * .85f);
+            yield return Until(() => Hero.Grounded, "Land on moving platform");
+            yield return For(.25f);
+
+            float offset = Body.position.x - platform.position.x;
+            float end = Time.time + motion.period * 2f + .25f;
+            int samples = 0, wrongClips = 0;
+            bool carriedLeft = false, carriedRight = false;
+            float maxDrift = 0f;
+            while (Time.time < end)
+            {
+                Assert.That(Hero.Grounded, Is.True, "Remain on the moving support");
+                carriedLeft |= motion.Velocity.x < -.4f;
+                carriedRight |= motion.Velocity.x > .4f;
+                maxDrift = Mathf.Max(maxDrift, Mathf.Abs(Body.position.x - platform.position.x - offset));
+                if (visual.CurrentClip != "idle") wrongClips++;
+                samples++;
+                EditorApplication.QueuePlayerLoopUpdate();
+                yield return null;
+            }
+            Directory.CreateDirectory("Logs");
+            File.WriteAllText("Logs/platform-animation-measurements.txt",
+                $"Idle samples: {samples}\nNon-idle samples: {wrongClips}\nBoth carry directions: {carriedLeft && carriedRight}\nMaximum relative drift: {maxDrift:F4}\n");
+            Assert.That(carriedLeft && carriedRight, Is.True, "Observe both directions and reversals");
+            Assert.That(maxDrift, Is.LessThan(.12f), "Idle hero stays fixed relative to the platform");
+            Assert.That(wrongClips, Is.Zero, "Platform carry must never select the run clip");
+
+            foreach (var direction in new[] { MobileAction.Right, MobileAction.Left })
+            {
+                Place(platform.position + Vector2.up * .85f);
+                yield return Until(() => Hero.Grounded, "Ready to walk on platform");
+                yield return For(.25f);
+                float startOffset = Body.position.x - platform.position.x;
+                float sign = direction == MobileAction.Right ? 1f : -1f;
+                Press(direction);
+                yield return Until(() => visual.CurrentClip == "run" &&
+                    (Body.position.x - platform.position.x - startOffset) * sign > .2f,
+                    "Walking relative to the platform plays run");
+                Assert.That(Hero.Grounded, Is.True);
+                Release(direction);
+                yield return Until(() => visual.CurrentClip == "idle", "Releasing movement restores idle");
+                yield return For(.2f);
+                Assert.That(Hero.Grounded, Is.True);
+                Assert.That(visual.CurrentClip, Is.EqualTo("idle"));
+            }
+
+            Press(MobileAction.Jump);
+            yield return Until(() => !Hero.Grounded && visual.CurrentClip == "rise", "Jumping off support still plays rise");
+            Release(MobileAction.Jump);
+            Place(new Vector2(5f, .7f));
+            yield return Until(() => Hero.Grounded && visual.CurrentClip == "idle", "Static ground still idles");
+            Press(MobileAction.Right);
+            yield return Until(() => visual.CurrentClip == "run", "Static ground still runs");
+            Release(MobileAction.Right);
+            yield return Until(() => visual.CurrentClip == "idle", "Static ground returns to idle");
+        }
+
+        [UnityTest]
         public IEnumerator Platforms_OneWayLandingMovingCarryAndLowCeiling()
         {
             Place(new Vector2(38f, .7f));

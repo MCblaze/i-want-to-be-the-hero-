@@ -1,0 +1,4 @@
+Idle samples: 3181
+Non-idle samples: 3002
+Both carry directions: True
+Maximum relative drift: 0.0000

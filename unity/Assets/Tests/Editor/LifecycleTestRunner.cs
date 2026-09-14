@@ -34,6 +34,15 @@ namespace IWantToBeTheHero.Tests
             Start(new[] { "IWantToBeTheHero.Tests.MovementTests.Camera_AspectChangesKeepHeroVisibleAtBothRoomEdges" });
         }
 
+        [MenuItem("Tools/Hero/Run Platform Regression Tests")]
+        public static void RunPlatforms()
+        {
+            Start(new[] {
+                "IWantToBeTheHero.Tests.MovementTests.MovingPlatform_AnimationUsesMovementRelativeToSupport",
+                "IWantToBeTheHero.Tests.MovementTests.Platforms_OneWayLandingMovingCarryAndLowCeiling"
+            });
+        }
+
         private static void Start(string[] names)
         {
             SessionState.SetBool("HeroLifecycleActive", true);

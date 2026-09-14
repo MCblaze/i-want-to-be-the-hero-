@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 20:23:27Z" end-time="2026-09-14 20:23:31Z" duration="3.8039019">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-14 20:23:27Z" end-time="2026-09-14 20:23:31Z" duration="3.803902" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1024" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-14 20:23:28Z" end-time="2026-09-14 20:23:31Z" duration="2.603190" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1025" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-14 20:23:28Z" end-time="2026-09-14 20:23:31Z" duration="2.596726" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1026" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-14 20:23:28Z" end-time="2026-09-14 20:23:31Z" duration="2.587591" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1013" name="MovementTests" fullname="IWantToBeTheHero.Tests.MovementTests" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-14 20:23:28Z" end-time="2026-09-14 20:23:31Z" duration="2.583012" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1019" name="MovingPlatform_AnimationUsesMovementRelativeToSupport" fullname="IWantToBeTheHero.Tests.MovementTests.MovingPlatform_AnimationUsesMovementRelativeToSupport" methodname="MovingPlatform_AnimationUsesMovementRelativeToSupport" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="432630290" result="Failed" start-time="2026-09-14 20:23:00Z" end-time="2026-09-14 20:23:20Z" duration="19.788470" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Platform carry must never select the run clip
+  Expected: 0
+  But was:  3002
+]]></message>
+                <stack-trace><![CDATA[at IWantToBeTheHero.Tests.MovementTests+<MovingPlatform_AnimationUsesMovementRelativeToSupport>d__19.MoveNext () [0x0035a] in C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Assets\Tests\Editor\MovementTests.cs:255
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1020" name="Platforms_OneWayLandingMovingCarryAndLowCeiling" fullname="IWantToBeTheHero.Tests.MovementTests.Platforms_OneWayLandingMovingCarryAndLowCeiling" methodname="Platforms_OneWayLandingMovingCarryAndLowCeiling" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="369182336" result="Passed" start-time="2026-09-14 20:23:20Z" end-time="2026-09-14 20:23:31Z" duration="11.389303" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
