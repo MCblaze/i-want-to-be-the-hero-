@@ -14,6 +14,12 @@ namespace IWantToBeTheHero
         private static bool attackPressed;
         private static bool dashPressed;
 
+        public static void Reset()
+        {
+            Left = Right = JumpHeld = false;
+            jumpPressed = attackPressed = dashPressed = false;
+        }
+
         public static void Set(MobileAction action, bool pressed)
         {
             switch (action)

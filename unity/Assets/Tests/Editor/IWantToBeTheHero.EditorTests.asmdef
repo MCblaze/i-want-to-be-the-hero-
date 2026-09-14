@@ -1,0 +1,13 @@
+{
+  "name": "IWantToBeTheHero.EditorTests",
+  "references": [
+    "IWantToBeTheHero.Runtime",
+    "UnityEngine.UI"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

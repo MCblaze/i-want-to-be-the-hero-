@@ -1,0 +1,6 @@
+{
+  "name": "IWantToBeTheHero.Runtime",
+  "references": [
+    "UnityEngine.UI"
+  ]
+}

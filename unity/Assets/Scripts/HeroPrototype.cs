@@ -1,15 +1,33 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IWantToBeTheHero
 {
     public static class PrototypeBootstrap
     {
+        private const string MainScenePath = "Assets/Scenes/Main.unity";
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void SubscribeToSceneLoads()
+        {
+            // Re-register safely when Enter Play Mode has domain reload disabled.
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (mode == LoadSceneMode.Single && scene.path == MainScenePath)
+                BuildPrototype();
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void BuildPrototype()
         {
-            if (UnityEngine.Object.FindAnyObjectByType<HeroGame>() != null)
+            if (SceneManager.GetActiveScene().path != MainScenePath ||
+                UnityEngine.Object.FindAnyObjectByType<HeroGame>() != null)
                 return;
 
             var root = new GameObject("I Want to Be the Hero - Runtime Level");
@@ -36,6 +54,7 @@ namespace IWantToBeTheHero
 
         private void Awake()
         {
+            MobileInput.Reset();
             Application.targetFrameRate = 60;
             Screen.autorotateToPortrait = false;
             Screen.autorotateToPortraitUpsideDown = false;
@@ -71,7 +90,21 @@ namespace IWantToBeTheHero
 
         public void ResetQuest()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            MobileInput.Reset();
+            SceneManager.LoadScene(gameObject.scene.path);
+        }
+
+        public void ResetEncounters()
+        {
+            // Preserve the hero, checkpoint and collected Spark; rebuild combat state.
+            foreach (var target in targets.ToArray())
+            {
+                if (target == null) continue;
+                target.gameObject.SetActive(false);
+                Destroy(target.gameObject);
+            }
+            targets.Clear();
+            BuildEnemies();
         }
 
         public void RegisterTarget(HeroTarget target)
@@ -109,6 +142,7 @@ namespace IWantToBeTheHero
 
         public string CurrentObjective()
         {
+            if (Won) return "Sunleaf Ruins restored!";
             if (!Hero.HasSpark) return "Find the Hero Spark";
             if (!Boss.Awake) return "Dash onward to the ancient gate";
             return "Defeat the Mossback Guardian";
@@ -194,7 +228,11 @@ namespace IWantToBeTheHero
             heroCollider.offset = new Vector2(0f, -.03f);
             Hero = heroObject.AddComponent<HeroController>();
             Hero.Game = this;
+            BuildEnemies();
+        }
 
+        private void BuildEnemies()
+        {
             CreateThornling(5.8f, 4.4f, 7f);
             CreateThornling(10.6f, 8.8f, 13.8f);
             CreateThornling(17.4f, 15.7f, 21.8f);
@@ -534,14 +572,21 @@ namespace IWantToBeTheHero
         private void Respawn()
         {
             CancelInvoke(nameof(Respawn));
+            if (Game == null || Game.Won) return;
+            MobileInput.Reset();
             transform.position = respawn;
             body.linearVelocity = Vector2.zero;
             Health = MaxHealth;
             invulnerable = 1.2f;
             attackRemaining = dashRemaining = hurtRemaining = landingRemaining = 0f;
+            attackCooldown = dashCooldown = ghostCooldown = 0f;
             lastGrounded = lastJumpPressed = -10f;
             attackHits.Clear();
             visual.Sample("idle", 0f);
+            sprite.color = Color.white;
+            Game.ResetEncounters();
+            Game.MainCamera.GetComponent<CameraFollow>().SnapToHero();
+            Game.UI.FlashMessage(HasSpark ? "TRY AGAIN!\nHero Spark kept." : "TRY AGAIN!\nBack on safe ground.", 1.5f);
         }
 
         private static float HorizontalInput()
@@ -823,6 +868,12 @@ namespace IWantToBeTheHero
     {
         public HeroGame Game { get; set; }
         private Vector3 velocity;
+
+        public void SnapToHero()
+        {
+            velocity = Vector3.zero;
+            transform.position = new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + 2.2f, 9.5f, 41.4f), 0f, -10f);
+        }
 
         private void LateUpdate()
         {
