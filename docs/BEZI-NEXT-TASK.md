@@ -1,25 +1,52 @@
-# Bezi’s next task: Canopy Crossing greybox
+# Bezi's next task: Canopy Crossing greybox
 
-Use the full [Sunleaf Ruins demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf) as context, with the [asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) for later art work.
+Task B1 · brief version 1.0 · 14 September 2026 · prepared, not dispatched
 
-Work in `C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity`. Do not use OneDrive.
+[Notion workflow and assignment](https://app.notion.com/p/3dba2b7d2114815594f3fc1fb6e6b53f) · [Reusable playbook](BEZI-PLAYBOOK.md)
 
-## Ownership
+Use `BEZI-PLAYBOOK.md` and `BEZI-TEMPLATES.md` for the reusable method, and `BEZI-DEMO-WORKFLOW.md` for this project's ownership and dependencies.
 
-Codex leads gameplay code, controls, integration, regression tests and release checks. Bezi’s proposed first assignment is scene layout and composition. Hand off one reviewed scene at a time. Both tools should use the same agreed baseline and inspect local changes before editing.
+## Target and context
 
-This brief is prepared for a future handoff; no Bezi job has been dispatched by this document.
+Unity project: `C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity`. **Do not use OneDrive.**
 
-## Deliverable
+Unity 6000.3.6f1; current built-in renderer. Last verified gameplay baseline: local `a564b5c`. Confirm current revision, pre-existing local changes and the exact target before editing. Codex owns existing gameplay scripts, Main, packages and settings during this task.
 
-Create a separate, authoring-only `CanopyCrossing_Greybox` scene and room prefab. Keep existing Main and gameplay scripts untouched. The scene must be visible and understandable in Edit Mode.
+Design source: [Sunleaf Ruins demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf), specifically Canopy Crossing, movement geometry and visual depth. Use the [asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) only for relevant naming/style context. Verify these sources are accessible in Bezi or supply dated excerpts in a Project Context Page. Pin that Page and the actual reference assets with the @ picker.
 
-Include a start marker, a safe teaching ledge, a main platform route, a lower recovery shelf, an optional upper branch that rejoins, a waterfall composition placeholder, six named scenery depth bands, camera-bound markers and a checkpoint marker. Use simple distinguishable shapes. Mark jump/dash-dependent arrangements as provisional until Codex supplies measured movement limits.
+## Mode and objective
 
-Use the demo plan’s Canopy section as the layout brief. Ground and landing edges must read clearly at a 16:9 view. Keep foreground out of the main landing and enemy-warning areas. Label one-way platform intentions distinctly from solid ground.
+First use Ask to inspect the correct project and available primitives/reference assets. Then use Plan for this one output. Review its scope, select Build, and let Agent complete the layout and evidence within the brief.
 
-This first handoff is layout only. Do not install render packages, replace the current art importer, change project settings or implement player/enemy scripts. Camera, light, checkpoint and moving-platform markers may remain labeled placeholders for Codex integration.
+Create a separate **authoring-only** `CanopyCrossing_Greybox` scene and reusable room prefab so the intended route and visual composition can be inspected in Edit Mode. This assignment establishes composition, not verified traversability.
 
-## Completion report
+## Allowed output scope
 
-Return the scene/prefab paths, a Scene-view overview, a gameplay-camera composition view, intended player route, unresolved movement assumptions and any import/Console errors. Codex will integrate and test the result before final art production.
+- New assets under `Assets/HeroDemo/Greybox/CanopyCrossing/`, including necessary new parent-folder `.meta` files.
+- Proposed scene: `Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity`.
+- Proposed prefab: `Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab`.
+- Supporting greybox materials or primitives in the same folder; reuse appropriate existing assets by reference.
+- Existing Main, scripts, source art, importers, packages, build settings and project settings are outside this assignment. No new gameplay script is required.
+
+If a proposed output already exists, inspect it and report the conflict rather than overwriting another owner's work. Use built-in Actions and existing components. Stop before adding a dependency or expanding the folder scope.
+
+## Room requirements
+
+Include a labelled start marker, safe teaching ledge, main platform route, lower recovery shelf, optional upper branch that rejoins, waterfall composition placeholder, camera-bound markers and a checkpoint marker. Mark the slow moving-platform intention with a labelled placeholder.
+
+Create six named scenery bands: `01_Sky`, `02_FarRuins`, `03_DistantForest`, `04_NearTrunks`, `05_PlayPlane`, `06_Foreground`. They establish hierarchy and composition here; parallax motion belongs to a later integration task.
+
+Use simple distinguishable shapes and a clear legend. Differentiate solid ground, intended one-way platforms, decorative scenery and placeholders. Keep foreground clear of landings and enemy-warning space. Compose for 16:9 and provide a preview camera using existing supported components.
+
+Label jump/dash arrangements **PROVISIONAL — movement measurements pending**. Final gap sizes, double-jump access and moving-platform timing depend on Codex's measured movement contract. Camera, checkpoint, waterfall and platform motion remain explicitly labelled placeholders.
+
+## Acceptance and evidence
+
+1. Scene and prefab are saved at the returned paths; reopening the scene in Edit Mode preserves the complete room. Return a hierarchy overview.
+2. All required route elements and six scenery bands exist and are named. Return the relevant object list and Scene-view capture.
+3. The main route, recovery shelf and rejoining optional branch are visually understandable. Return an annotated route description and a 16:9 camera capture.
+4. Intended one-way platforms and nonfunctional placeholders are visibly identified. List every movement-dependent assumption; do not report successful traversal without a playable controller test.
+5. No missing-script/import/compile errors are introduced. Report actual checks and remaining errors, separating pre-existing ones.
+6. The changed-file report contains only the allowed new asset scope and its metadata. Resolve pending Bezi suggestions before handing ownership back.
+
+Return Passed/Failed/Not run for each item, exact asset paths, evidence and unresolved assumptions. Codex then reviews the diff and integrates/tests gameplay before final art. This task does not publish to GitHub or install packages, Skills or connections.
