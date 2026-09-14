@@ -1,6 +1,8 @@
 # Sunleaf demo: movement feel and world polish
 
-Revision 1.3 · 14 September 2026 · C1 prototype tested; B1 Canopy composition accepted
+Revision 1.4 · 14 September 2026 · literature synthesis and six-zone level map added
+
+**Literature and level-layout update.** The full 91-source chapter/section index is in [Game Design Literature Review Index](literature-reviews/README.md), and the actionable six-zone reconstruction is in [Sunleaf Ruins Literature-Led Level Plan](literature-reviews/LEVEL-DESIGN-SYNTHESIS.md). QP0 movement measurement still gates final platform spacing; the target route is now Trailhead → Broken Steps → Canopy Lift → Spark Shrine → Gate Return → Guardian Court.
 
 **User priority update: animation audit and repairs first.** See [Animation audit](ANIMATION-AUDIT.md) for all 56 authored frames, both-facing screenshots, runtime findings and fixes. Resolve weapon continuity and missing dedicated poses using the [art repair brief](ANIMATION-ART-REPAIR-BRIEF.md) before further Canopy work. B2/C2 and broader scenery polish wait behind this animation pass.
 
