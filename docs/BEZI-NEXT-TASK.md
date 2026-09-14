@@ -1,6 +1,8 @@
 # Bezi's next task: Canopy Crossing greybox
 
-Task B1 · brief version 1.2 · 14 September 2026 · dispatched; reviewed Plan governs the current Build
+Task B1 · brief version 1.3 · 14 September 2026 · completed and reviewed; retained as the executed brief
+
+The Canopy scene and prefab now exist. Do not dispatch this creation brief again. Read [B1 acceptance](B1-CANOPY-REVIEW.md) for saved paths, review repairs and remaining traversal/integration work. The next geometry assignment is B2, using the measured C1 contract and the existing prefab as its baseline.
 
 [Notion workflow and assignment](https://app.notion.com/p/3dba2b7d2114815594f3fc1fb6e6b53f) · [Reusable playbook](BEZI-PLAYBOOK.md)
 
@@ -42,7 +44,7 @@ Create six named scenery bands: `01_Sky`, `02_FarRuins`, `03_DistantForest`, `04
 
 Use simple distinguishable shapes and a clear legend. Differentiate solid ground, intended one-way platforms, decorative scenery and placeholders. Keep foreground clear of landings and enemy-warning space. Compose for 16:9 and provide a preview camera using existing supported components.
 
-Label jump/dash arrangements **PROVISIONAL — movement measurements pending**. Final gap sizes, double-jump access and moving-platform timing depend on Codex's measured movement contract. Camera, checkpoint, waterfall and platform motion remain explicitly labelled placeholders.
+Label jump/dash arrangements **PROVISIONAL — traversal untested**. C1 measurements are available; differently elevated Canopy gaps still need actual controller validation. Final gap sizes, double-jump access and moving-platform timing depend on that validation. The saved preview camera is functional for authoring; checkpoint, waterfall and platform motion remain explicitly labelled placeholders.
 
 ## Acceptance and evidence
 

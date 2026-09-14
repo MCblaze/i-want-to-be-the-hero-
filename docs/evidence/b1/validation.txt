@@ -1,0 +1,18 @@
+Unity 6000.3.6f1 — 14 September 2026
+Project: C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity
+Scene: Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity
+Prefab: Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab
+
+After save and scene reopen:
+sceneRoots=2 prefab=True missingComponents=0
+sprites=28 missingSprites=0 labels=21 missingFonts=0
+colliders=13 solids=8 oneWay=5 scripts=0 dirty=False
+Decorative colliders=0
+Unity Console Error/Exception query: logs=[] totalCount=0 errorCount=0
+
+Serialized prefab check after repair:
+GameObjects=88 NullFonts=0 NullSprites=0 MonoBehaviours=0 TextMeshes=21
+
+Evidence: canopy-overview.png — actual preview-camera render, 1600x900.
+Reviewed main route geometry matches BEZI-CANOPY-REVIEWED-PLAN.txt.
+Runtime traversal and all final art/animation/audio/lighting are Not run.

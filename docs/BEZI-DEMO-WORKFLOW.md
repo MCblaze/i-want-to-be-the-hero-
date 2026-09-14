@@ -68,4 +68,4 @@ Each assignment returns the exact project and baseline, changed paths including 
 
 ## Live execution update — 14 September 2026
 
-C1 is saved locally as ec8e7e5. Bezi has received separate Canopy layout and art-handoff tasks. The art Page is created and read back; the Canopy Plan is under one consolidated route/camera review before Build. See [Parallel execution trial](BEZI-PARALLEL-EXECUTION.md) and [Movement Lab](MOVEMENT-LAB.md) for the measured handoff, evidence, ownership and efficiency lessons.
+C1 is saved locally as ec8e7e5; ab6eb25 records the measured art contract and parallel handoffs. Bezi completed separate Canopy layout and art-handoff tasks. The art Page is created and read back. The B1 checkpoint was kept, its saved annotation/font defects were repaired by Codex, and the scene/prefab passed authoring review. Canopy runtime traversal and final art remain open. See [B1 acceptance](B1-CANOPY-REVIEW.md), [Parallel execution trial](BEZI-PARALLEL-EXECUTION.md) and [Movement Lab](MOVEMENT-LAB.md) for evidence and the next ownership handoff.

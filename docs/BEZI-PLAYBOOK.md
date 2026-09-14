@@ -144,3 +144,5 @@ This package is documentation. It neither connects accounts nor dispatches jobs.
 ## Lessons from the first parallel run
 
 See [Parallel execution trial](BEZI-PARALLEL-EXECUTION.md) for the reusable procedure exercised on 14 September 2026. Separate file ownership from editor ownership; provide routine geometry/prefab/dimension/label defaults; keep short specification work to one response; send one consolidated review; and save detailed test logs outside chat. Bezi ACP was researched as an optional direct connection and was not enabled or installed.
+
+Validate saved assets after reopening. Loaded Editor objects can differ from serialized files, and named marker inventories can hide overlapping labels. Require readable captures, check parent/local transforms and persistent references, and include failed action batches plus integration repairs in the acceptance record. The [B1 review](B1-CANOPY-REVIEW.md) records a real example. An agent's completion report does not replace the final saved-state check.
