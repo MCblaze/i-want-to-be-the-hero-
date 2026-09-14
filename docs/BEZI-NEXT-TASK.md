@@ -1,6 +1,6 @@
 # Bezi's next task: Canopy Crossing greybox
 
-Task B1 · brief version 1.1 · 14 September 2026 · polish research incorporated; prepared, not dispatched
+Task B1 · brief version 1.2 · 14 September 2026 · dispatched; reviewed Plan governs the current Build
 
 [Notion workflow and assignment](https://app.notion.com/p/3dba2b7d2114815594f3fc1fb6e6b53f) · [Reusable playbook](BEZI-PLAYBOOK.md)
 
@@ -10,7 +10,7 @@ Use `BEZI-PLAYBOOK.md` and `BEZI-TEMPLATES.md` for the reusable method, and `BEZ
 
 Unity project: `C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity`. **Do not use OneDrive.**
 
-Unity 6000.3.6f1; current built-in renderer. Last verified gameplay baseline: local `a564b5c`. Confirm current revision, pre-existing local changes and the exact target before editing. Codex owns existing gameplay scripts, Main, packages and settings during this task.
+Unity 6000.3.6f1; current built-in renderer. Current gameplay baseline: local `ec8e7e5`. Read MOVEMENT-LAB.md for measured C1 results and BEZI-CANOPY-REVIEWED-PLAN.txt for the reviewed exact geometry and camera framing. This original brief records the scope; the reviewed Plan supplies final construction dimensions. Confirm current revision, pre-existing local changes and the exact target before editing. Codex owns existing gameplay scripts, Main, packages and settings during this task.
 
 Design source: [Sunleaf Ruins demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf), specifically Canopy Crossing, movement geometry and visual depth. Use the [asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) only for relevant naming/style context. Verify these sources are accessible in Bezi or supply dated excerpts in a Project Context Page. Pin that Page and the actual reference assets with the @ picker.
 

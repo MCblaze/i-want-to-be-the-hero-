@@ -140,3 +140,7 @@ At the end of each milestone, remove stale Rules, update project context, preser
 - Run one small task and check the evidence before adopting the method broadly.
 
 This package is documentation. It neither connects accounts nor dispatches jobs. The implementation loop applies to Unity; the briefing and review principles can also inform other tools, but Bezi engine support should not be assumed beyond its documented capabilities.
+
+## Lessons from the first parallel run
+
+See [Parallel execution trial](BEZI-PARALLEL-EXECUTION.md) for the reusable procedure exercised on 14 September 2026. Separate file ownership from editor ownership; provide routine geometry/prefab/dimension/label defaults; keep short specification work to one response; send one consolidated review; and save detailed test logs outside chat. Bezi ACP was researched as an optional direct connection and was not enabled or installed.

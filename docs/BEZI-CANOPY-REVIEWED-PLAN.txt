@@ -1,0 +1,197 @@
+Plan: Canopy Crossing Greybox
+Context
+Create an isolated, authoring-only Canopy Crossing greybox in the Unity project at C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity, using Unity 6000.3.6f1, Built-in Renderer, and legacy input. This plan targets baseline ec8e7e5, with C1 committed. The editor is in Edit Mode and Unity tests are complete; Build must not enter Play Mode or change the loaded movement-lab scene.
+Only new assets under /unity/Assets/HeroDemo/Greybox/CanopyCrossing/ and required parent-folder metadata may be created or changed. Do not edit Main, the movement lab, scripts, source art, importers, packages, project settings, tags, layers, or existing assets. The separate art-handoff specification remains owned by the other Bezi thread.
+Follow the existing 2D greybox pattern in /unity/Assets/HeroDemo/Movement/MovementRoom.prefab: SpriteRenderer plus BoxCollider2D, and PlatformEffector2D for one-way intentions. Reuse /unity/Assets/HeroDemo/Movement/GreyboxPixel.asset read-only. Before authoring sprites, inspect that asset with getAsset({ assetPath, includeSubAssetProps: true }) and use the returned Sprite subasset as SpriteRenderer.sprite; never reference the Texture2D root and never modify the asset.
+The main route, recovery route, and optional upper branch are all traversal-provisional and untested in this greybox. Preserve the measured references in the legend: run speed 5.2 units/s, full-jump rise 2.24 units, double-jump rise 3.66 units, and previously passed level-ground gaps 2.0, 2.75, and 3.5 units. The lower recovery is independent and must not be required to complete the upper/main route. The optional upper branch must never block the main route.
+Modifications
+1. Create isolated scene and prefab outputs
+• Scene: /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity
+• Create as an empty scene with createScene({ scenePath, setup: "Empty" }).
+• Prefab: /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab
+• Build /CanopyCrossing_Room in the new scene, then create the connected prefab with createPrefab({ gameObject: { gameObjectPath: "/CanopyCrossing_Room" }, prefabPath, connectInstance: true, scope: scenePath }).
+• Bezi Actions: createScene, createGameObject, createPrefab, updateGameObject, reparentGameObject, addOrUpdateComponent, getAsset.
+• Do not create materials, sprites, scripts, ScriptableObjects, importer settings, package content, settings assets, or runtime components.
+2. Build the room hierarchy and six visual bands
+Create this exact prefab hierarchy and preserve the order:
+CanopyCrossing_Room
+├── 00_Annotations
+├── 01_Sky
+├── 02_FarRuins
+├── 03_DistantForest
+├── 04_NearTrunks
+├── 05_PlayPlane
+└── 06_Foreground
+Use createGameObject and reparentGameObject for the hierarchy. Keep all geometry at z: 0. Use the Greybox Pixel Sprite subasset on greybox SpriteRenderer components, scaled through Transform.localScale.
+Under 01_Sky, 02_FarRuins, 03_DistantForest, and 04_NearTrunks, create simple non-colliding silhouette blocks, trunk markers, and ruin markers with ascending SpriteRenderer.sortingOrder values. Use muted, distinct alpha/tint values. Under 06_Foreground, create sparse framing silhouettes and reserved markers without obscuring route landings or labels. None of these visual bands may have colliders.
+3. Author the provisional main route
+Create these children under 05_PlayPlane. Coordinates are (x, y; width, height), and every object has z = 0:
+Object
+Center and size
+Intention
+START - Solid - Provisional
+(2, 0; 4, 1)
+Solid starting platform
+Teaching - Solid - Provisional
+(8, 0; 4, 1)
+Solid teaching ledge
+MainA - Solid - Provisional
+(14.5, 0.25; 5, 1)
+Main route solid
+MainB - Solid - Provisional
+(21.5, 0.5; 3.5, 1)
+Main route solid
+MainC - Solid - Provisional
+(28, 0.5; 4, 1)
+Main route solid
+Rejoin - Solid - Provisional
+(34, 0.25; 4, 1)
+Main route / upper branch rejoin
+Finish - Solid - Provisional
+(42, 0; 8, 1)
+Main route finish
+For each main solid, add an enabled, non-trigger UnityEngine.BoxCollider2D and a dark, readable SpriteRenderer. Use the world-space dimensions for the visual scale and matching collider dimensions. Add labels above or beside the route; labels must not overlap platforms, gaps, or landing sightlines.
+4. Author the independent lower recovery route
+Under 05_PlayPlane, create:
+Object
+Center and size
+Intention
+Lower Recovery Shelf - Solid - Provisional
+(24, -2.25; 32, 0.5)
+Independent recovery shelf underneath the gaps
+Lower Exit Step A - One-Way - Provisional
+(11, -0.8; 1.6, 0.3)
+One-way exit from lower recovery
+Lower Exit Step B - One-Way - Provisional
+(37, -0.8; 1.6, 0.3)
+One-way exit from lower recovery
+The recovery shelf is a solid, dark platform with an enabled non-trigger BoxCollider2D. Each exit step uses an enabled non-trigger BoxCollider2D with usedByEffector: true and an enabled PlatformEffector2D with useOneWay: true; tint them amber. These steps are intentions only, not runtime-tested mechanics. Label the shelf and both exits without covering the main route.
+5. Author the optional upper branch
+Under 05_PlayPlane, create these amber one-way ledges, each with a non-trigger BoxCollider2D using usedByEffector: true plus an enabled PlatformEffector2D with useOneWay: true:
+Object
+Center and size
+Intention
+UpperA - One-Way - Optional - Provisional
+(17.5, 3.15; 3, 0.4)
+Above single-jump height; introduces the extra-jump branch
+UpperB - One-Way - Optional - Provisional
+(24, 3.8; 4, 0.4)
+Optional upper traversal
+UpperC - One-Way - Optional - Provisional
+(30, 2.8; 3.5, 0.4)
+Optional descent toward rejoin
+Place the branch above the main route with clear lateral separation. Its geometry must never block, cover, or replace the main route. Label it OPTIONAL UPPER BRANCH — PROVISIONAL and label UpperA as the extra-jump introduction. Keep the branch descent visually directed toward Rejoin without asserting that it has been tested.
+6. Add nonfunctional placeholders
+Create these under 05_PlayPlane or an appropriate annotation child, while keeping them behind gameplay and clear of landing sightlines:
+• Waterfall Placeholder - Nonfunctional - Provisional: decorative placeholder positioned behind the play plane and away from route landings; use a magenta/purple SpriteRenderer, no collider, no Rigidbody2D, and no scripts.
+• Moving Platform Marker - Nonfunctional - Provisional: a visually distinct marker near the central gaps/recovery area; it remains a marker only and must not receive Rigidbody2D, LabMovingPlatform, a collider, or runtime behavior.
+• Checkpoint Marker - Authoring Only - Provisional: empty marker and label only; do not add LabCheckpoint, trigger colliders, or gameplay scripts.
+Keep waterfall/decorative silhouettes behind gameplay using sorting order and placement, not new sorting layers. All traversal labels must include PROVISIONAL or be covered by a clearly associated provisional section label.
+7. Add annotations, legend, reserves, and clearly named bounds
+Under 00_Annotations, create empty marker objects and UnityEngine.TextMesh labels. Keep labels outside platform rectangles and landing sightlines. Required labels include:
+• START — PROVISIONAL.
+• TEACHING — PROVISIONAL.
+• MAIN ROUTE — PROVISIONAL.
+• LOWER RECOVERY — OPTIONAL / PROVISIONAL.
+• OPTIONAL UPPER BRANCH — PROVISIONAL.
+• REJOIN — PROVISIONAL and FINISH — PROVISIONAL.
+• WATERFALL PLACEHOLDER — NONFUNCTIONAL.
+• MOVING PLATFORM MARKER — NONFUNCTIONAL.
+• CHECKPOINT MARKER — AUTHORING ONLY.
+• ROUTE STATUS: ALL TRAVERSAL PROVISIONAL — UNTESTED.
+Create Legend with a TextMesh containing:
+SOLID = dark + BoxCollider2D
+ONE-WAY INTENTION = amber + BoxCollider2D.usedByEffector + PlatformEffector2D.useOneWay
+PLACEHOLDER / MARKER = magenta + no collider + no runtime behavior
+Measured reference: run 5.2 | jump rise 2.24 | double rise 3.66 | passed gaps 2.0 / 2.75 / 3.5
+Create Camera Bounds with clearly named empty children:
+Camera Bounds
+├── Bound - Left Edge
+├── Bound - Right Edge
+├── Bound - Top Edge
+├── Bound - Bottom Edge
+├── Corner - Bottom Left
+├── Corner - Bottom Right
+├── Corner - Top Left
+└── Corner - Top Right
+Place these markers around the approximately 48-unit room, outside route geometry, with no colliders and no camera-bound script. Use approximately x = -2 and x = 48, y = -4 and y = 7 for the four edges/corners; the overview camera must include these markers and the entire route.
+Under 06_Foreground, create Reserved Art Markers with empty markers and labels clear of landings:
+• Reserve - Grass Wind.
+• Reserve - Water Response.
+• Reserve - Ambient Inhabitant.
+• Reserve - Focal Light.
+These are handoff markers only: no art, lights, scripts, or colliders.
+8. Add the 16:9-intent overview camera
+After prefab creation, create a scene-level GameObject named CanopyCrossing Preview Camera (16:9 Overview). Add UnityEngine.Camera and configure:
+• Position: (23.5, 2.5, -10).
+• Orthographic: enabled.
+• Orthographic size: 15.
+• Clear flags: SolidColor.
+• Muted solid background color.
+• Rect: { x: 0, y: 0, width: 1, height: 1 }.
+• Near clip: 0.3; far clip: 1000.
+• Enabled: true.
+• No follow component, gameplay component, or project aspect-setting change.
+The camera name and configuration retain 16:9 intent without changing Game View, project settings, or renderer settings. The scene should contain only the connected room prefab instance and this preview camera at the scene level.
+• Bezi Actions: createGameObject, addOrUpdateComponent, updateGameObject, reparentGameObject.
+• Component types: UnityEngine.Transform, UnityEngine.SpriteRenderer, UnityEngine.BoxCollider2D, UnityEngine.PlatformEffector2D, UnityEngine.TextMesh, and UnityEngine.Camera.
+9. Connect prefab and verify isolation
+• Convert /CanopyCrossing_Room into /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab with connectInstance: true; do not leave a duplicated editable room hierarchy in the scene.
+• Inspect the Greybox Pixel asset first with getAsset; select the returned subasset whose type is Sprite, and pass that exact subasset reference to SpriteRenderer.sprite. Do not use the Texture2D root.
+• Inspect the completed scene and prefab with getSceneHierarchy, getGameObjectsByPath, and getAsset.
+• No mutation may target /unity/Assets/HeroDemo/Movement/MovementAndFeel_Test.unity, Main, or any existing source asset.
+• Bezi Actions: createPrefab, getAsset, getSceneHierarchy, getGameObjectsByPath.
+Key Patterns to Reuse
+Source asset: /unity/Assets/HeroDemo/Movement/MovementRoom.prefab
+Pattern: descriptive room hierarchy; SpriteRenderer plus BoxCollider2D for 2D greybox geometry; PlatformEffector2D for one-way intentions; TextMesh labels. Reuse the existing naming clarity while explicitly marking all new traversal and placeholders provisional/nonfunctional.
+Source asset: /unity/Assets/HeroDemo/Movement/GreyboxPixel.asset
+Pattern: use the existing 1×1 Sprite subasset as a read-only reference and scale it through each target object's Transform; never reference or edit the Texture2D root.
+Source scene: /unity/Assets/HeroDemo/Movement/MovementAndFeel_Test.unity
+Pattern: orthographic camera behind a 2D level plane, with geometry at z: 0 and camera at negative z. Do not copy HeroGame, MovementLab, UI, Logan, camera-follow, or runtime components.
+Implementation Notes
+• Main solids, lower recovery, one-way steps, and optional upper ledges are authoring geometry only; all traversal remains explicitly provisional and untested.
+• The recovery shelf is not part of the required upper/main route. It is a lower fallback under the gaps, with independent one-way exit steps.
+• UpperA is intentionally above the 2.24 full-jump rise and introduces the extra-jump teaching beat. The branch must remain spatially and visually non-blocking to the main route.
+• The waterfall and all decorative silhouettes must remain behind gameplay and clear of landing sightlines. Use sorting order and placement; do not add new layers or settings.
+• The moving-platform placeholder must not use Rigidbody2D or IWantToBeTheHero.LabMovingPlatform. The checkpoint marker must not use IWantToBeTheHero.LabCheckpoint.
+• Do not add controller, camera-follow, gameplay-session, water, grass, lighting, or art scripts. Do not add lights or source art.
+• Use only existing project tags/layers if metadata is needed. Do not create or edit tags, layers, input mappings, renderer settings, packages, importers, or settings.
+• Unity may create required .meta files for the new folder and its two new assets. No unrelated parent, sibling, or existing asset metadata may change.
+TODO
+Task item checkbox for Create the isolated Canopy Crossing scene at /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity.
+Create the isolated Canopy Crossing scene at /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity.
+Task item checkbox for Inspect /unity/Assets/HeroDemo/Movement/GreyboxPixel.asset and use only its Sprite subasset without modifying the asset.
+Inspect /unity/Assets/HeroDemo/Movement/GreyboxPixel.asset and use only its Sprite subasset without modifying the asset.
+Task item checkbox for Build CanopyCrossing_Room with the six exact visual bands.
+Build CanopyCrossing_Room with the six exact visual bands.
+Task item checkbox for Author the specified provisional main solids at the final centers and sizes.
+Author the specified provisional main solids at the final centers and sizes.
+Task item checkbox for Add the independent lower recovery shelf and both provisional one-way exit steps.
+Add the independent lower recovery shelf and both provisional one-way exit steps.
+Task item checkbox for Add the optional upper one-way branch UpperA, UpperB, and UpperC without blocking the main route.
+Add the optional upper one-way branch UpperA, UpperB, and UpperC without blocking the main route.
+Task item checkbox for Add behind-gameplay waterfall and moving-platform nonfunctional markers plus the authoring-only checkpoint marker.
+Add behind-gameplay waterfall and moving-platform nonfunctional markers plus the authoring-only checkpoint marker.
+Task item checkbox for Add provisional labels, legend, route measurements, clearly named bounds/corners, and four reserved art markers without label overlap.
+Add provisional labels, legend, route measurements, clearly named bounds/corners, and four reserved art markers without label overlap.
+Task item checkbox for Add the scene-level orthographic CanopyCrossing Preview Camera (16:9 Overview) at (23.5, 2.5, -10) with size 15.
+Add the scene-level orthographic CanopyCrossing Preview Camera (16:9 Overview) at (23.5, 2.5, -10) with size 15.
+Task item checkbox for Save and connect /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab.
+Save and connect /unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab.
+Task item checkbox for Confirm only the new Canopy Crossing assets and required parent metadata changed; preserve Edit Mode and do not touch Main, movement-lab content, scripts, source art, importers, packages, or settings.
+Confirm only the new Canopy Crossing assets and required parent metadata changed; preserve Edit Mode and do not touch Main, movement-lab content, scripts, source art, importers, packages, or settings.
+Acceptance Checks
+• Exact outputs exist:
+/unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Greybox.unity
+/unity/Assets/HeroDemo/Greybox/CanopyCrossing/CanopyCrossing_Room.prefab
+• The prefab contains CanopyCrossing_Room, 00_Annotations, and the six exact bands in order.
+• Main solids match the final centers/sizes: Start, Teaching, MainA, MainB, MainC, Rejoin, and Finish.
+• Lower recovery matches shelf (24, -2.25; 32, 0.5) and exit steps (11, -0.8; 1.6, 0.3) and (37, -0.8; 1.6, 0.3).
+• Optional upper ledges match UpperA (17.5, 3.15; 3, 0.4), UpperB (24, 3.8; 4, 0.4), and UpperC (30, 2.8; 3.5, 0.4); the branch does not block the main route.
+• Every solid has an enabled non-trigger BoxCollider2D; every one-way intention has usedByEffector plus PlatformEffector2D.useOneWay; placeholders and markers have no collider or runtime component.
+• SpriteRenderer.sprite references the Greybox Pixel Sprite subasset, not the Texture2D root; GreyboxPixel.asset is unchanged.
+• Waterfall/decorative placeholders are behind gameplay and clear of landing sightlines; moving platform remains a marker only.
+• All traversal is visibly labelled provisional/untested, and labels do not overlap route geometry.
+• Camera and corner/bound markers clearly frame the approximately 48-unit room. The preview camera is orthographic at (23.5, 2.5, -10) with size 15, solid background, and 16:9 intent without project-setting changes.
+• The scene contains no copied movement-lab hierarchy, player, UI, gameplay/session scripts, runtime platform/checkpoint components, lights, source art, or imported/settings changes.
+• Only /unity/Assets/HeroDemo/Greybox/CanopyCrossing/ and required parent metadata are modified; the editor remains in Edit Mode.

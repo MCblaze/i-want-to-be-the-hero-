@@ -65,3 +65,7 @@ Measure B0 discovery, B1 layout and the later room review separately; do not com
 ## Completion and handoff rule
 
 Each assignment returns the exact project and baseline, changed paths including `.meta` files, saved scene/prefab paths, relevant captures, Passed/Failed/Not run acceptance results, assumptions and the next owner. Codex reviews the local changes, performs integration checks and saves a local milestone. GitHub publication is recorded separately once repository write access is available.
+
+## Live execution update — 14 September 2026
+
+C1 is saved locally as ec8e7e5. Bezi has received separate Canopy layout and art-handoff tasks. The art Page is created and read back; the Canopy Plan is under one consolidated route/camera review before Build. See [Parallel execution trial](BEZI-PARALLEL-EXECUTION.md) and [Movement Lab](MOVEMENT-LAB.md) for the measured handoff, evidence, ownership and efficiency lessons.
