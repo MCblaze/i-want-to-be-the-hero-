@@ -720,7 +720,7 @@ globalThis.HeroAnimationData = {
         {
           "x": 10,
           "y": 968,
-          "w": 299,
+          "w": 302,
           "h": 253
         },
         {
@@ -792,7 +792,7 @@ globalThis.HeroAnimationData = {
           "y": 0.992063
         },
         {
-          "x": 0.5,
+          "x": 0.495033,
           "y": 0.992095
         },
         {

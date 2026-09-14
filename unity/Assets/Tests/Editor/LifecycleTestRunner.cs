@@ -46,6 +46,18 @@ namespace IWantToBeTheHero.Tests
             }));
         }
 
+        [MenuItem("Tools/Hero/Run Animation Audit")]
+        public static void RunAnimationAudit()
+        {
+            Start(new[] { "IWantToBeTheHero.Tests.AnimationAuditTests" });
+        }
+
+        [MenuItem("Tools/Hero/Run Enemy Animation Audit")]
+        public static void RunEnemyAnimationAudit()
+        {
+            Start(new[] { "IWantToBeTheHero.Tests.AnimationAuditTests.LiveEnemies_AllExistingClips_CaptureTransitions" });
+        }
+
         private sealed class Results : ICallbacks
         {
             public void RunStarted(ITestAdaptor tests) { }

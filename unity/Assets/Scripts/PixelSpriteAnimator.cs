@@ -42,6 +42,7 @@ namespace IWantToBeTheHero
         private PixelClip clip;
         private Sprite[] frames;
         private float clock;
+        private Vector3 restingLocalPosition;
         private static PixelManifest manifest;
         private static readonly Dictionary<string, Sprite[]> CachedFrames = new Dictionary<string, Sprite[]>();
 
@@ -62,6 +63,7 @@ namespace IWantToBeTheHero
                 child.transform.position = new Vector3(owner.transform.position.x, physicsCollider.bounds.min.y, owner.transform.position.z);
             var animator = child.AddComponent<PixelSpriteAnimator>();
             animator.Renderer = child.AddComponent<SpriteRenderer>();
+            animator.restingLocalPosition = child.transform.localPosition;
             animator.Renderer.sortingOrder = original != null ? original.sortingOrder : 20;
             animator.Initialize(id);
             if (animator.frames != null)
@@ -72,6 +74,7 @@ namespace IWantToBeTheHero
             else if (original != null)
             {
                 child.transform.localPosition = Vector3.zero;
+                animator.restingLocalPosition = Vector3.zero;
                 animator.Renderer.sprite = original.sprite;
                 original.enabled = false;
                 Debug.LogWarning("Animation sheet unavailable for " + id + "; displaying the original pose.");
@@ -90,7 +93,12 @@ namespace IWantToBeTheHero
             foreach (var character in manifest.characters)
                 if (character.id == id) { definition = character; break; }
             if (definition == null) return;
-            if (CachedFrames.TryGetValue(id, out frames)) return;
+            if (CachedFrames.TryGetValue(id, out frames) && frames != null &&
+                Array.TrueForAll(frames, frame => frame != null && frame.texture != null)) return;
+            // Play Mode teardown / asset unloading may destroy Unity objects while the
+            // managed dictionary survives. Rebuild instead of returning stale sprites.
+            frames = null;
+            CachedFrames.Remove(id);
             string imageName = definition.image.Substring(0, definition.image.LastIndexOf('.'));
             var texture = Resources.Load<Texture2D>("Art/Animations/" + imageName);
             if (texture == null) return;
@@ -163,6 +171,25 @@ namespace IWantToBeTheHero
         public void Face(float direction)
         {
             Renderer.flipX = Mathf.Sign(direction) != (definition != null ? definition.facing : 1);
+        }
+
+        // Rotate around the pose centre and lift the tuck enough to preserve its foot plane.
+        // Keep the original foot position when rotation ends; never move the collider.
+        public void SetPoseRotation(float degrees)
+        {
+            var rotation = Quaternion.Euler(0f, 0f, degrees);
+            var center = Renderer.sprite != null ? Renderer.sprite.bounds.center : Vector3.zero;
+            if (Renderer.flipX) center.x = -center.x;
+            center = Vector3.Scale(center, transform.localScale);
+            transform.localRotation = rotation;
+            transform.localPosition = restingLocalPosition + center - rotation * center;
+            if (Renderer.sprite != null)
+            {
+                var halfSize = Vector3.Scale(Renderer.sprite.bounds.extents, transform.localScale);
+                float radians = degrees * Mathf.Deg2Rad;
+                float turnedHalfHeight = Mathf.Abs(Mathf.Sin(radians) * halfSize.x) + Mathf.Abs(Mathf.Cos(radians) * halfSize.y);
+                transform.localPosition += Vector3.up * Mathf.Max(0f, turnedHalfHeight - halfSize.y);
+            }
         }
 
         public void Ghost()

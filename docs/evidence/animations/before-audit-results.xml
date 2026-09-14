@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 19:51:19Z" end-time="2026-09-14 19:51:29Z" duration="10.251747">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-14 19:51:19Z" end-time="2026-09-14 19:51:29Z" duration="10.251747" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1019" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-14 19:51:20Z" end-time="2026-09-14 19:51:29Z" duration="9.438981" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1020" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-14 19:51:20Z" end-time="2026-09-14 19:51:29Z" duration="9.412900" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1021" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-14 19:51:20Z" end-time="2026-09-14 19:51:29Z" duration="9.397524" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="AnimationAuditTests" fullname="IWantToBeTheHero.Tests.AnimationAuditTests" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 19:51:20Z" end-time="2026-09-14 19:51:29Z" duration="9.369952" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="EveryAuthoredFrame_BothFacings_CameraContactSheets" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.EveryAuthoredFrame_BothFacings_CameraContactSheets" methodname="EveryAuthoredFrame_BothFacings_CameraContactSheets" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="927294489" result="Passed" start-time="2026-09-14 19:51:13Z" end-time="2026-09-14 19:51:13Z" duration="0.484981" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1003" name="LiveController_AllLoganActions_CaptureAndTrace" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveController_AllLoganActions_CaptureAndTrace" methodname="LiveController_AllLoganActions_CaptureAndTrace" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="304708491" result="Passed" start-time="2026-09-14 19:51:13Z" end-time="2026-09-14 19:51:29Z" duration="16.157546" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

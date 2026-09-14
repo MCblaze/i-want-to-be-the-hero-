@@ -613,21 +613,27 @@ namespace IWantToBeTheHero
         {
             if (visual == null || Game == null) return;
             visual.Face(facing);
-            // Temporary rotation on the visual child only; authored backflip frames follow.
-            visual.transform.localRotation = flipRemaining > 0f && Settings != null
-                ? Quaternion.Euler(0f, 0f, facing * 360f * (1f - flipRemaining / Settings.flipDuration))
-                : Quaternion.identity;
+            visual.SetPoseRotation(0f);
             if (Game.Won) { visual.Tick("victory", Time.deltaTime); sprite.color = Color.white; return; }
             if (!Game.Started) { visual.Tick("idle", Time.deltaTime); return; }
             if (hurtRemaining > 0f) visual.Sample("hurt", .2f - hurtRemaining);
             else if (flipRemaining > 0f) visual.Tick("apex", Time.deltaTime);
-            else if (dashRemaining > 0f) visual.Sample("dash", .17f - dashRemaining);
-            else if (attackRemaining > 0f) visual.Sample("attack", AttackDuration - attackRemaining);
+            else if (dashRemaining > 0f)
+                visual.Sample("dash", (1f - dashRemaining / (Settings != null ? Settings.dashDuration : .17f)) * .17f);
+            else if (attackRemaining > 0f)
+            {
+                // Until wand poses are authored, use the existing empty-hand raised pose.
+                // Never play baked sword/slash pixels for a wand shot, even after a swap.
+                if (attackWeapon == HeroWeapon.SunseedWand) visual.Sample("rise", 0f);
+                else visual.Sample("attack", AttackDuration - attackRemaining);
+            }
             else if (!IsGrounded)
                 visual.Tick(Mathf.Abs(body.linearVelocity.y) < 1f ? "apex" : body.linearVelocity.y > 0f ? "rise" : "fall", Time.deltaTime);
             else if (landingRemaining > 0f) visual.Tick("land", Time.deltaTime);
             else visual.Tick(Mathf.Abs(body.linearVelocity.x) > .2f ? "run" : "idle", Time.deltaTime,
                 Mathf.Abs(body.linearVelocity.x) > .2f ? Mathf.Max(.5f, Mathf.Abs(body.linearVelocity.x) / 5.2f) : 1f);
+            if (flipRemaining > 0f && Settings != null)
+                visual.SetPoseRotation(facing * 360f * (1f - flipRemaining / Settings.flipDuration));
             sprite.color = new Color(1f, 1f, 1f, invulnerable > 0f && Mathf.FloorToInt(invulnerable * 18f) % 2 == 0 ? .4f : 1f);
             if (dashRemaining > 0f && ghostCooldown <= 0f)
             {
@@ -702,7 +708,7 @@ namespace IWantToBeTheHero
             attackHits.Clear();
             visual.Sample("idle", 0f);
             sprite.color = Color.white;
-            visual.transform.localRotation = Quaternion.identity;
+            visual.SetPoseRotation(0f);
             Game.ResetEncounters();
             Game.MainCamera.GetComponent<CameraFollow>().SnapToHero();
             Game.UI.FlashMessage(HasSpark ? "TRY AGAIN!\nHero Spark kept." : "TRY AGAIN!\nBack on safe ground.", 1.5f);

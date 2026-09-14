@@ -2,6 +2,8 @@
 
 Revision 1.3 · 14 September 2026 · C1 prototype tested; B1 Canopy composition accepted
 
+**User priority update: animation audit and repairs first.** See [Animation audit](ANIMATION-AUDIT.md) for all 56 authored frames, both-facing screenshots, runtime findings and fixes. Resolve weapon continuity and missing dedicated poses using the [art repair brief](ANIMATION-ART-REPAIR-BRIEF.md) before further Canopy work. B2/C2 and broader scenery polish wait behind this animation pass.
+
 Bezi completed the Canopy greybox and the separate art-handoff Page. Codex repaired saved annotation/font issues and verified the prefab, scene and 16:9 camera capture. See [B1 acceptance](B1-CANOPY-REVIEW.md). C1-F presentation, B2/C2 controller traversal/integration, final art and release qualification remain open.
 
 [Master demo plan](https://app.notion.com/p/3dba2b7d211481e58e4ffda252533eaf) · [Detailed Notion polish plan](https://app.notion.com/p/3dba2b7d211481fa9448cd95575b7db6) · [Asset register](https://app.notion.com/p/3dba2b7d2114813daf1bff41107fe80a) · [Bezi workflow](BEZI-DEMO-WORKFLOW.md)

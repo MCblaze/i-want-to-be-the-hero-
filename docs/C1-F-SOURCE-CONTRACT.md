@@ -2,6 +2,8 @@
 
 Prepared from local `ec8e7e5`, 14 September 2026. This fills source facts missing from Bezi's **Sunleaf C1-F Art Handoff** Page. It is a handoff specification; C1-F artwork/effects are not implemented by this document.
 
+Animation-audit update: backflip now rotates around the pose centre with foot clearance; wand firing uses the existing empty-hand rise pose instead of the baked sword-slash frames. This is an interim presentation repair, not a completed wand animation set. The Guardian hurt12 crop/pivot has been corrected in synchronized metadata. See [audit evidence and open art defects](ANIMATION-AUDIT.md) before starting new assets.
+
 ## Current renderer and manifest
 
 `unity/Assets/Resources/Art/Animations/manifest.json` defines Logan as `logan`, using `logan-animations.png`, 4 columns × 6 rows, facing right (`1`), and `unityHeight: 1.62`. The runtime frame names are `logan_00` through `logan_23`. Existing art therefore has 24 Logan slots; the planned 42-clip/218-slot combat-art budget describes a larger future production set, not the current Logan sheet.

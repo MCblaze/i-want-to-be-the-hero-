@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 20:12:47Z" end-time="2026-09-14 20:12:53Z" duration="5.8408508">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-14 20:12:47Z" end-time="2026-09-14 20:12:53Z" duration="5.840851" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1023" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-14 20:12:48Z" end-time="2026-09-14 20:12:53Z" duration="4.570602" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1024" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-14 20:12:48Z" end-time="2026-09-14 20:12:53Z" duration="4.559661" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1025" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-14 20:12:48Z" end-time="2026-09-14 20:12:53Z" duration="4.551766" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="AnimationAuditTests" fullname="IWantToBeTheHero.Tests.AnimationAuditTests" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-14 20:12:48Z" end-time="2026-09-14 20:12:53Z" duration="4.541992" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="DestroyedCachedSprite_IsRecreatedOnNextAttach" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.DestroyedCachedSprite_IsRecreatedOnNextAttach" methodname="DestroyedCachedSprite_IsRecreatedOnNextAttach" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="985131453" result="Passed" start-time="2026-09-14 20:12:06Z" end-time="2026-09-14 20:12:07Z" duration="0.054816" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1002" name="EveryAuthoredFrame_BothFacings_CameraContactSheets" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.EveryAuthoredFrame_BothFacings_CameraContactSheets" methodname="EveryAuthoredFrame_BothFacings_CameraContactSheets" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1058312817" result="Passed" start-time="2026-09-14 20:12:07Z" end-time="2026-09-14 20:12:07Z" duration="0.351135" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1003" name="LiveController_AllLoganActions_CaptureAndTrace" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveController_AllLoganActions_CaptureAndTrace" methodname="LiveController_AllLoganActions_CaptureAndTrace" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1394685349" result="Passed" start-time="2026-09-14 20:12:07Z" end-time="2026-09-14 20:12:25Z" duration="18.341672" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="LiveEnemies_AllExistingClips_CaptureTransitions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveEnemies_AllExistingClips_CaptureTransitions" methodname="LiveEnemies_AllExistingClips_CaptureTransitions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="333007628" result="Passed" start-time="2026-09-14 20:12:25Z" end-time="2026-09-14 20:12:39Z" duration="13.785919" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" methodname="PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1254786167" result="Passed" start-time="2026-09-14 20:12:39Z" end-time="2026-09-14 20:12:39Z" duration="0.029577" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1006" name="WandAndBackflip_PresentationRegressions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.WandAndBackflip_PresentationRegressions" methodname="WandAndBackflip_PresentationRegressions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1379211041" result="Passed" start-time="2026-09-14 20:12:39Z" end-time="2026-09-14 20:12:53Z" duration="13.881105" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

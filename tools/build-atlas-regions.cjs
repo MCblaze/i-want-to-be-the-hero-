@@ -23,12 +23,15 @@ const heights = {logan:[96,1.62], thornling:[82,1.15], 'mossback-guardian':[225,
       if (!body || body.pixels < 10000) throw new Error(`${def.id} frame ${index} needs manual inspection`);
       const left = Math.max(0, Math.min(...components.map(c=>c.x))-2);
       let top = Math.max(0, Math.min(...components.map(c=>c.y))-2);
-      const right = Math.min(art.width, Math.max(...components.map(c=>c.x+c.w))+2);
+      let right = Math.min(art.width, Math.max(...components.map(c=>c.x+c.w))+2);
       let bottom = Math.min(art.height, Math.max(...components.map(c=>c.y+c.h))+2);
       // These adjacent authored poses approach within four source pixels.
       // Trim their outer tips to keep a neighbour's pixels out of each slice.
       if (def.id === 'logan' && index === 18) bottom = 1250;
       if (def.id === 'logan' && index === 22) top = 1254;
+      // This detached hurt leaf straddles the automatic component-slot boundary.
+      // Keep its x=309 pixels plus padding; the next pose starts at x=321.
+      if (def.id === 'mossback-guardian' && index === 12) right = Math.max(right, 312);
       const region = {x:left,y:top,w:right-left,h:bottom-top};
       // Logan's sword and scarf change the silhouette, but his body stays in
       // the same column. Creatures use their body centre, excluding particles.

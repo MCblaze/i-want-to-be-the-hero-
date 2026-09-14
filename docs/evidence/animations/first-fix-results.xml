@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="2.801952">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="2.801952" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1022" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="2.024061" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37320" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1023" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="2.007653" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1024" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="1.978412" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="AnimationAuditTests" fullname="IWantToBeTheHero.Tests.AnimationAuditTests" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-14 19:55:47Z" end-time="2026-09-14 19:55:49Z" duration="1.951656" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="EveryAuthoredFrame_BothFacings_CameraContactSheets" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.EveryAuthoredFrame_BothFacings_CameraContactSheets" methodname="EveryAuthoredFrame_BothFacings_CameraContactSheets" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="229873790" result="Passed" start-time="2026-09-14 19:55:17Z" end-time="2026-09-14 19:55:17Z" duration="0.375049" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1003" name="LiveController_AllLoganActions_CaptureAndTrace" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveController_AllLoganActions_CaptureAndTrace" methodname="LiveController_AllLoganActions_CaptureAndTrace" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1544189801" result="Passed" start-time="2026-09-14 19:55:17Z" end-time="2026-09-14 19:55:33Z" duration="16.061850" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="LiveEnemies_AllExistingClips_CaptureTransitions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveEnemies_AllExistingClips_CaptureTransitions" methodname="LiveEnemies_AllExistingClips_CaptureTransitions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1222152179" result="Failed" label="Error" start-time="2026-09-14 19:55:33Z" end-time="2026-09-14 19:55:41Z" duration="8.000852" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Value does not fall within the expected range.]]></message>
+                <stack-trace><![CDATA[  at IWantToBeTheHero.Tests.AnimationAuditTests+<LiveEnemies_AllExistingClips_CaptureTransitions>d__13.MoveNext () [0x00098] in C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Assets\Tests\Editor\AnimationAuditTests.cs:194 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1004" name="PoseRotation_KeepsCentreAndRestoresFeet_BothFacings" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.PoseRotation_KeepsCentreAndRestoresFeet_BothFacings" methodname="PoseRotation_KeepsCentreAndRestoresFeet_BothFacings" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="674047824" result="Passed" start-time="2026-09-14 19:55:41Z" end-time="2026-09-14 19:55:41Z" duration="0.016998" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1005" name="WandAndBackflip_PresentationRegressions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.WandAndBackflip_PresentationRegressions" methodname="WandAndBackflip_PresentationRegressions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="681156771" result="Failed" start-time="2026-09-14 19:55:41Z" end-time="2026-09-14 19:55:49Z" duration="8.215443" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Backflip must not swing the sprite through the runway
+  Expected: greater than -0.119999997f
+  But was:  -0.127567291f
+]]></message>
+                <stack-trace><![CDATA[at IWantToBeTheHero.Tests.AnimationAuditTests+<WandAndBackflip_PresentationRegressions>d__12.MoveNext () [0x001be] in C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Assets\Tests\Editor\AnimationAuditTests.cs:165
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
