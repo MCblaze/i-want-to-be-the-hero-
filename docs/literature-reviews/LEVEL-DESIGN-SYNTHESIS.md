@@ -22,6 +22,9 @@ The environment teaches through shape, sight line, and consequence. Text may con
 | Challenge must support competence instead of creating opaque punishment. | [Flow](015-cziksentmihalyi-flow-the-psychology-of-optimal-experience.md), [GameFlow](042-gameflow-a-model-for-evaluating-player.md), the [failure-response study](008-anderson-2020-hits-quits-and-retries-player-response-to-failure-in-a-challenging-video-game.md), the [persistence study](009-anderson-et-al-2019-building-persistence-through-failure-the-role-of-challenge-in-video-games.md), and [Self-Determination Theory](089-self-determination-theory-basic-psychological-needs-in-ryan-richard-m-deci-edward-l-feb-14-2017-the-guilford-p.md) link clear goals, balanced challenge, competence, autonomy, and persistence. | Checkpoint before the hardest chain, fast respawn, visible cause of failure, and an optional mastery path for autonomy. |
 | Mechanics need meaningful choices and readable system relationships. | [Rules of Play](048-katie-salen-eric-zimmerman-rules-of-play-game-design-fundamentals.md), [MDA](056-mda-a-formal-approach-to-game-design-and-game-research.md), [Game Mechanics](041-game-mechanics-advanced-game-design-adams-ernest-dormans-joris-z-library-sk-1lib-sk-z-lib-sk.md), and [Advanced Game Design](085-advanced-game-design-a-systems-approach-a-systems-approach-michael-sellers-1-us-2017-addison-wesley-profession.md) frame play as choices inside connected systems. | Sword and wand solve different spatial problems; neither is a cosmetic reskin. |
 | Build the risky questions as prototypes and test with fresh players. | [A Playful Production Process](084-a-playful-production-process-for-game-designers-and-richard-lemarchand-amy-hennig-mit-press-cambridge-massachu.md), [Practical Game Design](061-practical-game-design-a-modern-and-comprehensive-guide-to-adam-kramarzewski-2-2023-packt-10221013eca19b17537e4.md), and [Designing Games](017-designing-games-tynan-sylvester-z-library-sk-1lib-sk-z-lib-sk.md) support iterative prototypes, formal playtests, and experience-focused tuning. | Greybox acceptance comes before final art. Test questions measure player behavior rather than asking whether the player “liked it.” |
+| Map planning needs a readable critical path before decorative detail. | [Fundamental Level Design and Analysis](095-fundamental-level-design-and-analysis-a-to-b-michael-beardwood-1-2024-crc-press-isbn13-9781003408840-b723d72df.md) adds mechanic-resonance tables, bubble maps, critical/golden paths, annotations, affordance, and a learn → improve → nuance teaching sequence. | Author the six zones first as an annotated bubble map and a single critical route. Attach every platform, hazard, enemy, checkpoint, and optional reward to a named purpose. |
+| A platformer's space, jump arc, camera, and opposition communicate meaning together. | [Run and Jump](099-run-and-jump-the-meaning-of-the-2d-platformer-playful-mcdonald-peter-d-playful-thinking-cambridge-massachusett.md) examines jump arcs, horizontal/vertical and narrow/open space, scrolling, hazards, and enemies as part of the platforming experience. | Use the contrast between broad Trailhead/Guardian spaces and tighter Broken Steps/Spark Shrine spaces intentionally; change framing only when it clarifies the next decision. |
+| Visual effects are only worth adding when the renderer, performance budget, and gameplay readability support them. | [Unity 6 Game Optimization](102-unity-6-game-optimization-improve-performance-and-create-zenva-academy-none-zenva-f096b3dc1d96d60928ab7a821b72.md) and [Unity 6 Shaders and Effects Cookbook](103-unity-6-shaders-and-effects-cookbook-over-50-recipes-for-john-p-doran-5th-2025-packt-publishing-isbn13-9781835.md) provide implementation references for culling/batching and restrained post-processing, Shader Graph, colour grading, bloom, fog, and material effects. | Keep the current built-in renderer as the baseline. Treat URP, Shader Graph, bloom, fog, and post-processing as separately proven experiments, measured against frame time and platform readability. |
 
 ## Current layout audit
 
@@ -60,6 +63,17 @@ Collision tops need a clean, unbroken silhouette. Foreground leaves may overlap 
 ## Target map
 
 Keep the current 51-unit scope for the demo. Recompose it into six recognizable spaces rather than enlarging it before the core route is proven.
+
+## Map authoring deliverables
+
+The playable greybox needs four linked planning views before final art begins:
+
+1. **Bubble map:** six labelled zone bubbles with entry, exit, landmark, emotional beat, checkpoint, and dominant mechanic.
+2. **Critical path:** one uninterrupted Trailhead → Guardian route, labelled with the exact required verbs. It must remain completable without backflip.
+3. **Optional path overlay:** the upper backflip cache, recovery floors, and any collectable detours. These reward expression without creating ambiguity about progress.
+4. **Mechanic-resonance table:** one row per platform, hazard, enemy, gate, moving platform, Spark, or camera transition. Each row records its zone, player action, teaching role, success feedback, failure/recovery, and art/audio cue.
+
+For the first pass, use colour roles rather than finished scenery: **green** for safe traversal, **amber** for a skill test, **red** for active danger, **blue** for recovery/checkpoint, **gold** for Spark or optional reward, and **purple** for the boss threshold. This turns the existing object layout into a map that can be read and debated quickly in Unity's Scene view.
 
 ```mermaid
 flowchart LR
@@ -295,7 +309,3 @@ Camera rules:
 ## Research library
 
 The full chapter-by-chapter structural index is in [Game Design Literature Review Index](README.md). It covers all 91 source files and records limitations and exact duplicates explicitly.
-
-## Project follow-up
-
-The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).

@@ -4,9 +4,9 @@ This directory is the project memory for the game-design library in `G:\My Drive
 
 ## Coverage
 
-- **91 source files** reviewed and given their own Markdown record
-- **84 unique documents** after hashing; **7 exact duplicate copies** remain listed for provenance
-- **6,545 chapters or sections** indexed
+- **105 source files** reviewed and given their own Markdown record
+- **97 unique documents** after hashing; **8 exact duplicate copies** remain listed for provenance
+- **8,367 chapters or sections** indexed
 - PDF, DOCX, and EPUB text processed; the single AZW3 has a metadata record but still needs conversion for full chapter text
 - Two image-heavy PDFs have limited text and are clearly marked in their records
 
@@ -118,7 +118,17 @@ This is a working research index, not a substitute for a close human reading of 
 | 089 | [Self-Determination Theory _ Basic Psychological Needs in -- Ryan, Richard M(著);Deci, Edward L -- Feb 14, 2017 -- The Guilford Press; Guilford -- isbn13 9781462528769 -- ccec12b632628199c17c46271daf8f73 -- Anna’s Ar](089-self-determination-theory-basic-psychological-needs-in-ryan-richard-m-deci-edward-l-feb-14-2017-the-guilford-p.md) | full-text indexed | 41 | Tier 1 — motivation |
 | 090 | [The Reflective Practitioner _ How Professionals Think In -- Schon, Donald A_ -- EBL-Schweitzer, Online-ausg, 2008 -- Basic Books, Inc -- isbn13 9780465068784 -- bc0a178279d3cfc4113fc77183db2918 -- Anna’s Archive](090-the-reflective-practitioner-how-professionals-think-in-schon-donald-a-ebl-schweitzer-online-ausg-2008-basic-bo.md) | full-text indexed | 21 | Reference library |
 | 091 | [Video Game Design_ Principles and Practices from the Ground -- Salmond, Michael, author -- Required Reading Range Ser, London, 2016 -- London _ -- isbn13 9781472567482 -- 5f199b01a7b71c450da3078023646f27 -- Anna’s](091-video-game-design-principles-and-practices-from-the-ground-salmond-michael-author-required-reading-range-ser-l.md) | full-text indexed | 48 | Tier 1 — platformer principles |
-
-## Project follow-up
-
-The current operational priority is recorded in [Next Task — Repair GitHub Command-Line Login](../NEXT-TASK.md).
+| 092 | [annas-arch-82f2af833ca4](092-annas-arch-82f2af833ca4.md) | full-text indexed from EPUB sections | 11 | Tier 2 — Unity architecture |
+| 093 | [Design Patterns in Unity 6_ Build Scalable and Maintainable -- Zenva Academy -- 2026 -- 82f2af833ca4bc0791ef848c4490d01e -- Anna’s Archive](093-design-patterns-in-unity-6-build-scalable-and-maintainable-zenva-academy-2026-82f2af833ca4bc0791ef848c4490d01e.md) | exact duplicate; exact duplicate of #092-annas-arch-82f2af833ca4.md | 0 | Reference library |
+| 094 | [Einstieg in Unity 2D- und 3D-Spiele entwickeln_ Ideal für -- Thomas Theis; Galileo Press -- 5, 2025 -- Rheinwerk Verlag GmbH -- isbn13 9783367107810 -- 48874030f06e072133d16f0d592d9c6b -- Anna’s Archive](094-einstieg-in-unity-2d-und-3d-spiele-entwickeln-ideal-fur-thomas-theis-galileo-press-5-2025-rheinwerk-verlag-gmb.md) | full-text indexed from EPUB sections | 212 | Tier 2 — Unity 2D practice |
+| 095 | [Fundamental Level Design and Analysis: A to B](095-fundamental-level-design-and-analysis-a-to-b-michael-beardwood-1-2024-crc-press-isbn13-9781003408840-b723d72df.md) | full-text indexed | 120 | Tier 1 — level mapping |
+| 096 | [Investire e Collezionare nel TCG Pokémon 2026_ Come -- QUATTROCCHI, GIUSEPPE -- Prima edizione digitale, 2026 -- Independently Published by the author -- d64ca98f94907ed5006acabc3d94d927 -- Anna’s Archive](096-investire-e-collezionare-nel-tcg-pokemon-2026-come-quattrocchi-giuseppe-prima-edizione-digitale-2026-independe.md) | full-text indexed from EPUB sections | 2 | Reference library |
+| 097 | [Learning Design Patterns with Unity_ Craft reusable code -- Harrison Ferrone -- Expert Insight, 1, 2024 -- Packt Publishing, Limited -- isbn13 9781805120285 -- 7ba1c14a1e6cb5ae6de0055601a7456c -- Anna’s Archive](097-learning-design-patterns-with-unity-craft-reusable-code-harrison-ferrone-expert-insight-1-2024-packt-publishin.md) | full-text indexed | 358 | Tier 2 — Unity architecture |
+| 098 | [Mathematics of Tabletop Games](098-mathematics-of-tabletop-games-ak-peters-crc-recreational-aaron-montgomery-ak-peters-crc-recreational-mathemati.md) | full-text indexed | 62 | Reference library |
+| 099 | [Run and Jump](099-run-and-jump-the-meaning-of-the-2d-platformer-playful-mcdonald-peter-d-playful-thinking-cambridge-massachusett.md) | full-text indexed | 42 | Tier 1 — platformer form |
+| 100 | [The Unity Shaders Bible](100-the-unity-shaders-bible-a-linear-shader-explanation-from-fabrizio-espndola-pablo-yeber-daniel-santalla-martin-.md) | full-text indexed | 135 | Reference library |
+| 101 | [Unity 6 Game Development with C# Scripting -- Lem Apperson -- 2025 -- Packt Publishing Pvt_ Ltd_ -- d78c29ec0e4a923ba9809aab31940317 -- Anna’s Archive](101-unity-6-game-development-with-c-scripting-lem-apperson-2025-packt-publishing-pvt-ltd-d78c29ec0e4a923ba9809aab3.md) | full-text indexed from EPUB sections | 32 | Tier 2 — Unity scripting |
+| 102 | [Unity 6 Game Optimization: Improve Performance and Create Smoother Gameplay](102-unity-6-game-optimization-improve-performance-and-create-zenva-academy-none-zenva-f096b3dc1d96d60928ab7a821b72.md) | full-text indexed | 3 | Tier 1 — performance baseline |
+| 103 | [Unity 6 Shaders and Effects Cookbook_ Over 50 recipes for -- John P_ Doran -- 5th, 2025 -- Packt Publishing -- isbn13 9781835460801 -- e58bb691e12b5b6af74a96519242122d -- Anna’s Archive](103-unity-6-shaders-and-effects-cookbook-over-50-recipes-for-john-p-doran-5th-2025-packt-publishing-isbn13-9781835.md) | full-text indexed | 288 | Tier 2 — shader and VFX reference |
+| 104 | [Unity Development Cookbook](104-unity-development-cookbook-real-time-solutions-from-game-paris-buttfield-addison-jonathon-manning-tim-nugent-2.md) | full-text indexed | 530 | Tier 2 — Unity implementation reference |
+| 105 | [Unity for Professionals -- Josep Alemany i Fruitós -- 2026 -- BPB Publications -- isbn13 9789365892475 -- dcf8d2a79c0a409640be7d428a6091c0 -- Anna’s Archive](105-unity-for-professionals-josep-alemany-i-fruitos-2026-bpb-publications-isbn13-9789365892475-dcf8d2a79c0a409640b.md) | full-text indexed from EPUB sections | 27 | Tier 2 — Unity production reference |
