@@ -6,6 +6,12 @@
 
 ## Verified foundation
 
+### Correction and repair checkpoint — 16 September 2026
+
+The earlier ability results applied to the movement lab. Main did not reference HeroTuning, so its double-jump/backflip/wand paths were unavailable. This has now been connected and tested in Main for wand switch/fire, backflip and air-jump availability. Dedicated animation artwork is still missing. See `PLAYTEST-2026-09-16.md` and its test evidence for the current scope.
+
+Platform walk lines were aligned to existing collider tops; small ledges now use a detail crop instead of compressing a full terrain illustration. Five thorn skins replace hazard placeholders, and camera-filling zone backgrounds replace exposed rectangular card edges. Main's viewport-dependent camera bounds are covered by regression checks. These repairs improve the prototype; they do not qualify it as client-ready or establish the requested 10–15 minute duration.
+
 - One editable Main scene with Trailhead, Broken Steps, Canopy Lift, Spark Shrine, Gate Return and Guardian Court.
 - Movement, double jump, backflip/evade, sword/wand choice, Spark, checkpoint, gate, Guardian, victory and restart loops.
 - Movement 10/10, lifecycle 4/4, accessibility 3/3, graphical animation audit 6/6 and manifest/browser animation regression 10/10.

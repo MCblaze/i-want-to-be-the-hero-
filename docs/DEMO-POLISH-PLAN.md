@@ -2,7 +2,7 @@
 
 Revision 1.5 · 15 September 2026 · expanded library and map-authoring method added
 
-**Current operational task:** [Repair the GitHub command-line login and publish the pending documentation](NEXT-TASK.md).
+**Current operational task:** Complete the client polish backlog in [the production audit](CLIENT-READY-DEMO-AUDIT.md). GitHub authentication is repaired. The [16 September playtest](PLAYTEST-2026-09-16.md) records platform/camera corrections, Main ability wiring and remaining release gaps. The 10–15 minute duration remains an unverified design target.
 
 **Literature and level-layout update.** The expanded 105-source chapter/section index is in [Game Design Literature Review Index](literature-reviews/README.md), and the actionable six-zone reconstruction is in [Sunleaf Ruins Literature-Led Level Plan](literature-reviews/LEVEL-DESIGN-SYNTHESIS.md). New platformer and level-design research adds the required bubble map, critical path, optional-route overlay, and mechanic-resonance table before final art. QP0 movement measurement still gates final platform spacing; the target route is Trailhead → Broken Steps → Canopy Lift → Spark Shrine → Gate Return → Guardian Court.
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-15 23:41:07Z" end-time="2026-09-15 23:41:17Z" duration="9.2332647">
+  <test-suite type="TestSuite" id="1000" name="I Want to Be the Hero" fullname="I Want to Be the Hero" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-09-15 23:41:07Z" end-time="2026-09-15 23:41:17Z" duration="9.233265" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1040" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-09-15 23:41:09Z" end-time="2026-09-15 23:41:17Z" duration="7.760810" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40476" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1041" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-09-15 23:41:09Z" end-time="2026-09-15 23:41:17Z" duration="7.754877" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1042" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-09-15 23:41:09Z" end-time="2026-09-15 23:41:17Z" duration="7.748361" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1029" name="MovementTests" fullname="IWantToBeTheHero.Tests.MovementTests" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-15 23:41:09Z" end-time="2026-09-15 23:41:17Z" duration="7.744970" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1035" name="MovingPlatform_AnimationUsesMovementRelativeToSupport" fullname="IWantToBeTheHero.Tests.MovementTests.MovingPlatform_AnimationUsesMovementRelativeToSupport" methodname="MovingPlatform_AnimationUsesMovementRelativeToSupport" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="322934787" result="Passed" start-time="2026-09-15 23:40:22Z" end-time="2026-09-15 23:40:52Z" duration="29.112199" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="Platforms_OneWayLandingMovingCarryAndLowCeiling" fullname="IWantToBeTheHero.Tests.MovementTests.Platforms_OneWayLandingMovingCarryAndLowCeiling" methodname="Platforms_OneWayLandingMovingCarryAndLowCeiling" classname="IWantToBeTheHero.Tests.MovementTests" runstate="Runnable" seed="59289776" result="Passed" start-time="2026-09-15 23:40:52Z" end-time="2026-09-15 23:41:17Z" duration="24.999107" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -522,7 +522,7 @@ namespace IWantToBeTheHero
         public float EvadeCooldown => Mathf.Max(0f, dashCooldown);
         public float WandCooldown => Mathf.Max(0f, wandCooldown);
         public int SeedsFired { get; private set; }
-        private HeroTuning Settings => Game != null && Game.Lab != null ? Game.Lab.tuning : null;
+        private HeroTuning Settings => Game == null ? null : Game.Lab != null ? Game.Lab.tuning : Game.MainLayout != null ? Game.MainLayout.tuning : null;
 
         private Rigidbody2D body;
         private SpriteRenderer sprite;
@@ -627,7 +627,7 @@ namespace IWantToBeTheHero
             {
                 var center = transform.position + Vector3.right * facing * .72f;
                 Game.HeroAttack(new Bounds(center, new Vector3(1.15f, 1.05f, 1f)),
-                    Settings == null && HasSpark ? 2 : 1, new Vector2(facing * 4.5f, 2.2f), attackHits);
+                    Game.Lab == null && HasSpark ? 2 : 1, new Vector2(facing * 4.5f, 2.2f), attackHits);
             }
 
             if (!JumpHeld() && body.linearVelocity.y > 4f && flipRemaining <= 0f)
@@ -1109,7 +1109,7 @@ namespace IWantToBeTheHero
         {
             velocity = Vector3.zero;
             if (Game.Lab != null) { transform.position = LabCameraPosition(); return; }
-            transform.position = new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + 2.2f, 9.5f, 41.4f), 0f, -10f);
+            transform.position = MainCameraPosition();
         }
 
         private void LateUpdate()
@@ -1120,9 +1120,15 @@ namespace IWantToBeTheHero
                 transform.position = Vector3.SmoothDamp(transform.position, LabCameraPosition(), ref velocity, .16f);
                 return;
             }
-            float desiredX = Mathf.Clamp(Game.Hero.transform.position.x + 2.2f, 9.5f, 41.4f);
-            Vector3 target = new(desiredX, 0f, -10f);
+            Vector3 target = MainCameraPosition();
             transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, .2f);
+        }
+
+        private Vector3 MainCameraPosition()
+        {
+            float halfWidth = Mathf.Min(25.5f, Game.MainCamera.orthographicSize * Game.MainCamera.aspect);
+            return new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + 2.2f,
+                halfWidth, 51f - halfWidth), 0f, -10f);
         }
 
         private Vector3 LabCameraPosition()

@@ -4,6 +4,8 @@ namespace IWantToBeTheHero
 {
     public sealed class MainSceneLayout : MonoBehaviour
     {
+        [Tooltip("Movement and weapon settings shared with the verified movement lab.")]
+        public HeroTuning tuning;
         [Tooltip("Saved scene camera used in Edit Mode and Play Mode.")]
         public Camera mainCamera;
         [Tooltip("Saved backdrop object; its follow behaviour is connected during Play Mode.")]

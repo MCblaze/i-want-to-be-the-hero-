@@ -2,49 +2,58 @@ using UnityEngine;
 
 namespace IWantToBeTheHero
 {
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(SpriteRenderer))]
+    [ExecuteAlways, DefaultExecutionOrder(100), DisallowMultipleComponent, RequireComponent(typeof(SpriteRenderer))]
     public sealed class ZoneBackdrop : MonoBehaviour
     {
         [SerializeField] private float centerX;
-        [SerializeField, Min(0.1f)] private float fullVisibilityHalfWidth = 4f;
-        [SerializeField, Min(0.1f)] private float fadeWidth = 2f;
+        [SerializeField, Min(.1f)] private float fullVisibilityHalfWidth = 4f;
+        [SerializeField, Min(.1f)] private float fadeWidth = 2f;
         [SerializeField, Range(0f, 1f)] private float maximumAlpha = 1f;
-
         private SpriteRenderer spriteRenderer;
-        private Camera trackedCamera;
+        private ZoneBackdrop[] siblings;
+
+        private void OnEnable()
+        {
+            siblings = transform.parent == null ? new[] { this } : transform.parent.GetComponentsInChildren<ZoneBackdrop>();
+        }
 
         public void Configure(float center, float halfWidth, float edgeFade, float alpha)
         {
             centerX = center;
-            fullVisibilityHalfWidth = Mathf.Max(0.1f, halfWidth);
-            fadeWidth = Mathf.Max(0.1f, edgeFade);
+            fullVisibilityHalfWidth = Mathf.Max(.1f, halfWidth);
+            fadeWidth = Mathf.Max(.1f, edgeFade);
             maximumAlpha = Mathf.Clamp01(alpha);
-            ApplyAlpha(maximumAlpha);
-        }
-
-        private void Awake()
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            trackedCamera = Camera.main;
+            LateUpdate();
         }
 
         private void LateUpdate()
         {
-            if (trackedCamera == null) trackedCamera = Camera.main;
-            if (trackedCamera == null) return;
-
-            float distance = Mathf.Abs(trackedCamera.transform.position.x - centerX);
-            float alpha = 1f - Mathf.InverseLerp(fullVisibilityHalfWidth, fullVisibilityHalfWidth + fadeWidth, distance);
-            ApplyAlpha(alpha * maximumAlpha);
-        }
-
-        private void ApplyAlpha(float alpha)
-        {
+            var camera = Camera.main;
+            if (camera == null || !camera.orthographic) return;
             if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
-            Color color = spriteRenderer.color;
-            color.a = alpha;
-            spriteRenderer.color = color;
+            if (spriteRenderer.sprite == null) return;
+
+            // Each painted scene covers the view; crossfades never expose card edges.
+            var size = spriteRenderer.sprite.bounds.size;
+            float height = camera.orthographicSize * 2f;
+            float scale = Mathf.Max(height / size.y, height * camera.aspect / size.x) * 1.08f;
+            var parentScale = transform.parent == null ? Vector3.one : transform.parent.lossyScale;
+            transform.localScale = new Vector3(scale / parentScale.x, scale / parentScale.y, 1f);
+            float drift = Mathf.Clamp((camera.transform.position.x - centerX) * .025f, -.25f, .25f);
+            transform.position = new Vector3(camera.transform.position.x - drift, camera.transform.position.y, 5f);
+
+            float previous = float.NegativeInfinity;
+            if (siblings == null) OnEnable();
+            foreach (var other in siblings)
+                if (other != null && other != this && other.centerX < centerX) previous = Mathf.Max(previous, other.centerX);
+            float alpha = 1f;
+            if (!float.IsNegativeInfinity(previous))
+            {
+                float midpoint = (previous + centerX) * .5f;
+                alpha = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(midpoint - fadeWidth, midpoint + fadeWidth, camera.transform.position.x));
+            }
+            spriteRenderer.sortingOrder = -180 + Mathf.RoundToInt(centerX);
+            spriteRenderer.color = new Color(.77f, .85f, .87f, alpha * maximumAlpha);
         }
     }
 }
