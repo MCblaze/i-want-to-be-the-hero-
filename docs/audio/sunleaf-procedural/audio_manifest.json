@@ -1,0 +1,157 @@
+{
+  "pack": "Sunleaf Procedural Audio Batch 1",
+  "license": "Original work generated procedurally for this project; no samples, recordings, or third-party assets used. Project may use, modify, and redistribute these files royalty-free.",
+  "generator": "generate_audio.py",
+  "determinism": "Fixed algorithms, constants, and PRNG seeds; Python standard library only.",
+  "format": "RIFF/WAVE PCM signed 16-bit little-endian; 44,100 Hz",
+  "integration_notes": "Music files are stereo and intended to loop from frame 0 to loop_end_frame_exclusive. SFX/UI files are mono one-shots. Unity import suggestion: load music as Streaming with Loop enabled; use Decompress On Load for short effects.",
+  "assets": [
+    {
+      "file": "wav/music_title_sunrise_loop.wav",
+      "sha256": "5c127933aa9bf31941a658be40c0974969f460de945ffac3065fb413361844aa",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bit_depth": 16,
+      "frames": 705600,
+      "duration_seconds": 16.0,
+      "peak_dbfs": -8.023,
+      "category": "music_loop",
+      "loop_start_frame": 0,
+      "loop_end_frame_exclusive": 705600
+    },
+    {
+      "file": "wav/music_exploration_grove_loop.wav",
+      "sha256": "e4e52d6fc641d0a36d41b8684f2c15d50e11ec2105965a932875403c485c9fc1",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "bit_depth": 16,
+      "frames": 705600,
+      "duration_seconds": 16.0,
+      "peak_dbfs": -8.033,
+      "category": "music_loop",
+      "loop_start_frame": 0,
+      "loop_end_frame_exclusive": 705600
+    },
+    {
+      "file": "wav/sfx_player_jump.wav",
+      "sha256": "80ef2d3fc56cb5219a6f140701f95f45d90354b79b79b8a2c383c6c191b1c110",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 11466,
+      "duration_seconds": 0.26,
+      "peak_dbfs": -1.738,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_player_double_jump.wav",
+      "sha256": "6eceaca088eec1e3409db6056c5ef761a99f0e6dacdb2ef25f2a77613c7ba7df",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 14994,
+      "duration_seconds": 0.34,
+      "peak_dbfs": -1.5,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_player_land.wav",
+      "sha256": "10d7d4f311045d2c39692151e119768bc49bc8bbe17bf43a9dce9d72fea36029",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 8820,
+      "duration_seconds": 0.2,
+      "peak_dbfs": -1.5,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_weapon_sword_swing.wav",
+      "sha256": "5afd1477d04daceafc2ee191cb92cd4a577af00e90d157779a14f07448cd235e",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 10584,
+      "duration_seconds": 0.24,
+      "peak_dbfs": -1.5,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_weapon_wand_cast.wav",
+      "sha256": "bd30e1b2d1db2d3184e8e2491c2224e309e648357b3f2b43d74b6dedcb327275",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 18522,
+      "duration_seconds": 0.42,
+      "peak_dbfs": -2.466,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_pickup_leaf.wav",
+      "sha256": "17b8c6b2e1c1c0a244de4476ffe4ffd8bee56589953d46b26638a241c958c00d",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 20286,
+      "duration_seconds": 0.46,
+      "peak_dbfs": -7.82,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_checkpoint_bloom.wav",
+      "sha256": "a411a4b9d499434d4460eab2ccd218a87206de3bdd44111ccf39b7bd9973df2c",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 39690,
+      "duration_seconds": 0.9,
+      "peak_dbfs": -2.29,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_enemy_hit.wav",
+      "sha256": "268125fe5b2c09eefec79ad6796dea8b53539a9aba8dd6d3883eaa171bb97b95",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 10143,
+      "duration_seconds": 0.23,
+      "peak_dbfs": -1.5,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_enemy_defeat.wav",
+      "sha256": "b7524a8c20490be8daeda1b88e560215b787aee25f5af0e8d47ef04aeed6389a",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 25578,
+      "duration_seconds": 0.58,
+      "peak_dbfs": -1.5,
+      "category": "sfx"
+    },
+    {
+      "file": "wav/sfx_ui_confirm.wav",
+      "sha256": "01b139a3273336dff9d82cd4933c92a21e7c5759ac599b6adc776acf3b7b3145",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 7938,
+      "duration_seconds": 0.18,
+      "peak_dbfs": -2.378,
+      "category": "ui"
+    },
+    {
+      "file": "wav/sfx_ui_pause.wav",
+      "sha256": "f8db2c23315625eee85cc51d29ef6e9119ec1232f1ba53daac2974dff58eea7c",
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bit_depth": 16,
+      "frames": 11907,
+      "duration_seconds": 0.27,
+      "peak_dbfs": -5.045,
+      "category": "ui"
+    }
+  ]
+}

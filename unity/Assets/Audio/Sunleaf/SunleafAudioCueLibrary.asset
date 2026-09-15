@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dadef0c74b937e458493530d7136eed, type: 3}
+  m_Name: SunleafAudioCueLibrary
+  m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.Audio.AudioCueLibrary
+  cues:
+  - id: 1
+    bus: 1
+    variations:
+    - {fileID: 8300000, guid: 8daf7545dbb9e5e4db191afaa42b5f85, type: 3}
+    volume: 0.7
+    pitchMin: 1
+    pitchMax: 1
+    cooldownSeconds: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 2
+    bus: 1
+    variations:
+    - {fileID: 8300000, guid: a8bc21675af3c7d4aa42f0dbff071660, type: 3}
+    volume: 0.65
+    pitchMin: 1
+    pitchMax: 1
+    cooldownSeconds: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 3
+    bus: 1
+    variations:
+    - {fileID: 8300000, guid: a8bc21675af3c7d4aa42f0dbff071660, type: 3}
+    volume: 0.6
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 4
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: e1a99c7cee4177a47a4a44ef84fc704b, type: 3}
+    volume: 0.72
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.05
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 6
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 432074d335710454ea9898c74d34e363, type: 3}
+    volume: 0.72
+    pitchMin: 1
+    pitchMax: 1
+    cooldownSeconds: 0.1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 10
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 20ade278613c9794aaba394b1b4df4b9, type: 3}
+    volume: 0.78
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.04
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 11
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 4cef4fe2271b26143a8259699dd4029e, type: 3}
+    volume: 0.82
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.08
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 12
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: a2d8aba891f548f4ca6710c2670f7d54, type: 3}
+    volume: 0.62
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.06
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 14
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 29824ad7186c4a84a85a4db179a253da, type: 3}
+    volume: 0.78
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.08
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 18
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 69a6b6b830f0abd48901a40eba07fba3, type: 3}
+    volume: 0.82
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.12
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 17
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: ccd2cf121fd9ff24f903b050b638c539, type: 3}
+    volume: 0.82
+    pitchMin: 1
+    pitchMax: 1
+    cooldownSeconds: 0.15
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 19
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 7a7c131f1b1bcf24da34af0bb540e849, type: 3}
+    volume: 0.72
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.05
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 20
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 950f9d5aeb351794e85fe0117a3526d6, type: 3}
+    volume: 0.82
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0

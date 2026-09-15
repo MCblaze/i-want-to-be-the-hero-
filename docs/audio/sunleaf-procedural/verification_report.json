@@ -1,0 +1,233 @@
+{
+  "status": "PASS",
+  "asset_count": 13,
+  "results": [
+    {
+      "file": "wav/music_title_sunrise_loop.wav",
+      "duration_seconds": 16.0,
+      "peak_dbfs": -8.023,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true,
+        "loop_seam_below_minus_40dbfs": true,
+        "exact_declared_loop_bounds": true
+      },
+      "loop_seam_max_sample_jump": 0.00012207,
+      "ok": true
+    },
+    {
+      "file": "wav/music_exploration_grove_loop.wav",
+      "duration_seconds": 16.0,
+      "peak_dbfs": -8.033,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true,
+        "loop_seam_below_minus_40dbfs": true,
+        "exact_declared_loop_bounds": true
+      },
+      "loop_seam_max_sample_jump": 0.0,
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_player_jump.wav",
+      "duration_seconds": 0.26,
+      "peak_dbfs": -1.738,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_player_double_jump.wav",
+      "duration_seconds": 0.34,
+      "peak_dbfs": -1.5,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_player_land.wav",
+      "duration_seconds": 0.2,
+      "peak_dbfs": -1.5,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_weapon_sword_swing.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -1.5,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_weapon_wand_cast.wav",
+      "duration_seconds": 0.42,
+      "peak_dbfs": -2.466,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_pickup_leaf.wav",
+      "duration_seconds": 0.46,
+      "peak_dbfs": -7.82,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_checkpoint_bloom.wav",
+      "duration_seconds": 0.9,
+      "peak_dbfs": -2.29,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_enemy_hit.wav",
+      "duration_seconds": 0.23,
+      "peak_dbfs": -1.5,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_enemy_defeat.wav",
+      "duration_seconds": 0.58,
+      "peak_dbfs": -1.5,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_ui_confirm.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -2.378,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    },
+    {
+      "file": "wav/sfx_ui_pause.wav",
+      "duration_seconds": 0.27,
+      "peak_dbfs": -5.045,
+      "clipped_samples": 0,
+      "checks": {
+        "riff_wave_header": true,
+        "pcm_16bit": true,
+        "sample_rate_44100": true,
+        "declared_channels_match": true,
+        "declared_frames_match": true,
+        "sha256_match": true,
+        "no_clipped_samples": true,
+        "audible_nonzero_peak": true
+      },
+      "ok": true
+    }
+  ]
+}

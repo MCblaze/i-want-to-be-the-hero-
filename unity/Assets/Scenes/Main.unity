@@ -853,6 +853,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1742124970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &86060098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86060100}
+  - component: {fileID: 86060099}
+  m_Layer: 0
+  m_Name: Premium Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &86060099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86060098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6da6e7234b7fd84e9b27c3e727c8ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.Audio.GameAudioDirector
+  library: {fileID: 11400000, guid: 0d323353a56b53a4e8ebe7c8635be0a7, type: 2}
+  initialPoolSize: 10
+  maximumPoolSize: 24
+  masterVolume: 1
+  soundEffectsVolume: 1
+  musicVolume: 1
+  muted: 0
+--- !u!4 &86060100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86060098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118750718
 GameObject:
   m_ObjectHideFlags: 0
@@ -18102,3 +18153,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1977647067}
+  - {fileID: 86060100}
