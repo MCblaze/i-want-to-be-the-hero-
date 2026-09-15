@@ -1,0 +1,2 @@
+# Keep documentation stable across Windows and GitHub.
+*.md text eol=lf
