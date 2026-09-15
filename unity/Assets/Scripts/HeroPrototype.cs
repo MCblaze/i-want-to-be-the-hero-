@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using IWantToBeTheHero.Audio;
 
 namespace IWantToBeTheHero
 {
@@ -46,6 +47,7 @@ namespace IWantToBeTheHero
         public float Elapsed { get; private set; }
         public MovementLab Lab { get; private set; }
         public MainSceneLayout MainLayout { get; private set; }
+        public GameAudioDirector Audio { get; private set; }
 
         private GameObject sparkGate;
         private readonly List<HeroTarget> targets = new();
@@ -58,6 +60,7 @@ namespace IWantToBeTheHero
         {
             Lab = GetComponent<MovementLab>();
             MainLayout = Lab == null ? UnityEngine.Object.FindAnyObjectByType<MainSceneLayout>() : null;
+            Audio = UnityEngine.Object.FindAnyObjectByType<GameAudioDirector>();
             MobileInput.Reset();
             Application.targetFrameRate = 60;
             Screen.autorotateToPortrait = false;
@@ -71,6 +74,7 @@ namespace IWantToBeTheHero
             else if (MainLayout != null) BindAuthoredWorld();
             BuildActors();
             UI = PrototypeUI.Create(this);
+            Audio?.PlayMusic(AudioCueId.MusicTitle, 0f);
         }
 
         private void Update()
@@ -102,6 +106,8 @@ namespace IWantToBeTheHero
             Won = false;
             Elapsed = 0f;
             UI.ShowGame();
+            Audio?.TryPlay(AudioCueId.UiConfirm);
+            Audio?.PlayMusic(AudioCueId.MusicCanopy, .8f);
         }
 
         public void ResetQuest()
@@ -166,6 +172,7 @@ namespace IWantToBeTheHero
         public void CollectHeroSpark()
         {
             Hero.UnlockSpark();
+            Audio?.TryPlay(AudioCueId.Pickup);
             if (sparkGate != null) Destroy(sparkGate);
             UI.FlashMessage("HERO SPARK FOUND!\nDash unlocked · Shift / K / B button", 2.6f);
         }
@@ -183,6 +190,8 @@ namespace IWantToBeTheHero
         {
             if (Won) return;
             Won = true;
+            Audio?.TryPlay(AudioCueId.UiConfirm);
+            Audio?.StopMusic(1.2f);
             UI.ShowVictory(Elapsed);
         }
 
@@ -571,6 +580,7 @@ namespace IWantToBeTheHero
                     attackCooldown = AttackDuration;
                     attackRemaining = AttackDuration;
                     attackHits.Clear();
+                    Game.Audio?.TryPlay(AudioCueId.LoganAttack);
                 }
                 else if (Weapon == HeroWeapon.SunseedWand && Settings != null && wandCooldown <= 0f)
                 {
@@ -586,6 +596,7 @@ namespace IWantToBeTheHero
                         seed.Initialize(this, facing, Settings.seedSpeed, Settings.seedRange);
                         seeds.Add(seed);
                         SeedsFired++;
+                        Game.Audio?.TryPlay(AudioCueId.LoganWandCast);
                     }
                 }
             }
@@ -665,12 +676,14 @@ namespace IWantToBeTheHero
                 {
                     lastJumpPressed = lastGrounded = -10f;
                     body.linearVelocity = new Vector2(body.linearVelocity.x, Settings != null ? Settings.jumpSpeed : 10.6f);
+                    Game.Audio?.TryPlay(AudioCueId.LoganJump);
                 }
                 else if (AirJumpAvailable)
                 {
                     lastJumpPressed = -10f;
                     airJumpUsed = true;
                     body.linearVelocity = new Vector2(body.linearVelocity.x, Settings.secondJumpSpeed);
+                    Game.Audio?.TryPlay(AudioCueId.LoganDoubleJump);
                 }
             }
         }
@@ -730,7 +743,11 @@ namespace IWantToBeTheHero
             {
                 if (collision.GetContact(i).normal.y > .55f)
                 {
-                    if (Time.time - lastGrounded > .12f) landingRemaining = .1f;
+                    if (Time.time - lastGrounded > .12f)
+                    {
+                        landingRemaining = .1f;
+                        Game.Audio?.TryPlay(AudioCueId.LoganLand);
+                    }
                     lastGrounded = Time.time;
                     support = collision.rigidbody;
                     airJumpUsed = false;
@@ -749,6 +766,7 @@ namespace IWantToBeTheHero
         {
             respawn = position;
             Health = MaxHealth;
+            Game.Audio?.TryPlay(AudioCueId.CheckpointActivate);
         }
 
         public void Hurt(Vector2 source)
@@ -894,6 +912,7 @@ namespace IWantToBeTheHero
         {
             if (!IsAlive) return;
             health -= damage;
+            Game.Audio?.TryPlay(AudioCueId.EnemyHit);
             hurtRemaining = .2f;
             body.AddForce(force, ForceMode2D.Impulse);
             if (health <= 0)
@@ -901,6 +920,7 @@ namespace IWantToBeTheHero
                 GetComponent<Collider2D>().enabled = false;
                 body.simulated = false;
                 visual.Sample("defeat", 0f);
+                Game.Audio?.TryPlay(AudioCueId.EnemyDefeat);
                 Destroy(gameObject, .75f);
             }
         }
@@ -1012,6 +1032,7 @@ namespace IWantToBeTheHero
         {
             if (!Awake || !IsAlive || state == BossState.Charging) return;
             health -= damage;
+            Game.Audio?.TryPlay(AudioCueId.EnemyHit);
             hurtRemaining = .2f;
             body.AddForce(force * .35f, ForceMode2D.Impulse);
             if (health <= 0)
@@ -1020,6 +1041,7 @@ namespace IWantToBeTheHero
                 GetComponent<Collider2D>().enabled = false;
                 body.simulated = false;
                 visual.Sample("defeat", 0f);
+                Game.Audio?.TryPlay(AudioCueId.EnemyDefeat);
                 Game.CompleteQuest();
                 StartCoroutine(VictoryAnimation());
             }

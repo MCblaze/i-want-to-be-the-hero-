@@ -156,3 +156,14 @@ MonoBehaviour:
     spatialBlend: 0
     minDistance: 0
     maxDistance: 0
+  - id: 24
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: ca1cc20d3bacf694aa88cf69aebda77c, type: 3}
+    volume: 0.78
+    pitchMin: 0.98
+    pitchMax: 1.02
+    cooldownSeconds: 0.12
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
