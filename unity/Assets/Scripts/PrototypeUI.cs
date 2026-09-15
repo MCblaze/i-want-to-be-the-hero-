@@ -96,6 +96,7 @@ namespace IWantToBeTheHero
         private Coroutine messageRoutine;
 
         private static Font Font => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        private static Sprite PremiumPanelSprite => Resources.Load<Sprite>("Art/UI/SunleafPanel");
 
         public static PrototypeUI Create(HeroGame game)
         {
@@ -285,7 +286,14 @@ namespace IWantToBeTheHero
             rect.pivot = pivot;
             rect.anchoredPosition = anchored;
             rect.sizeDelta = size;
-            obj.GetComponent<Image>().color = color;
+            var image = obj.GetComponent<Image>();
+            if (name == "Card" && PremiumPanelSprite != null)
+            {
+                image.sprite = PremiumPanelSprite;
+                image.color = Color.white;
+                image.type = Image.Type.Simple;
+            }
+            else image.color = color;
             return obj;
         }
 
