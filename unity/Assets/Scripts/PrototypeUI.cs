@@ -92,6 +92,7 @@ namespace IWantToBeTheHero
         private GameObject titlePanel;
         private GameObject victoryPanel;
         private GameObject touchRoot;
+        private Text accessibilityStatus;
         private Coroutine messageRoutine;
 
         private static Font Font => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -168,6 +169,12 @@ namespace IWantToBeTheHero
             messageRoutine = StartCoroutine(MessageRoutine(text, duration));
         }
 
+        public void ShowAccessibilityStatus()
+        {
+            UpdateAccessibilityStatus();
+            FlashMessage($"REDUCED EFFECTS: {(AccessibilitySettings.ReducedEffects ? "ON" : "OFF")}\nAUDIO: {(AccessibilitySettings.MutedAudio ? "MUTED" : "ON")}", 2f);
+        }
+
         private IEnumerator MessageRoutine(string text, float duration)
         {
             message.text = text;
@@ -234,8 +241,21 @@ namespace IWantToBeTheHero
                 18, new Color(1f, .93f, .75f), new Vector2(.07f, .22f), new Vector2(.93f, .48f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
             var start = Button("Begin the quest", card.transform, new Vector2(.07f, .06f), new Vector2(.62f, .19f));
             start.onClick.AddListener(game.StartQuest);
-            Label("Controls", card.transform, "A/D · Space · J/X · Shift/K · Controller supported", 12, new Color(.64f, .76f, .7f),
+            var reduced = Button("Reduced effects", card.transform, new Vector2(.64f, .13f), new Vector2(.93f, .19f));
+            reduced.onClick.AddListener(() => { AccessibilitySettings.SetReducedEffects(!AccessibilitySettings.ReducedEffects); ShowAccessibilityStatus(); });
+            var mute = Button("Mute audio", card.transform, new Vector2(.64f, .06f), new Vector2(.93f, .12f));
+            mute.onClick.AddListener(() => { AccessibilitySettings.SetMutedAudio(!AccessibilitySettings.MutedAudio); ShowAccessibilityStatus(); });
+            accessibilityStatus = Label("Accessibility Status", card.transform, "", 11, new Color(.8f, .9f, .82f),
+                new Vector2(.64f, .19f), new Vector2(.93f, .25f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            UpdateAccessibilityStatus();
+            Label("Controls", card.transform, "A/D · Space · J/X · Shift/K · F1 effects · F2 audio · Controller supported", 12, new Color(.64f, .76f, .7f),
                 new Vector2(.07f, 0f), new Vector2(.93f, .06f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+        }
+
+        private void UpdateAccessibilityStatus()
+        {
+            if (accessibilityStatus == null) return;
+            accessibilityStatus.text = $"EFFECTS {(AccessibilitySettings.ReducedEffects ? "LOW" : "FULL")} · AUDIO {(AccessibilitySettings.MutedAudio ? "MUTED" : "ON")}";
         }
 
         private void BuildVictory(Transform root)

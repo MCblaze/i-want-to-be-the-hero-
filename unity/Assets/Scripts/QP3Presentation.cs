@@ -45,6 +45,11 @@ namespace IWantToBeTheHero
 
         private void Update()
         {
+            if (AccessibilitySettings.ReducedEffects)
+            {
+                transform.localPosition = startPosition;
+                return;
+            }
             float offset = Mathf.Sin((Time.time + phase) * frequency * Mathf.PI * 2f) * amplitude;
             transform.localPosition = startPosition + localAxis.normalized * offset;
         }
@@ -66,6 +71,11 @@ namespace IWantToBeTheHero
 
         private void Update()
         {
+            if (AccessibilitySettings.ReducedEffects)
+            {
+                ResetPresentation();
+                return;
+            }
             if (cooldown > 0f)
             {
                 cooldown -= Time.deltaTime;

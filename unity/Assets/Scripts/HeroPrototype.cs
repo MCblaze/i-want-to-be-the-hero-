@@ -75,6 +75,17 @@ namespace IWantToBeTheHero
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                AccessibilitySettings.SetReducedEffects(!AccessibilitySettings.ReducedEffects);
+                UI.ShowAccessibilityStatus();
+            }
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                AccessibilitySettings.SetMutedAudio(!AccessibilitySettings.MutedAudio);
+                UI.ShowAccessibilityStatus();
+            }
+
             if (Started && !Won)
                 Elapsed += Time.deltaTime;
 
