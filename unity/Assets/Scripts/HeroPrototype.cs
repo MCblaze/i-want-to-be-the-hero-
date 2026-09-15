@@ -114,6 +114,11 @@ namespace IWantToBeTheHero
             foreach (var target in targets.ToArray())
             {
                 if (target == null) continue;
+                if (target is TrainingTarget dummy)
+                {
+                    dummy.ResetTarget();
+                    continue;
+                }
                 target.gameObject.SetActive(false);
                 Destroy(target.gameObject);
             }
@@ -238,6 +243,17 @@ namespace IWantToBeTheHero
                 var spark = MainLayout.heroSpark.GetComponent<HeroSpark>();
                 if (spark == null) spark = MainLayout.heroSpark.AddComponent<HeroSpark>();
                 spark.Game = this;
+            }
+            if (MainLayout.encounterTargets != null)
+            {
+                foreach (var targetObject in MainLayout.encounterTargets)
+                {
+                    if (targetObject == null) continue;
+                    var target = targetObject.GetComponent<TrainingTarget>();
+                    if (target == null) target = targetObject.AddComponent<TrainingTarget>();
+                    target.Game = this;
+                    RegisterTarget(target);
+                }
             }
         }
 

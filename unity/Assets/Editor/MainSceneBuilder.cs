@@ -104,7 +104,19 @@ public static class MainSceneBuilder
         layout.sparkGate = Block("Hero Spark Gate", new Vector2(40.25f, -1.2f), new Vector2(.3f, 4.6f),
             new Color(.45f, .72f, .45f, .78f), progression.transform, true);
 
+        var encounters = Child("Encounters - editable choice targets and optional cache", session.transform);
+        layout.encounterTargets = new[] {
+            ChoiceTarget("Sword Choice - low close", new Vector2(35.35f, -2.45f), new Vector2(.8f, .18f),
+                new Color(.92f, .48f, .22f), "SWORD\nCLOSE / LOW", encounters.transform),
+            ChoiceTarget("Wand Choice - high ranged", new Vector2(37.55f, .25f), new Vector2(.8f, .18f),
+                new Color(.42f, .72f, 1f), "WAND\nRANGED / HIGH", encounters.transform)
+        };
+        layout.optionalBackflipCache = Block("Optional Backflip Cache - never required", new Vector2(36.8f, .55f),
+            new Vector2(1.1f, .16f), new Color(.35f, .68f, .9f, .9f), encounters.transform, false);
+        AddLabel(layout.optionalBackflipCache.transform, "OPTIONAL\nBACKFLIP", new Color(.65f, .88f, 1f));
         var markers = Child("Markers - move these transforms", session.transform);
+
+
         layout.heroSpawn = Child("Logan Spawn", markers.transform).transform;
         layout.heroSpawn.position = new Vector2(1.2f, -2.8f);
         layout.heroPreview = Block("Logan Spawn Preview (hidden in Play Mode)", layout.heroSpawn.position,
@@ -160,6 +172,30 @@ public static class MainSceneBuilder
         AssetDatabase.AddObjectToAsset(backdrop, texture);
         AssetDatabase.SaveAssets();
         return pixelSprite;
+    }
+
+    private static GameObject ChoiceTarget(string name, Vector2 position, Vector2 size, Color color, string label, Transform parent)
+    {
+        var target = Block(name, position, size, color, parent, false);
+        var hitbox = target.AddComponent<CircleCollider2D>();
+        hitbox.radius = .65f;
+        target.AddComponent<IWantToBeTheHero.TrainingTarget>();
+        AddLabel(target.transform, label, Color.white);
+        return target;
+    }
+
+    private static void AddLabel(Transform parent, string text, Color color)
+    {
+        var label = Child("Readability Label", parent);
+        label.transform.localPosition = new Vector3(0f, 1.0f, 0f);
+        var mesh = label.AddComponent<TextMesh>();
+        mesh.text = text;
+        mesh.anchor = TextAnchor.MiddleCenter;
+        mesh.alignment = TextAlignment.Center;
+        mesh.fontSize = 24;
+        mesh.characterSize = .07f;
+        mesh.color = color;
+        label.GetComponent<Renderer>().sortingOrder = 30;
     }
 
     private static Sprite LoadSprite(string name) =>

@@ -19,7 +19,11 @@ namespace IWantToBeTheHero
         public Vector2 checkpointRespawnPosition = new(23.95f, -2.8f);
         [Tooltip("Hero Spark object that receives gameplay behaviour during Play Mode.")]
         public GameObject heroSpark;
+        [Tooltip("Editable low/high choice targets used by the QP2 encounter.")]
+        public GameObject[] encounterTargets;
         [Tooltip("Hazard objects that receive damage behaviour during Play Mode.")]
         public GameObject[] hazards;
+        [Tooltip("Visible optional backflip cache marker; never required for gate or court access.")]
+        public GameObject optionalBackflipCache;
     }
 }
