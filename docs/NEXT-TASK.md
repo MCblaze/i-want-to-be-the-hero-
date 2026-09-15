@@ -1,19 +1,17 @@
-# Next Task — Repair GitHub Command-Line Login
+# Completed Task — Repair GitHub Command-Line Login
 
-**Status:** Partially complete — GitHub documentation published; command-line account repair remains
+**Status:** Complete — command-line Git is authenticated as `MCblaze` and can publish to GitHub
 **Repository:** `MCblaze/i-want-to-be-the-hero-`
-**Published commits:** `891a2a5`, `f45a15f`
+**Verified revision:** `54f53bb0a1052a27e1cb579385294863edd4a38d`
 
-The computer's Git command line is currently authenticated as the read-only `MarvicSP` account. Sign that command-line session out and authenticate it as repository owner **MCblaze**.
+Git Credential Manager authentication was repaired for repository owner **MCblaze**. A command-line push published `cedd70f..54f53bb`; a subsequent fetch confirmed that local `main` and `origin/main` both point to the verified revision above.
 
 ## Completion checklist
 
-- [ ] Sign the Git command line out of `MarvicSP`.
-- [ ] Authenticate the Git command line as **MCblaze**.
-- [ ] Verify write access to `MCblaze/i-want-to-be-the-hero-`.
-- [x] Publish documentation commits `891a2a5` and `f45a15f` to GitHub `main`.
-- [x] Confirm through the owner-connected GitHub integration that remote `main` and local `main` point to `f45a15f` with tree `ae2ba73869f1bf38ba27baa86b74bedd64a781d1`.
-- [ ] Mark the matching task complete in the Notion Platformer Feel & World Polish plan.
+- [x] Authenticate the Git command line as **MCblaze**.
+- [x] Verify write access to `MCblaze/i-want-to-be-the-hero-` by pushing `cedd70f..54f53bb`.
+- [x] Fetch and confirm that local `main` and `origin/main` both point to `54f53bb0a1052a27e1cb579385294863edd4a38d`.
+- [x] Record completion in the Notion Platformer Feel & World Polish plan.
 
 ## Constraints
 
