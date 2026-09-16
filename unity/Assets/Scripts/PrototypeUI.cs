@@ -89,6 +89,7 @@ namespace IWantToBeTheHero
         private Text bossName;
         private Image bossFill;
         private GameObject bossPanel;
+        private GameObject hudPanel;
         private GameObject titlePanel;
         private GameObject victoryPanel;
         private GameObject pausePanel;
@@ -133,6 +134,7 @@ namespace IWantToBeTheHero
         private void Update()
         {
             if (game.Hero == null) return;
+            hudPanel.SetActive(game.Started && !game.Won);
             health.text = $"LOGAN   HP {game.Hero.Health}/{game.Hero.MaxHealth}";
             objective.text = game.CurrentObjective();
             power.text = (game.Hero.Weapon == HeroWeapon.Sword ? "SWORD" : "WAND") +
@@ -140,7 +142,7 @@ namespace IWantToBeTheHero
                     ? (game.Hero.EvadeCooldown > 0f ? " · EVADE RECOVERING" : " · EVADE READY")
                     : " · E TO SWAP");
 
-            bool bossVisible = game.Boss != null && game.Boss.Awake && game.Boss.IsAlive;
+            bool bossVisible = game.Started && !game.Won && game.Boss != null && game.Boss.Awake && game.Boss.IsAlive;
             bossPanel.SetActive(bossVisible);
             if (bossVisible) bossFill.fillAmount = (float)game.Boss.Health / game.Boss.MaxHealth;
         }
@@ -202,20 +204,22 @@ namespace IWantToBeTheHero
         private void BuildHud(Transform root)
         {
             var panel = Panel("HUD", root, new Color(.025f, .13f, .12f, .8f),
-                new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -24f), new Vector2(420f, 82f), new Vector2(0f, 1f));
+                new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -24f), new Vector2(440f, 112f), new Vector2(0f, 1f));
+            hudPanel = panel;
+            hudPanel.SetActive(false);
             health = Label("Health", panel.transform, "LOGAN   HP 5/5", 23, Color.white,
-                new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(18f, -12f), new Vector2(-36f, 28f), TextAnchor.MiddleLeft);
+                new Vector2(.04f, .66f), new Vector2(.96f, .95f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
             objective = Label("Objective", panel.transform, "Find the Hero Spark", 17, new Color(1f, .83f, .36f),
-                new Vector2(0f, 0f), new Vector2(1f, .55f), new Vector2(18f, 4f), new Vector2(-36f, -2f), TextAnchor.MiddleLeft);
-            power = Label("Power", panel.transform, "FIND YOUR POWER", 12, new Color(.62f, .75f, .68f),
-                new Vector2(.5f, 0f), new Vector2(1f, .55f), new Vector2(4f, 4f), new Vector2(-18f, -2f), TextAnchor.MiddleRight);
+                new Vector2(.04f, .34f), new Vector2(.96f, .64f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+            power = Label("Power", panel.transform, "FIND YOUR POWER", 14, new Color(.76f, .86f, .80f),
+                new Vector2(.04f, .07f), new Vector2(.96f, .30f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
 
             message = Label("Quest Message", root, "", 30, new Color(1f, .88f, .47f),
                 new Vector2(.5f, .74f), new Vector2(.5f, .74f), Vector2.zero, new Vector2(700f, 100f), TextAnchor.MiddleCenter);
             message.gameObject.SetActive(false);
 
             bossPanel = Panel("Boss HUD", root, new Color(.025f, .13f, .12f, .86f),
-                new Vector2(.5f, 1f), new Vector2(.5f, 1f), new Vector2(0f, -28f), new Vector2(520f, 54f), new Vector2(.5f, 1f));
+                new Vector2(.56f, .88f), new Vector2(.98f, .97f), Vector2.zero, Vector2.zero, new Vector2(.5f, 1f));
             bossName = Label("Boss Name", bossPanel.transform, "MOSSBACK GUARDIAN", 16, Color.white,
                 new Vector2(0f, .48f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             var bossBack = Panel("Boss Bar", bossPanel.transform, new Color(.18f, .24f, .2f),
@@ -250,25 +254,25 @@ namespace IWantToBeTheHero
             titlePanel = Panel("Title Panel", root, new Color(.015f, .08f, .075f, .72f),
                 Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
             var card = Panel("Card", titlePanel.transform, new Color(.025f, .16f, .145f, .96f),
-                new Vector2(.05f, .12f), new Vector2(.52f, .88f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+                new Vector2(.06f, .08f), new Vector2(.64f, .92f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
             Label("Kicker", card.transform, "LOGAN'S FIRST QUEST", 20, new Color(1f, .83f, .36f),
-                new Vector2(.07f, .8f), new Vector2(.93f, .94f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
-            Label("Title", card.transform, "I WANT TO BE\nTHE HERO", 58, Color.white,
-                new Vector2(.07f, .47f), new Vector2(.93f, .82f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+                new Vector2(.10f, .84f), new Vector2(.90f, .92f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+            Label("Title", card.transform, "I WANT TO BE\nTHE HERO", 54, Color.white,
+                new Vector2(.10f, .61f), new Vector2(.90f, .83f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
             Label("Story", card.transform,
                 "The Hero Spark is waiting in the Sunleaf Ruins. Find it, master its power, and prove your courage to the ancient Mossback Guardian.",
-                18, new Color(1f, .93f, .75f), new Vector2(.07f, .22f), new Vector2(.93f, .48f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
-            var start = Button("Begin the quest", card.transform, new Vector2(.07f, .06f), new Vector2(.62f, .19f));
+                18, new Color(1f, .93f, .75f), new Vector2(.10f, .45f), new Vector2(.90f, .60f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+            var start = Button("Begin the quest", card.transform, new Vector2(.10f, .32f), new Vector2(.90f, .42f));
             start.onClick.AddListener(game.StartQuest);
-            var reduced = Button("Reduced effects", card.transform, new Vector2(.64f, .13f), new Vector2(.93f, .19f));
+            var reduced = Button("Reduced effects", card.transform, new Vector2(.10f, .23f), new Vector2(.48f, .30f));
             reduced.onClick.AddListener(() => { AccessibilitySettings.SetReducedEffects(!AccessibilitySettings.ReducedEffects); ShowAccessibilityStatus(); });
-            var mute = Button("Mute audio", card.transform, new Vector2(.64f, .06f), new Vector2(.93f, .12f));
+            var mute = Button("Mute audio", card.transform, new Vector2(.52f, .23f), new Vector2(.90f, .30f));
             mute.onClick.AddListener(() => { AccessibilitySettings.SetMutedAudio(!AccessibilitySettings.MutedAudio); ShowAccessibilityStatus(); });
-            accessibilityStatus = Label("Accessibility Status", card.transform, "", 11, new Color(.8f, .9f, .82f),
-                new Vector2(.64f, .19f), new Vector2(.93f, .25f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            accessibilityStatus = Label("Accessibility Status", card.transform, "", 13, new Color(.8f, .9f, .82f),
+                new Vector2(.10f, .18f), new Vector2(.90f, .22f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             UpdateAccessibilityStatus();
-            Label("Controls", card.transform, "A/D · Space jump · J/X attack · E swap · Shift/K evade\nEsc pause · F1 effects · F2 audio", 12, new Color(.64f, .76f, .7f),
-                new Vector2(.07f, 0f), new Vector2(.93f, .06f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+            Label("Controls", card.transform, "A/D · Space jump · J/X attack · E swap · Shift/K evade\nEsc pause · F1 effects · F2 audio", 14, new Color(.76f, .86f, .80f),
+                new Vector2(.10f, .10f), new Vector2(.90f, .18f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
         }
 
         private void UpdateAccessibilityStatus()
@@ -305,8 +309,8 @@ namespace IWantToBeTheHero
             Label("Title", card.transform, "HERO OF\nSUNLEAF!", 48, new Color(1f, .83f, .36f),
                 new Vector2(.08f, .49f), new Vector2(.92f, .78f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             Label("Time", card.transform, "", 17, new Color(1f, .93f, .75f),
-                new Vector2(.08f, .21f), new Vector2(.92f, .49f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
-            var again = Button("Play again", card.transform, new Vector2(.26f, .06f), new Vector2(.74f, .18f));
+                new Vector2(.10f, .29f), new Vector2(.90f, .49f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            var again = Button("Play again", card.transform, new Vector2(.26f, .13f), new Vector2(.74f, .25f));
             again.onClick.AddListener(game.ResetQuest);
             victoryPanel.SetActive(false);
         }
