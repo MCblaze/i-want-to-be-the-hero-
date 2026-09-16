@@ -191,9 +191,10 @@ namespace IWantToBeTheHero.Tests
             }
             MobileInput.Set(MobileAction.Swap, true); yield return Until(() => Hero.Weapon == HeroWeapon.SunseedWand, "wand equipped"); MobileInput.Reset();
             MobileInput.Set(MobileAction.Attack, true); yield return Until(() => Hero.SeedsFired > 0, "wand fired"); MobileInput.Reset(); yield return null;
-            Assert.That(Visual.CurrentClip, Is.EqualTo("rise"), "Interim casting pose contains no baked sword slash");
+            Assert.That(Visual.CharacterId, Is.EqualTo("logan-wand"), "Wand cast uses its dedicated sword-free sheet");
+            Assert.That(Visual.CurrentClip, Is.EqualTo("attack"));
             MobileInput.Set(MobileAction.Swap, true); yield return Until(() => Hero.Weapon == HeroWeapon.Sword, "switch during recovery"); MobileInput.Reset();
-            Assert.That(Visual.CurrentClip, Is.EqualTo("rise"), "Outgoing weapon owns presentation through recovery");
+            Assert.That(Visual.CharacterId, Is.EqualTo("logan-wand"), "Outgoing weapon owns presentation through recovery");
             Assert.That(Hero.WandCooldown, Is.GreaterThan(0));
             yield return For(.3f);
             var lab = Object.FindAnyObjectByType<MovementLab>();

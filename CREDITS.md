@@ -26,3 +26,6 @@ Every music track, sound effect, font, image, animation and third-party package 
 
 ### Sunleaf delivery props — 16 September 2026
 Original AI-generated sources using Codex built-in image generation: SunleafRuneBarrier.png, SwordTarget.png, WandTarget.png under Assets/Art/Sunleaf/DeliveryGenerated. Art direction: orthographic mossy charcoal-green stone, lime moss, bronze/gold leaf rune, upper-left light, transparent RGBA; slender magical barrier and square weapon-emblem plaques. WandTarget is an edit of SwordTarget preserving the frame and replacing the sword/disk with a teal Sunseed-wand emblem. Original source files retained; Unity uses native Sprite crops. These assets are not a claim of final client approval.
+
+### Logan wand and audio finish — 17 September 2026
+Logan-wand.png is original AI-assisted production artwork generated with OpenAI image generation using the existing project character as reference. Sixteen individually bounded frames preserve the transparent source. Dedicated hurt/victory/dash poses remain provisional. Seven original procedural WAVs and reproducible generator, manifest and technical checks are retained in docs/audio/sunleaf-finish. These sources are integrated but do not constitute client art or listening approval.

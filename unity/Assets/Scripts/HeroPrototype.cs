@@ -20,14 +20,23 @@ namespace IWantToBeTheHero
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (mode == LoadSceneMode.Single && scene.path == MainScenePath)
+            if (mode == LoadSceneMode.Single && IsGameplayScene(scene))
                 BuildPrototype();
+        }
+
+        private static bool IsGameplayScene(Scene scene)
+        {
+            if (scene.path == MainScenePath) return true;
+            foreach (var root in scene.GetRootGameObjects())
+                foreach (var layout in root.GetComponentsInChildren<MainSceneLayout>())
+                    if (layout.isActiveAndEnabled) return true;
+            return false;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void BuildPrototype()
         {
-            if (SceneManager.GetActiveScene().path != MainScenePath ||
+            if (!IsGameplayScene(SceneManager.GetActiveScene()) ||
                 UnityEngine.Object.FindAnyObjectByType<HeroGame>() != null)
                 return;
 
@@ -180,7 +189,8 @@ namespace IWantToBeTheHero
                 target.gameObject.SetActive(false);
                 Destroy(target.gameObject);
             }
-            targets.Clear();
+            // Authored practice targets survive resets and must remain attackable.
+            targets.RemoveAll(target => target == null || !(target is TrainingTarget));
             BuildEnemies();
         }
 
@@ -215,7 +225,7 @@ namespace IWantToBeTheHero
             Hero.UnlockSpark();
             Audio?.TryPlay(AudioCueId.Pickup);
             if (sparkGate != null) Destroy(sparkGate);
-            UI.FlashMessage("HERO SPARK FOUND!\nJump again in midair Â· Move + evade to dash Â· Neutral evade to backflip", 4f);
+            UI.FlashMessage("HERO SPARK FOUND!\nJump again in midair · Move + evade to dash · Neutral evade to backflip", 4f);
         }
 
         public string CurrentObjective()
@@ -232,7 +242,8 @@ namespace IWantToBeTheHero
             if (Won) return;
             Won = true;
             Audio?.TryPlay(AudioCueId.UiConfirm);
-            Audio?.StopMusic(1.2f);
+            if (Audio != null && !Audio.PlayMusic(AudioCueId.MusicVictory, .35f, loop: false))
+                Audio.StopMusic(1.2f);
             UI.ShowVictory(Elapsed);
         }
 
@@ -285,14 +296,26 @@ namespace IWantToBeTheHero
         {
             sparkGate = MainLayout.sparkGate;
             if (MainLayout.heroPreview != null) MainLayout.heroPreview.SetActive(false);
-            foreach (var hazardObject in MainLayout.hazards)
+            foreach (var hazardObject in MainLayout.hazards ?? Array.Empty<GameObject>())
             {
                 if (hazardObject == null) continue;
                 var hazard = hazardObject.GetComponent<Hazard>();
                 if (hazard == null) hazard = hazardObject.AddComponent<Hazard>();
                 hazard.Game = this;
             }
-            if (MainLayout.checkpoint != null)
+            if (MainLayout.checkpoints != null && MainLayout.checkpoints.Length > 0)
+            {
+                foreach (var entry in MainLayout.checkpoints)
+                {
+                    if (entry == null || entry.marker == null) continue;
+                    var checkpoint = entry.marker.GetComponent<Checkpoint>();
+                    if (checkpoint == null) checkpoint = entry.marker.AddComponent<Checkpoint>();
+                    checkpoint.Game = this;
+                    checkpoint.RespawnPosition = entry.respawnPosition;
+                    checkpoint.ProgressOrder = entry.progressOrder;
+                }
+            }
+            else if (MainLayout.checkpoint != null)
             {
                 var checkpoint = MainLayout.checkpoint.GetComponent<Checkpoint>();
                 if (checkpoint == null) checkpoint = MainLayout.checkpoint.AddComponent<Checkpoint>();
@@ -373,6 +396,7 @@ namespace IWantToBeTheHero
             heroCollider.offset = new Vector2(0f, -.03f);
             Hero = heroObject.AddComponent<HeroController>();
             Hero.Game = this;
+            Hero.InitializeRespawn(heroObject.transform.position);
             BuildEnemies();
         }
 
@@ -384,14 +408,26 @@ namespace IWantToBeTheHero
                     RegisterTarget(target);
                 return;
             }
-            CreateThornling(5.8f, 4.4f, 7f);
-            CreateThornling(10.6f, 8.8f, 13.8f);
-            CreateThornling(17.4f, 15.7f, 21.8f);
-            CreateThornling(26.2f, 23.8f, 30.8f);
-            CreateThornling(34.8f, 33f, 38.9f);
+            if (MainLayout != null && MainLayout.useAuthoredEnemySpawns)
+            {
+                foreach (var entry in MainLayout.enemySpawns ?? Array.Empty<MainSceneLayout.EnemySpawn>())
+                {
+                    if (entry == null) continue;
+                    CreateThornling(entry.position.x, Mathf.Min(entry.patrolMinX, entry.patrolMaxX),
+                        Mathf.Max(entry.patrolMinX, entry.patrolMaxX), entry.position.y);
+                }
+            }
+            else
+            {
+                CreateThornling(5.8f, 4.4f, 7f);
+                CreateThornling(10.6f, 8.8f, 13.8f);
+                CreateThornling(17.4f, 15.7f, 21.8f);
+                CreateThornling(26.2f, 23.8f, 30.8f);
+                CreateThornling(34.8f, 33f, 38.9f);
+            }
 
             var bossObject = new GameObject("Mossback Guardian");
-            bossObject.transform.position = new Vector3(45.4f, -2.05f, 0f);
+            bossObject.transform.position = MainLayout != null ? (Vector3)MainLayout.bossSpawnPosition : new Vector3(45.4f, -2.05f, 0f);
             var bossRenderer = bossObject.AddComponent<SpriteRenderer>();
             bossRenderer.sprite = PrototypeArt.Load("Art/mossback-guardian", 3.15f);
             bossRenderer.sortingOrder = 15;
@@ -407,10 +443,10 @@ namespace IWantToBeTheHero
             RegisterTarget(Boss);
         }
 
-        private void CreateThornling(float x, float minX, float maxX)
+        private void CreateThornling(float x, float minX, float maxX, float y = -2.9f)
         {
             var enemyObject = new GameObject("Thornling");
-            enemyObject.transform.position = new Vector3(x, -2.9f, 0f);
+            enemyObject.transform.position = new Vector3(x, y, 0f);
             var renderer = enemyObject.AddComponent<SpriteRenderer>();
             renderer.sprite = PrototypeArt.Load("Art/thornling", 1.15f);
             renderer.sortingOrder = 12;
@@ -569,6 +605,8 @@ namespace IWantToBeTheHero
         private SpriteRenderer sprite;
         private PixelSpriteAnimator visual;
         private Rigidbody2D support;
+        private SurfaceAudioTag footstepSurface;
+        private float footstepDistance;
         private float facing = 1f;
         private float lastGrounded = -10f;
         private float lastJumpPressed = -10f;
@@ -587,6 +625,13 @@ namespace IWantToBeTheHero
         private const float AttackDuration = .32f;
         private readonly HashSet<HeroTarget> attackHits = new HashSet<HeroTarget>();
         private Vector2 respawn = new(1.2f, -2.8f);
+        private int checkpointProgress = int.MinValue;
+
+        public void InitializeRespawn(Vector2 position)
+        {
+            respawn = position;
+            checkpointProgress = int.MinValue;
+        }
 
         private void Awake()
         {
@@ -597,7 +642,11 @@ namespace IWantToBeTheHero
 
         private void Update()
         {
-            if (Game == null || !Game.Started || Game.Won || Game.Paused) return;
+            if (Game == null || !Game.Started || Game.Won || Game.Paused)
+            {
+                footstepDistance = 0f;
+                return;
+            }
 
             attackCooldown -= Time.deltaTime;
             invulnerable -= Time.deltaTime;
@@ -674,7 +723,8 @@ namespace IWantToBeTheHero
             if (!JumpHeld() && body.linearVelocity.y > 4f && flipRemaining <= 0f)
                 body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * .55f);
 
-            if (transform.position.y < -8f) Respawn();
+            UpdateFootsteps();
+            if (transform.position.y < (Game.MainLayout != null ? Game.MainLayout.killPlaneY : -8f)) Respawn();
         }
 
         private void FixedUpdate()
@@ -729,6 +779,23 @@ namespace IWantToBeTheHero
             }
         }
 
+        private void UpdateFootsteps()
+        {
+            // Relative speed keeps an idle passenger on moving platforms silent.
+            float speed = Mathf.Abs(body.linearVelocity.x - SupportVelocity.x);
+            if (!IsGrounded || speed < .2f || Health <= 0 || hurtRemaining > 0f ||
+                dashRemaining > 0f || flipRemaining > 0f || attackRemaining > 0f)
+            {
+                footstepDistance = 0f;
+                return;
+            }
+            footstepDistance += speed * Time.deltaTime;
+            if (footstepDistance < 1.25f) return;
+            footstepDistance %= 1.25f;
+            var cue = footstepSurface != null ? footstepSurface.FootstepCue : AudioCueId.LoganFootstepStone;
+            Game.Audio?.TryPlayAt(cue, transform.position);
+        }
+
         private Vector2 SupportVelocity => support == null ? Vector2.zero :
             support.TryGetComponent<LabMovingPlatform>(out var platform) ? platform.Velocity : support.linearVelocity;
 
@@ -738,6 +805,8 @@ namespace IWantToBeTheHero
         private void LateUpdate()
         {
             if (visual == null || Game == null) return;
+            var shownWeapon = attackRemaining > 0f ? attackWeapon : Weapon;
+            visual.UseCharacter(shownWeapon == HeroWeapon.SunseedWand ? "logan-wand" : "logan");
             visual.Face(facing);
             visual.SetPoseRotation(0f);
             if (Game.Won) { visual.Tick("victory", Time.deltaTime); sprite.color = Color.white; return; }
@@ -748,9 +817,8 @@ namespace IWantToBeTheHero
                 visual.Sample("dash", (1f - dashRemaining / (Settings != null ? Settings.dashDuration : .17f)) * .17f);
             else if (attackRemaining > 0f)
             {
-                // Until wand poses are authored, use the existing empty-hand raised pose.
-                // Never play baked sword/slash pixels for a wand shot, even after a swap.
-                if (attackWeapon == HeroWeapon.SunseedWand) visual.Sample("rise", 0f);
+                // Preserve the outgoing weapon's presentation through cast recovery.
+                if (attackWeapon == HeroWeapon.SunseedWand) visual.Sample("attack", .2f - attackRemaining);
                 else visual.Sample("attack", AttackDuration - attackRemaining);
             }
             else if (!IsGrounded)
@@ -791,6 +859,7 @@ namespace IWantToBeTheHero
                     }
                     lastGrounded = Time.time;
                     support = collision.rigidbody;
+                    footstepSurface = collision.collider.GetComponentInParent<SurfaceAudioTag>();
                     airJumpUsed = false;
                     return;
                 }
@@ -803,11 +872,14 @@ namespace IWantToBeTheHero
             Health = MaxHealth;
         }
 
-        public void SetCheckpoint(Vector2 position)
+        public bool SetCheckpoint(Vector2 position, int progressOrder = int.MinValue)
         {
+            if (progressOrder < checkpointProgress) return false;
+            checkpointProgress = progressOrder;
             respawn = position;
             Health = MaxHealth;
             Game.Audio?.TryPlay(AudioCueId.CheckpointActivate);
+            return true;
         }
 
         public void Hurt(Vector2 source)
@@ -842,6 +914,8 @@ namespace IWantToBeTheHero
             attackCooldown = dashCooldown = ghostCooldown = 0f;
             lastGrounded = lastJumpPressed = -10f;
             support = null;
+            footstepSurface = null;
+            footstepDistance = 0f;
             attackHits.Clear();
             visual.Sample("idle", 0f);
             sprite.color = Color.white;
@@ -1012,7 +1086,7 @@ namespace IWantToBeTheHero
         private void Update()
         {
             if (!IsAlive || Game == null || !Game.Started || Game.Won) return;
-            if (!Awake && Game.Hero.HasSpark && Game.Hero.transform.position.x > 41.1f)
+            if (!Awake && Game.Hero.HasSpark && Game.Hero.transform.position.x > (Game.MainLayout != null ? Game.MainLayout.bossWakeX : 41.1f))
             {
                 Awake = true;
                 state = BossState.Telegraph;
@@ -1049,9 +1123,13 @@ namespace IWantToBeTheHero
             if (state == BossState.Charging)
             {
                 body.linearVelocity = new Vector2(facing * (health <= 5 ? 8.2f : 6.8f), body.linearVelocity.y);
-                if (transform.position.x < 41.1f || transform.position.x > 49.8f || timer <= 0f)
+                Vector2 arena = Game.MainLayout != null ? Game.MainLayout.bossArenaBounds : new Vector2(41.1f, 49.8f);
+                float arenaMin = Mathf.Min(arena.x, arena.y);
+                float arenaMax = Mathf.Max(arena.x, arena.y);
+                float inset = Mathf.Min(.05f, (arenaMax - arenaMin) * .5f);
+                if (transform.position.x < arenaMin || transform.position.x > arenaMax || timer <= 0f)
                 {
-                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, 41.15f, 49.75f), transform.position.y, 0f);
+                    transform.position = new Vector3(Mathf.Clamp(transform.position.x, arenaMin + inset, arenaMax - inset), transform.position.y, 0f);
                     body.linearVelocity = new Vector2(0f, body.linearVelocity.y);
                     state = BossState.Resting;
                     timer = .72f;
@@ -1129,14 +1207,16 @@ namespace IWantToBeTheHero
     {
         public HeroGame Game { get; set; }
         public Vector2 RespawnPosition { get; set; }
+        public int ProgressOrder { get; set; } = int.MinValue;
         private bool activated;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (activated || !other.TryGetComponent(out HeroController hero)) return;
+            if (!hero.SetCheckpoint(RespawnPosition, ProgressOrder)) return;
             activated = true;
-            hero.SetCheckpoint(RespawnPosition);
-            GetComponent<SpriteRenderer>().color = new Color(1f, .77f, .25f);
+            var marker = GetComponent<SpriteRenderer>();
+            if (marker != null) marker.color = new Color(1f, .77f, .25f);
             Game.UI.FlashMessage("CHECKPOINT!", 1.25f);
         }
     }
@@ -1167,9 +1247,12 @@ namespace IWantToBeTheHero
 
         private Vector3 MainCameraPosition()
         {
-            float halfWidth = Mathf.Min(25.5f, Game.MainCamera.orthographicSize * Game.MainCamera.aspect);
+            Vector2 bounds = Game.MainLayout != null ? Game.MainLayout.horizontalBounds : new Vector2(0f, 51f);
+            float left = Mathf.Min(bounds.x, bounds.y);
+            float right = Mathf.Max(bounds.x, bounds.y);
+            float halfWidth = Mathf.Min((right - left) * .5f, Game.MainCamera.orthographicSize * Game.MainCamera.aspect);
             return new Vector3(Mathf.Clamp(Game.Hero.transform.position.x + 2.2f,
-                halfWidth, 51f - halfWidth), 0f, -10f);
+                left + halfWidth, right - halfWidth), Game.MainLayout != null ? Game.MainLayout.cameraCenterY : 0f, -10f);
         }
 
         private Vector3 LabCameraPosition()

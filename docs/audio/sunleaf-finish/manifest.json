@@ -1,0 +1,68 @@
+{
+  "provenance": "Original deterministic mathematical synthesis; no samples or external downloads. Not professionally mixed or listener-qualified.",
+  "clips": [
+    {
+      "file": "sunleaf_footstep_stone_1.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "5e56ea7aeba313a93e3f4c7017e2965e348f8d50c02f08864cebed0dc85c479f"
+    },
+    {
+      "file": "sunleaf_footstep_stone_2.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "656fefa8dcb9f756d7e365c42279a37623291f78313022ce50063bba2b731ef2"
+    },
+    {
+      "file": "sunleaf_footstep_stone_3.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "a811df9e199db77a7196bd20a6f2f4b3cbc557ecb0093b67d43a16d0779d150e"
+    },
+    {
+      "file": "sunleaf_footstep_wood_1.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "c597e3e2ceb85482c209566aff0ff1b5cb912271028889dcad8548f4b92179c2"
+    },
+    {
+      "file": "sunleaf_footstep_wood_2.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "962aed3b2b01f6e16778967d48bf8556772f51b8d63e2b27398b6e005c2d118e"
+    },
+    {
+      "file": "sunleaf_footstep_wood_3.wav",
+      "seconds": 0.23,
+      "channels": 1,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -12,
+      "sha256": "f04090293fe46c17f35421665cf9926fe41b1266764bb514499729618ec3e316"
+    },
+    {
+      "file": "sunleaf_victory_resolve.wav",
+      "seconds": 8.0,
+      "channels": 2,
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "peak_dbfs": -9,
+      "sha256": "955a6725ef1f070600175c1c57dc2db442515afdb8db7708b97cf779411a4219"
+    }
+  ]
+}

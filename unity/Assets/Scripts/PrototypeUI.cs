@@ -94,6 +94,10 @@ namespace IWantToBeTheHero
         private GameObject victoryPanel;
         private GameObject pausePanel;
         private Button resumeButton;
+        private Slider musicSlider;
+        private Slider effectsSlider;
+        private Text musicLevel;
+        private Text effectsLevel;
         private GameObject touchRoot;
         private Text accessibilityStatus;
         private Coroutine messageRoutine;
@@ -158,6 +162,8 @@ namespace IWantToBeTheHero
 
         public void ShowPause(bool paused)
         {
+            if (paused) RefreshVolumeControls();
+            else if (game.Audio != null) game.Audio.SaveVolumeSettings();
             pausePanel.SetActive(paused);
             touchRoot.SetActive(!paused && Application.isMobilePlatform);
             if (EventSystem.current != null)
@@ -286,16 +292,88 @@ namespace IWantToBeTheHero
             pausePanel = Panel("Pause Panel", root, new Color(.015f, .08f, .075f, .86f),
                 Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
             var card = Panel("Card", pausePanel.transform, new Color(.025f, .16f, .145f, .98f),
-                new Vector2(.29f, .18f), new Vector2(.71f, .82f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+                new Vector2(.21f, .07f), new Vector2(.79f, .93f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
             Label("Title", card.transform, "TAKE A BREATH", 32, new Color(1f, .83f, .36f),
-                new Vector2(.15f, .69f), new Vector2(.85f, .84f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+                new Vector2(.10f, .81f), new Vector2(.90f, .91f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             Label("Help", card.transform, "E swaps sword and wand.\nAfter the Spark: jump twice, or evade while standing still to backflip.\nF1 reduced effects · F2 mute", 16, new Color(1f, .93f, .75f),
-                new Vector2(.17f, .44f), new Vector2(.83f, .67f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
-            resumeButton = Button("Resume", card.transform, new Vector2(.18f, .29f), new Vector2(.82f, .40f));
+                new Vector2(.12f, .65f), new Vector2(.88f, .80f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            musicSlider = VolumeSlider("Music", card.transform, .51f, out musicLevel);
+            effectsSlider = VolumeSlider("Sound effects", card.transform, .37f, out effectsLevel);
+            musicSlider.onValueChanged.AddListener(value =>
+            {
+                if (game.Audio != null) game.Audio.SetMusicVolume(value);
+                musicLevel.text = "MUSIC  " + Mathf.RoundToInt(value * 100f) + "%";
+            });
+            effectsSlider.onValueChanged.AddListener(value =>
+            {
+                if (game.Audio != null) game.Audio.SetSoundEffectsVolume(value);
+                effectsLevel.text = "SOUND EFFECTS  " + Mathf.RoundToInt(value * 100f) + "%";
+            });
+            RefreshVolumeControls();
+            resumeButton = Button("Resume", card.transform, new Vector2(.12f, .24f), new Vector2(.88f, .32f));
             resumeButton.onClick.AddListener(() => game.SetPaused(false));
-            var restart = Button("Restart quest", card.transform, new Vector2(.18f, .14f), new Vector2(.82f, .25f));
-            restart.onClick.AddListener(game.ResetQuest);
+            bool canQuit = Application.platform == RuntimePlatform.WindowsPlayer ||
+                Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxPlayer;
+            var restart = Button("Restart quest", card.transform, new Vector2(.12f, .13f), new Vector2(canQuit ? .48f : .88f, .21f));
+            restart.onClick.AddListener(() =>
+            {
+                if (game.Audio != null) game.Audio.SaveVolumeSettings();
+                game.ResetQuest();
+            });
+            if (canQuit)
+            {
+                var quit = Button("Quit game", card.transform, new Vector2(.52f, .13f), new Vector2(.88f, .21f));
+                quit.onClick.AddListener(() =>
+                {
+                    if (game.Audio != null) game.Audio.SaveVolumeSettings();
+                    Application.Quit();
+                });
+            }
             pausePanel.SetActive(false);
+        }
+
+        private void RefreshVolumeControls()
+        {
+            if (musicSlider == null || effectsSlider == null) return;
+            bool available = game.Audio != null;
+            musicSlider.interactable = effectsSlider.interactable = available;
+            float music = available ? game.Audio.MusicVolume : 1f;
+            float effects = available ? game.Audio.SoundEffectsVolume : 1f;
+            musicSlider.SetValueWithoutNotify(music);
+            effectsSlider.SetValueWithoutNotify(effects);
+            musicLevel.text = "MUSIC  " + Mathf.RoundToInt(music * 100f) + "%";
+            effectsLevel.text = "SOUND EFFECTS  " + Mathf.RoundToInt(effects * 100f) + "%";
+        }
+
+        private static Slider VolumeSlider(string name, Transform parent, float bottom, out Text level)
+        {
+            var row = Panel(name + " volume", parent, Color.clear,
+                new Vector2(.14f, bottom), new Vector2(.86f, bottom + .11f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+            level = Label("Level", row.transform, name, 18, new Color(1f, .93f, .75f),
+                new Vector2(0f, .57f), Vector2.one, Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
+            level.raycastTarget = false;
+            var track = Panel("Track", row.transform, new Color(.09f, .28f, .25f),
+                new Vector2(0f, .20f), new Vector2(1f, .36f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+            var fill = Panel("Fill", track.transform, new Color(.72f, .82f, .31f),
+                Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, new Vector2(0f, .5f));
+            var handleArea = new GameObject("Handle area", typeof(RectTransform));
+            handleArea.transform.SetParent(row.transform, false);
+            var area = handleArea.GetComponent<RectTransform>();
+            area.anchorMin = new Vector2(0f, 0f);
+            area.anchorMax = new Vector2(1f, .55f);
+            area.offsetMin = new Vector2(14f, 0f);
+            area.offsetMax = new Vector2(-14f, 0f);
+            var handle = Panel("Handle", area, new Color(1f, .83f, .36f),
+                Vector2.zero, Vector2.up, Vector2.zero, new Vector2(28f, 0f), new Vector2(.5f, .5f));
+            var slider = row.AddComponent<Slider>();
+            slider.minValue = 0f;
+            slider.maxValue = 1f;
+            slider.wholeNumbers = false;
+            slider.direction = Slider.Direction.LeftToRight;
+            slider.fillRect = fill.GetComponent<RectTransform>();
+            slider.handleRect = handle.GetComponent<RectTransform>();
+            slider.targetGraphic = handle.GetComponent<Image>();
+            return slider;
         }
 
         private void BuildVictory(Transform root)

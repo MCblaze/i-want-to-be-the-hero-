@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.4851504">
+  <test-suite type="TestSuite" id="1000" name="I Want to Be the Hero" fullname="I Want to Be the Hero" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.485150" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1041" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.272429" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40476" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1042" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.266663" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1043" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.265649" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1012" name="GameAudioDirectorTests" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.258917" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1015" name="Awake_CreatesReusablePoolAndDedicatedMusicSources" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.Awake_CreatesReusablePoolAndDedicatedMusicSources" methodname="Awake_CreatesReusablePoolAndDedicatedMusicSources" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="123533374" result="Passed" start-time="2026-09-16 22:19:27Z" end-time="2026-09-16 22:19:28Z" duration="0.123965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="EmptyLibrary_IsSafeAndDoesNotPlay" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.EmptyLibrary_IsSafeAndDoesNotPlay" methodname="EmptyLibrary_IsSafeAndDoesNotPlay" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="1106862212" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.001217" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1019" name="SurfaceKinds_MapToExpectedFootstepCue" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.SurfaceKinds_MapToExpectedFootstepCue" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.009142" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1016" name="SurfaceKinds_MapToExpectedFootstepCue(Default,LoganFootstepDefault)" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.SurfaceKinds_MapToExpectedFootstepCue(Default,LoganFootstepDefault)" methodname="SurfaceKinds_MapToExpectedFootstepCue" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="1784905312" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.003054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="SurfaceKinds_MapToExpectedFootstepCue(Wood,LoganFootstepWood)" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.SurfaceKinds_MapToExpectedFootstepCue(Wood,LoganFootstepWood)" methodname="SurfaceKinds_MapToExpectedFootstepCue" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="1590400425" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.000281" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1018" name="SurfaceKinds_MapToExpectedFootstepCue(Stone,LoganFootstepStone)" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.SurfaceKinds_MapToExpectedFootstepCue(Stone,LoganFootstepStone)" methodname="SurfaceKinds_MapToExpectedFootstepCue" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="357320955" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.000117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1014" name="VolumeAndMuteApis_ClampAndRetainUserLevels" fullname="IWantToBeTheHero.Tests.GameAudioDirectorTests.VolumeAndMuteApis_ClampAndRetainUserLevels" methodname="VolumeAndMuteApis_ClampAndRetainUserLevels" classname="IWantToBeTheHero.Tests.GameAudioDirectorTests" runstate="Runnable" seed="749644150" result="Passed" start-time="2026-09-16 22:19:28Z" end-time="2026-09-16 22:19:28Z" duration="0.002744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

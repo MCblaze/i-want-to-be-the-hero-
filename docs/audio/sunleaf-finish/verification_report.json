@@ -1,0 +1,90 @@
+{
+  "pass": true,
+  "clips": [
+    {
+      "file": "sunleaf_footstep_stone_1.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_footstep_stone_2.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_footstep_stone_3.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_footstep_wood_1.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_footstep_wood_2.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_footstep_wood_3.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    },
+    {
+      "file": "sunleaf_victory_resolve.wav",
+      "checks": {
+        "format": true,
+        "sha256": true,
+        "nonzero": true,
+        "not_clipped": true,
+        "silent_endpoints": true,
+        "peak_within_tolerance": true
+      },
+      "pass": true
+    }
+  ],
+  "limitation": "Technical checks only; listening and runtime mix not qualified."
+}

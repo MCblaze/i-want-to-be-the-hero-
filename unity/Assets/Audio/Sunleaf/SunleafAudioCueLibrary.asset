@@ -167,3 +167,53 @@ MonoBehaviour:
     spatialBlend: 0
     minDistance: 0
     maxDistance: 0
+  - id: 9
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 2146acd7b35177549b2fc8d6022ea052, type: 3}
+    - {fileID: 8300000, guid: 0c0709def86e759459442716fff32fe5, type: 3}
+    - {fileID: 8300000, guid: dfb0237d72949fd4b8e58a4d47b9a3e2, type: 3}
+    volume: 0.4
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.12
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 8
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: fff2cdd874d8ec54691e8361c1be9989, type: 3}
+    - {fileID: 8300000, guid: 22cc8a5e825a2294cb073884f6ee23d3, type: 3}
+    - {fileID: 8300000, guid: 0a8f174e1e1ff09489582f1373af793a, type: 3}
+    volume: 0.4
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.12
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 7
+    bus: 0
+    variations:
+    - {fileID: 8300000, guid: 2146acd7b35177549b2fc8d6022ea052, type: 3}
+    - {fileID: 8300000, guid: 0c0709def86e759459442716fff32fe5, type: 3}
+    - {fileID: 8300000, guid: dfb0237d72949fd4b8e58a4d47b9a3e2, type: 3}
+    volume: 0.32
+    pitchMin: 0.96
+    pitchMax: 1.04
+    cooldownSeconds: 0.12
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  - id: 25
+    bus: 1
+    variations:
+    - {fileID: 8300000, guid: 7306647e92a6ab1418d3d5e4e7f1e228, type: 3}
+    volume: 0.65
+    pitchMin: 1
+    pitchMax: 1
+    cooldownSeconds: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0

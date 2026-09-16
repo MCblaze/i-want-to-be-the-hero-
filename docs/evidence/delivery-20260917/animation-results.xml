@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-16 22:24:05Z" end-time="2026-09-16 22:24:20Z" duration="14.2950631">
+  <test-suite type="TestSuite" id="1000" name="I Want to Be the Hero" fullname="I Want to Be the Hero" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:24:05Z" end-time="2026-09-16 22:24:20Z" duration="14.295063" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1041" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:24:07Z" end-time="2026-09-16 22:24:20Z" duration="12.609229" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40476" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1042" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:24:07Z" end-time="2026-09-16 22:24:20Z" duration="12.571971" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1043" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-16 22:24:07Z" end-time="2026-09-16 22:24:20Z" duration="12.564822" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1005" name="AnimationAuditTests" fullname="IWantToBeTheHero.Tests.AnimationAuditTests" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-16 22:24:07Z" end-time="2026-09-16 22:24:20Z" duration="12.558598" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1009" name="DestroyedCachedSprite_IsRecreatedOnNextAttach" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.DestroyedCachedSprite_IsRecreatedOnNextAttach" methodname="DestroyedCachedSprite_IsRecreatedOnNextAttach" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1027587904" result="Passed" start-time="2026-09-16 22:22:37Z" end-time="2026-09-16 22:22:38Z" duration="0.252725" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1006" name="EveryAuthoredFrame_BothFacings_CameraContactSheets" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.EveryAuthoredFrame_BothFacings_CameraContactSheets" methodname="EveryAuthoredFrame_BothFacings_CameraContactSheets" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="2014839332" result="Passed" start-time="2026-09-16 22:22:38Z" end-time="2026-09-16 22:22:38Z" duration="0.373201" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1007" name="LiveController_AllLoganActions_CaptureAndTrace" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveController_AllLoganActions_CaptureAndTrace" methodname="LiveController_AllLoganActions_CaptureAndTrace" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1558459563" result="Passed" start-time="2026-09-16 22:22:38Z" end-time="2026-09-16 22:23:12Z" duration="33.654330" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="LiveEnemies_AllExistingClips_CaptureTransitions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.LiveEnemies_AllExistingClips_CaptureTransitions" methodname="LiveEnemies_AllExistingClips_CaptureTransitions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1723891328" result="Passed" start-time="2026-09-16 22:23:12Z" end-time="2026-09-16 22:23:42Z" duration="30.535321" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" methodname="PoseRotation_KeepsHorizontalCentreAndFootClearance_BothFacings" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="2132168095" result="Passed" start-time="2026-09-16 22:23:42Z" end-time="2026-09-16 22:23:43Z" duration="0.119514" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1010" name="WandAndBackflip_PresentationRegressions" fullname="IWantToBeTheHero.Tests.AnimationAuditTests.WandAndBackflip_PresentationRegressions" methodname="WandAndBackflip_PresentationRegressions" classname="IWantToBeTheHero.Tests.AnimationAuditTests" runstate="Runnable" seed="1377520439" result="Passed" start-time="2026-09-16 22:23:43Z" end-time="2026-09-16 22:24:20Z" duration="36.992566" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

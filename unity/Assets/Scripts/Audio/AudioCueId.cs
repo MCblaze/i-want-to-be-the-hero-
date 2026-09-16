@@ -26,6 +26,7 @@ namespace IWantToBeTheHero.Audio
         Hazard,
         AmbientCanopy,
         AmbientRuins,
-        LoganWandCast
+        LoganWandCast,
+        MusicVictory
     }
 }

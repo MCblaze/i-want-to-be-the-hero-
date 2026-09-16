@@ -52,7 +52,15 @@ namespace IWantToBeTheHero
                 float midpoint = (previous + centerX) * .5f;
                 alpha = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(midpoint - fadeWidth, midpoint + fadeWidth, camera.transform.position.x));
             }
-            spriteRenderer.sortingOrder = -180 + Mathf.RoundToInt(centerX);
+            // World coordinates are not rendering layers: expanded routes can
+            // exceed x=180 and would otherwise cover gameplay sprites. Preserve
+            // the original left-to-right compositing with a bounded rank instead.
+            int rank = 0;
+            foreach (var other in siblings)
+                if (other != null && other != this &&
+                    (other.centerX < centerX || (Mathf.Approximately(other.centerX, centerX) &&
+                    other.transform.GetSiblingIndex() < transform.GetSiblingIndex()))) rank++;
+            spriteRenderer.sortingOrder = -180 + Mathf.Min(rank, 79);
             spriteRenderer.color = new Color(.77f, .85f, .87f, alpha * maximumAlpha);
         }
     }

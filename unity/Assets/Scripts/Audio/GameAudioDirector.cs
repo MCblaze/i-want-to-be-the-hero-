@@ -30,7 +30,11 @@ namespace IWantToBeTheHero.Audio
         private AudioSource currentMusic;
         private AudioSource transitionIncoming;
         private Coroutine musicTransition;
-        private float currentMusicCueVolume = 1f;
+        private float musicAGain;
+        private float musicBGain;
+        private const string MasterKey = "Hero.Audio.Master";
+        private const string EffectsKey = "Hero.Audio.SoundEffects";
+        private const string MusicKey = "Hero.Audio.Music";
 
         public AudioCueLibrary Library { get => library; set => library = value; }
         public bool IsMuted => muted;
@@ -51,6 +55,12 @@ namespace IWantToBeTheHero.Audio
 
         private void Awake()
         {
+            if (Application.isPlaying)
+            {
+                masterVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MasterKey, masterVolume));
+                soundEffectsVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(EffectsKey, soundEffectsVolume));
+                musicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MusicKey, musicVolume));
+            }
             initialPoolSize = Mathf.Max(1, initialPoolSize);
             maximumPoolSize = Mathf.Max(initialPoolSize, maximumPoolSize);
             EnsureMusicSources();
@@ -92,7 +102,7 @@ namespace IWantToBeTheHero.Audio
             return true;
         }
 
-        public bool PlayMusic(AudioCueId id, float crossfadeSeconds = 0.75f, bool restartIfSame = false)
+        public bool PlayMusic(AudioCueId id, float crossfadeSeconds = 0.75f, bool restartIfSame = false, bool loop = true)
         {
             AudioCueLibrary.Cue cue;
             if (!TryResolvePlayableCue(id, AudioCueLibrary.Bus.Music, out cue))
@@ -114,9 +124,9 @@ namespace IWantToBeTheHero.Audio
             AudioSource incoming = currentMusic == musicA ? musicB : musicA;
             incoming.Stop();
             incoming.clip = clip;
-            incoming.loop = true;
+            incoming.loop = loop;
             incoming.pitch = UnityEngine.Random.Range(cue.pitchMin, cue.pitchMax);
-            incoming.volume = 0f;
+            SetMusicGain(incoming, 0f);
             incoming.Play();
 
             lastPlayTimes[id] = now;
@@ -140,18 +150,21 @@ namespace IWantToBeTheHero.Audio
         public void SetMasterVolume(float value)
         {
             masterVolume = Mathf.Clamp01(value);
+            if (Application.isPlaying) PlayerPrefs.SetFloat(MasterKey, masterVolume);
             ApplyVolumes();
         }
 
         public void SetSoundEffectsVolume(float value)
         {
             soundEffectsVolume = Mathf.Clamp01(value);
+            if (Application.isPlaying) PlayerPrefs.SetFloat(EffectsKey, soundEffectsVolume);
             ApplyVolumes();
         }
 
         public void SetMusicVolume(float value)
         {
             musicVolume = Mathf.Clamp01(value);
+            if (Application.isPlaying) PlayerPrefs.SetFloat(MusicKey, musicVolume);
             ApplyVolumes();
         }
 
@@ -258,13 +271,13 @@ namespace IWantToBeTheHero.Audio
 
         private IEnumerator CrossfadeMusic(AudioSource outgoing, AudioSource incoming, float duration, float incomingCueVolume)
         {
-            float outgoingStart = outgoing != null ? outgoing.volume : 0f;
+            float outgoingStart = GetMusicGain(outgoing);
             float elapsed = 0f;
             do
             {
                 float t = duration <= 0f ? 1f : Mathf.Clamp01(elapsed / duration);
-                if (outgoing != null) outgoing.volume = Mathf.Lerp(outgoingStart, 0f, t);
-                if (incoming != null) incoming.volume = Mathf.Lerp(0f, EffectiveMusicVolume * incomingCueVolume, t);
+                SetMusicGain(outgoing, Mathf.Lerp(outgoingStart, 0f, t));
+                SetMusicGain(incoming, Mathf.Lerp(0f, incomingCueVolume, t));
                 elapsed += Time.unscaledDeltaTime;
                 yield return null;
             } while (elapsed < duration);
@@ -273,11 +286,11 @@ namespace IWantToBeTheHero.Audio
             {
                 outgoing.Stop();
                 outgoing.clip = null;
+                SetMusicGain(outgoing, 0f);
             }
             currentMusic = incoming;
             transitionIncoming = null;
-            currentMusicCueVolume = incomingCueVolume;
-            if (incoming != null) incoming.volume = EffectiveMusicVolume * incomingCueVolume;
+            SetMusicGain(incoming, incomingCueVolume);
             musicTransition = null;
         }
 
@@ -292,16 +305,54 @@ namespace IWantToBeTheHero.Audio
             {
                 transitionIncoming.Stop();
                 transitionIncoming.clip = null;
+                SetMusicGain(transitionIncoming, 0f);
             }
             transitionIncoming = null;
+        }
+
+        // Keep the fade envelope separate from the user mix. Both sources then
+        // obey volume and mute changes immediately during a crossfade.
+        private float GetMusicGain(AudioSource source)
+        {
+            if (source == null) return 0f;
+            return source == musicA ? musicAGain : musicBGain;
+        }
+
+        private void SetMusicGain(AudioSource source, float gain)
+        {
+            if (source == null) return;
+            gain = Mathf.Clamp01(gain);
+            if (source == musicA) musicAGain = gain;
+            else musicBGain = gain;
+            source.volume = EffectiveMusicVolume * gain;
+        }
+
+        public void SaveVolumeSettings()
+        {
+            if (Application.isPlaying) PlayerPrefs.Save();
+        }
+
+        private void OnApplicationPause(bool paused)
+        {
+            if (paused) SaveVolumeSettings();
+        }
+
+        private void OnApplicationFocus(bool focused)
+        {
+            if (!focused) SaveVolumeSettings();
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveVolumeSettings();
         }
 
         private void ApplyVolumes()
         {
             for (int i = 0; i < voices.Count; i++)
                 voices[i].source.volume = EffectiveSoundEffectsVolume * voices[i].cueVolume;
-            if (currentMusic != null)
-                currentMusic.volume = EffectiveMusicVolume * currentMusicCueVolume;
+            if (musicA != null) musicA.volume = EffectiveMusicVolume * musicAGain;
+            if (musicB != null) musicB.volume = EffectiveMusicVolume * musicBGain;
         }
     }
 }

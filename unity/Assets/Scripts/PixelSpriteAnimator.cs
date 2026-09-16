@@ -39,6 +39,7 @@ namespace IWantToBeTheHero
         public SpriteRenderer Renderer { get; private set; }
         public string CurrentClip { get; private set; }
         private PixelCharacter definition;
+        public string CharacterId => definition != null ? definition.id : null;
         private PixelClip clip;
         private Sprite[] frames;
         private float clock;
@@ -131,6 +132,17 @@ namespace IWantToBeTheHero
                 frames[i].name = id + "_" + i.ToString("00");
             }
             CachedFrames[id] = frames;
+        }
+
+        public void UseCharacter(string id)
+        {
+            if (CharacterId == id) return;
+            definition = null;
+            frames = null;
+            clip = null;
+            CurrentClip = null;
+            clock = 0f;
+            Initialize(id);
         }
 
         private void Select(string name)
