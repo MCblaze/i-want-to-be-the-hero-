@@ -63,15 +63,15 @@ public static class MainSceneBuilder
         Platform("Ground 04", 27.65f, -4.1f, 8.5f, 1.4f, geometry.transform);
         Platform("Ground 05", 36.3f, -4.1f, 7f, 1.4f, geometry.transform);
         Platform("Ground 06 - Boss Arena", 45.8f, -4.1f, 10.4f, 1.4f, geometry.transform);
-        Platform("Ledge 01", 5.55f, -2.45f, 1.7f, .28f, geometry.transform);
-        Platform("Ledge 02", 10.25f, -2.45f, 1.9f, .28f, geometry.transform);
+        Platform("Ledge 01", 5.55f, -1.85f, 1.7f, .28f, geometry.transform);
+        Platform("Ledge 02", 10.25f, -1.85f, 1.9f, .28f, geometry.transform);
         Platform("Ledge 03", 12.7f, -1.25f, 1.6f, .28f, geometry.transform);
-        Platform("Ledge 04", 17.35f, -2.45f, 1.7f, .28f, geometry.transform);
+        Platform("Ledge 04", 17.35f, -1.85f, 1.7f, .28f, geometry.transform);
         Platform("Ledge 05", 19.9f, -1.55f, 1.8f, .28f, geometry.transform);
-        Platform("Ledge 06", 25.85f, -2.35f, 2.3f, .28f, geometry.transform);
+        Platform("Ledge 06", 25.85f, -1.85f, 2.3f, .28f, geometry.transform);
         Platform("Ledge 07 - Spark", 28.7f, -1.2f, 1.8f, .28f, geometry.transform);
-        Platform("Ledge 08", 31f, -2.35f, 1.6f, .28f, geometry.transform);
-        Platform("Ledge 09", 34.8f, -2.3f, 2f, .28f, geometry.transform);
+        Platform("Ledge 08", 31f, -1.85f, 1.6f, .28f, geometry.transform);
+        Platform("Ledge 09", 34.8f, -1.85f, 2f, .28f, geometry.transform);
         Platform("Ledge 10", 37.45f, -1.1f, 1.7f, .28f, geometry.transform);
 
         var hazards = Child("Hazards - move or duplicate", session.transform);
