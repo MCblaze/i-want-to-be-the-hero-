@@ -44,6 +44,9 @@ namespace IWantToBeTheHero
         public Camera MainCamera { get; private set; }
         public bool Started { get; private set; }
         public bool Won { get; private set; }
+        public bool Paused { get; private set; }
+        private float resumeTimeScale = 1f;
+        private bool resumeAudioPaused;
         public float Elapsed { get; private set; }
         public MovementLab Lab { get; private set; }
         public MainSceneLayout MainLayout { get; private set; }
@@ -77,8 +80,16 @@ namespace IWantToBeTheHero
             Audio?.PlayMusic(AudioCueId.MusicTitle, 0f);
         }
 
+        private void Start()
+        {
+            if (AccessibilitySettings.ReducedEffects) AccessibilitySettings.SetReducedEffects(true);
+        }
+
         private void Update()
         {
+            if (Started && !Won && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)))
+                SetPaused(!Paused);
+
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 AccessibilitySettings.SetReducedEffects(!AccessibilitySettings.ReducedEffects);
@@ -90,6 +101,7 @@ namespace IWantToBeTheHero
                 UI.ShowAccessibilityStatus();
             }
 
+            if (Paused) return;
             if (Started && !Won)
                 Elapsed += Time.deltaTime;
 
@@ -102,6 +114,7 @@ namespace IWantToBeTheHero
 
         public void StartQuest()
         {
+            SetPaused(false);
             Started = true;
             Won = false;
             Elapsed = 0f;
@@ -112,11 +125,39 @@ namespace IWantToBeTheHero
 
         public void ResetQuest()
         {
+            SetPaused(false);
             MobileInput.Reset();
             if (Lab != null) { Lab.Restart(); return; }
             // Editor recompilation can clear static event subscriptions during Play Mode.
             PrototypeBootstrap.SubscribeToSceneLoads();
             SceneManager.LoadScene(gameObject.scene.path);
+        }
+
+        public void SetPaused(bool paused)
+        {
+            if (paused == Paused || (paused && (!Started || Won))) return;
+            if (paused)
+            {
+                resumeTimeScale = Time.timeScale;
+                resumeAudioPaused = AudioListener.pause;
+            }
+            Paused = paused;
+            MobileInput.Reset();
+            Time.timeScale = paused ? 0f : resumeTimeScale;
+            AudioListener.pause = paused || resumeAudioPaused;
+            UI?.ShowPause(paused);
+        }
+
+        private void OnApplicationFocus(bool focused)
+        {
+            if (!focused && !Application.isEditor && Started && !Won) SetPaused(true);
+        }
+
+        private void OnDestroy()
+        {
+            if (!Paused) return;
+            Time.timeScale = resumeTimeScale;
+            AudioListener.pause = resumeAudioPaused;
         }
 
         public void ResetEncounters()
@@ -174,7 +215,7 @@ namespace IWantToBeTheHero
             Hero.UnlockSpark();
             Audio?.TryPlay(AudioCueId.Pickup);
             if (sparkGate != null) Destroy(sparkGate);
-            UI.FlashMessage("HERO SPARK FOUND!\nDash unlocked · Shift / K / B button", 2.6f);
+            UI.FlashMessage("HERO SPARK FOUND!\nJump again in midair · Move + evade to dash · Neutral evade to backflip", 4f);
         }
 
         public string CurrentObjective()
@@ -556,7 +597,7 @@ namespace IWantToBeTheHero
 
         private void Update()
         {
-            if (Game == null || !Game.Started || Game.Won) return;
+            if (Game == null || !Game.Started || Game.Won || Game.Paused) return;
 
             attackCooldown -= Time.deltaTime;
             invulnerable -= Time.deltaTime;

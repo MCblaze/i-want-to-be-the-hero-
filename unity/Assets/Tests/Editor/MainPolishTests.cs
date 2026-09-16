@@ -11,6 +11,57 @@ namespace IWantToBeTheHero.Tests
     public sealed class MainPolishTests
     {
         [UnityTest]
+        public IEnumerator Main_PauseFreezesInputsAndRestartRestoresTime()
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");
+            yield return new EnterPlayMode();
+            Application.runInBackground = true;
+            var game = Object.FindAnyObjectByType<HeroGame>();
+            game.StartQuest();
+            yield return new WaitForSeconds(.2f);
+            game.SetPaused(true);
+            Assert.That(Time.timeScale, Is.Zero);
+            Assert.That(AudioListener.pause, Is.True);
+            Assert.That(game.UI.transform.Find("Pause Panel").gameObject.activeSelf, Is.True);
+            var position = game.Hero.transform.position;
+            int seeds = game.Hero.SeedsFired;
+            MobileInput.Set(MobileAction.Right, true);
+            MobileInput.Set(MobileAction.Swap, true);
+            MobileInput.Set(MobileAction.Attack, true);
+            yield return new WaitForSecondsRealtime(.2f);
+            Assert.That(game.Hero.transform.position, Is.EqualTo(position));
+            Assert.That(game.Hero.Weapon, Is.EqualTo(HeroWeapon.Sword));
+            Assert.That(game.Hero.SeedsFired, Is.EqualTo(seeds));
+            game.UI.transform.Find("Pause Panel/Card/Resume").GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+            Assert.That(game.Paused, Is.False);
+            Assert.That(Time.timeScale, Is.EqualTo(1f));
+            Assert.That(AudioListener.pause, Is.False);
+            Assert.That(MobileInput.Right, Is.False);
+            Assert.That(MobileInput.ConsumeSwap() || MobileInput.ConsumeAttack(), Is.False);
+            game.SetPaused(true);
+            int oldId = game.GetInstanceID();
+            bool reduced = AccessibilitySettings.ReducedEffects;
+            AccessibilitySettings.SetReducedEffects(true);
+            game.ResetQuest();
+            float deadline = Time.realtimeSinceStartup + 3f;
+            while(Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+                var current = Object.FindAnyObjectByType<HeroGame>();
+                if(current != null && current.GetInstanceID() != oldId) break;
+            }
+            var restarted = Object.FindAnyObjectByType<HeroGame>();
+            Assert.That(restarted.GetInstanceID(), Is.Not.EqualTo(oldId));
+            Assert.That(restarted.Paused || restarted.Started, Is.False);
+            Assert.That(Time.timeScale, Is.EqualTo(1f));
+            Assert.That(AudioListener.pause, Is.False);
+            yield return new WaitForSeconds(.1f);
+            foreach(var particles in Object.FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None))
+                Assert.That(particles.isPlaying, Is.False, "Reduced effects survives quest restart");
+            AccessibilitySettings.SetReducedEffects(reduced);
+        }
+
+        [UnityTest]
         public IEnumerator Main_AbilitiesAndBackdropCoverage()
         {
             EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");

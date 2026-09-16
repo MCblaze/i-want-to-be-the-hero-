@@ -395,21 +395,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!115 &22672973
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: QP3BoundedMotion
-  m_Namespace: IWantToBeTheHero
-  m_AssemblyName: IWantToBeTheHero.Runtime
 --- !u!1 &47784495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1419,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 202421288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -1541,7 +1526,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 206966692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -2378,7 +2363,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 24.55, y: -3.05, z: 0}
-  m_LocalScale: {x: 0.18, y: 1.2, z: 1}
+  m_LocalScale: {x: 0.1512, y: 2.16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2065908727}
@@ -2420,11 +2405,11 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.38, y: 0.265}
+    oldSize: {x: 0.84, y: 1.8}
+    newSize: {x: 5.5555553, y: 0.83333325}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.7}
@@ -2478,12 +2463,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4957759116106419655, guid: 38efda4b55153324e8cc978318c7d79d, type: 2}
-  m_Color: {r: 0.38, g: 0.24, b: 0.15, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: ade405807f0afb941a79dadebf3e6da0, type: 2}
+  m_Color: {r: 0.75, g: 0.82, b: 0.8, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 5.5555553, y: 0.83333325}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3409,7 +3394,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 466097171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -3702,7 +3687,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522157195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3928,21 +3913,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!115 &583286100
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: QP3AmbientInhabitant
-  m_Namespace: IWantToBeTheHero
-  m_AssemblyName: IWantToBeTheHero.Runtime
 --- !u!1 &622346796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,7 +4187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 628406566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -4611,7 +4581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 650659235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -4777,7 +4747,6 @@ GameObject:
   - component: {fileID: 730831911}
   - component: {fileID: 730831912}
   - component: {fileID: 730831913}
-  - component: {fileID: 730831914}
   m_Layer: 0
   m_Name: Ambient Inhabitant - notice react settle
   m_TagString: Untagged
@@ -4868,19 +4837,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 730831910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1726521585}
-  m_Name: 
-  m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3AmbientInhabitant
---- !u!114 &730831914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730831910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 583286100}
+  m_Script: {fileID: 11500000, guid: 67297f4523f444f6a28fb1f5c753599b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3AmbientInhabitant
   idleDuration: 2.2
@@ -5023,7 +4980,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 753546290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -5667,7 +5624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 958215591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -5719,7 +5676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 962148317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -5771,7 +5728,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 970870503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -11970,7 +11927,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227485576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -12337,7 +12294,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249908208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -12707,7 +12664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1282894930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -13078,7 +13035,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314500024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -14200,7 +14157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543784721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -15429,27 +15386,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722418849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
   amplitude: 0.04
   frequency: 0.7
---- !u!115 &1726521585
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: QP3AmbientInhabitant
-  m_Namespace: IWantToBeTheHero
-  m_AssemblyName: IWantToBeTheHero.Runtime
 --- !u!1 &1729535865
 GameObject:
   m_ObjectHideFlags: 0
@@ -16871,7 +16813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1936267665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -17245,7 +17187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1958951906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -17515,7 +17457,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2034083489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -17565,7 +17507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2036693577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f03e8cb55a333445b94b42cd801cebb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e2e00b7d05473aa1a610ce8758437e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3ParallaxAnchor
   cameraTarget: {fileID: 187146924}
@@ -17672,7 +17614,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2046638373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}
@@ -18364,8 +18306,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 18
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1096471667984632042, guid: 38efda4b55153324e8cc978318c7d79d, type: 2}
-  m_Color: {r: 1, g: 0.82, b: 0.3, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 01f163996b44cb7438ff8be92e83a2e0, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -18598,7 +18540,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2140634271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 22672973}
+  m_Script: {fileID: 11500000, guid: 4446e3d07fe64957a7ebe57d5a27855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.QP3BoundedMotion
   localAxis: {x: 0, y: 1, z: 0}

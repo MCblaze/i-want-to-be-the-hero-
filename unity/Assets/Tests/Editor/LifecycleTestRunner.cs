@@ -37,7 +37,12 @@ namespace IWantToBeTheHero.Tests
         [MenuItem("Tools/Hero/Run Main Polish Tests")]
         public static void RunPolish()
         {
-            Start(new[] { "IWantToBeTheHero.Tests.MainPolishTests" });
+            Start(new[] {
+                "IWantToBeTheHero.Tests.MainPolishTests",
+                "IWantToBeTheHero.Tests.AccessibilityTests",
+                "IWantToBeTheHero.Tests.LifecycleTests",
+                "IWantToBeTheHero.Tests.MainSceneAuthoringTests"
+            });
         }
 
         [MenuItem("Tools/Hero/Run Movement Camera Test")]

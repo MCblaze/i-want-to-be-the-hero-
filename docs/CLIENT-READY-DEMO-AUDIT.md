@@ -12,6 +12,8 @@ The earlier ability results applied to the movement lab. Main did not reference 
 
 Platform walk lines were aligned to existing collider tops; small ledges now use a detail crop instead of compressing a full terrain illustration. Five thorn skins replace hazard placeholders, and camera-filling zone backgrounds replace exposed rectangular card edges. Main's viewport-dependent camera bounds are covered by regression checks. These repairs improve the prototype; they do not qualify it as client-ready or establish the requested 10–15 minute duration.
 
+Follow-up: added pause/resume/restart controls, cleared paused input, accurate weapon/evade HUD, touch weapon swap, nine-slice UI framing, and transparent checkpoint/Seed artwork. Removed the unreachable duplicate Spark preview and repaired ambient particles that rendered as opaque squares. Standalone device/focus-loss checks and final menu styling remain open; see the playtest record for evidence.
+
 - One editable Main scene with Trailhead, Broken Steps, Canopy Lift, Spark Shrine, Gate Return and Guardian Court.
 - Movement, double jump, backflip/evade, sword/wand choice, Spark, checkpoint, gate, Guardian, victory and restart loops.
 - Movement 10/10, lifecycle 4/4, accessibility 3/3, graphical animation audit 6/6 and manifest/browser animation regression 10/10.

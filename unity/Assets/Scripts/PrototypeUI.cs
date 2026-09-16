@@ -91,6 +91,8 @@ namespace IWantToBeTheHero
         private GameObject bossPanel;
         private GameObject titlePanel;
         private GameObject victoryPanel;
+        private GameObject pausePanel;
+        private Button resumeButton;
         private GameObject touchRoot;
         private Text accessibilityStatus;
         private Coroutine messageRoutine;
@@ -125,6 +127,7 @@ namespace IWantToBeTheHero
             BuildTouchControls(root);
             BuildTitle(root);
             BuildVictory(root);
+            BuildPause(root);
         }
 
         private void Update()
@@ -132,7 +135,10 @@ namespace IWantToBeTheHero
             if (game.Hero == null) return;
             health.text = $"LOGAN   HP {game.Hero.Health}/{game.Hero.MaxHealth}";
             objective.text = game.CurrentObjective();
-            power.text = game.Hero.HasSpark ? "HERO DASH READY" : "FIND YOUR POWER";
+            power.text = (game.Hero.Weapon == HeroWeapon.Sword ? "SWORD" : "WAND") +
+                (game.Hero.HasSpark
+                    ? (game.Hero.EvadeCooldown > 0f ? " · EVADE RECOVERING" : " · EVADE READY")
+                    : " · E TO SWAP");
 
             bool bossVisible = game.Boss != null && game.Boss.Awake && game.Boss.IsAlive;
             bossPanel.SetActive(bossVisible);
@@ -141,10 +147,19 @@ namespace IWantToBeTheHero
 
         public void ShowGame()
         {
+            pausePanel.SetActive(false);
             titlePanel.SetActive(false);
             victoryPanel.SetActive(false);
             touchRoot.SetActive(Application.isMobilePlatform);
             FlashMessage("SUNLEAF RUINS\nFind the Hero Spark", 2f);
+        }
+
+        public void ShowPause(bool paused)
+        {
+            pausePanel.SetActive(paused);
+            touchRoot.SetActive(!paused && Application.isMobilePlatform);
+            if (EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(paused ? resumeButton.gameObject : null);
         }
 
         public void ShowVictory(float elapsed)
@@ -224,6 +239,9 @@ namespace IWantToBeTheHero
             TouchButton(touchRoot.transform, "Dash", "DASH", MobileAction.Dash, new Vector2(-270f, 86f), new Vector2(80f, 80f), new Color(.1f, .42f, .4f, .66f), true);
             TouchButton(touchRoot.transform, "Attack", "HIT", MobileAction.Attack, new Vector2(-173f, 100f), new Vector2(92f, 92f), new Color(.63f, .39f, .12f, .68f), true);
             TouchButton(touchRoot.transform, "Jump", "JUMP", MobileAction.Jump, new Vector2(-70f, 120f), new Vector2(112f, 112f), new Color(.78f, .27f, .18f, .72f), true);
+            TouchButton(touchRoot.transform, "Swap", "SWAP", MobileAction.Swap, new Vector2(-270f, 184f), new Vector2(80f, 62f), new Color(.1f, .42f, .4f, .66f), true);
+            var pause = Button("Pause", touchRoot.transform, new Vector2(.45f, .03f), new Vector2(.55f, .10f));
+            pause.onClick.AddListener(() => game.SetPaused(true));
             touchRoot.SetActive(false);
         }
 
@@ -249,7 +267,7 @@ namespace IWantToBeTheHero
             accessibilityStatus = Label("Accessibility Status", card.transform, "", 11, new Color(.8f, .9f, .82f),
                 new Vector2(.64f, .19f), new Vector2(.93f, .25f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             UpdateAccessibilityStatus();
-            Label("Controls", card.transform, "A/D · Space · J/X · Shift/K · F1 effects · F2 audio · Controller supported", 12, new Color(.64f, .76f, .7f),
+            Label("Controls", card.transform, "A/D · Space jump · J/X attack · E swap · Shift/K evade\nEsc pause · F1 effects · F2 audio", 12, new Color(.64f, .76f, .7f),
                 new Vector2(.07f, 0f), new Vector2(.93f, .06f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
         }
 
@@ -257,6 +275,23 @@ namespace IWantToBeTheHero
         {
             if (accessibilityStatus == null) return;
             accessibilityStatus.text = $"EFFECTS {(AccessibilitySettings.ReducedEffects ? "LOW" : "FULL")} · AUDIO {(AccessibilitySettings.MutedAudio ? "MUTED" : "ON")}";
+        }
+
+        private void BuildPause(Transform root)
+        {
+            pausePanel = Panel("Pause Panel", root, new Color(.015f, .08f, .075f, .86f),
+                Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+            var card = Panel("Card", pausePanel.transform, new Color(.025f, .16f, .145f, .98f),
+                new Vector2(.29f, .18f), new Vector2(.71f, .82f), Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
+            Label("Title", card.transform, "TAKE A BREATH", 32, new Color(1f, .83f, .36f),
+                new Vector2(.15f, .69f), new Vector2(.85f, .84f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            Label("Help", card.transform, "E swaps sword and wand.\nAfter the Spark: jump twice, or evade while standing still to backflip.\nF1 reduced effects · F2 mute", 16, new Color(1f, .93f, .75f),
+                new Vector2(.17f, .44f), new Vector2(.83f, .67f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
+            resumeButton = Button("Resume", card.transform, new Vector2(.18f, .29f), new Vector2(.82f, .40f));
+            resumeButton.onClick.AddListener(() => game.SetPaused(false));
+            var restart = Button("Restart quest", card.transform, new Vector2(.18f, .14f), new Vector2(.82f, .25f));
+            restart.onClick.AddListener(game.ResetQuest);
+            pausePanel.SetActive(false);
         }
 
         private void BuildVictory(Transform root)
@@ -291,7 +326,8 @@ namespace IWantToBeTheHero
             {
                 image.sprite = PremiumPanelSprite;
                 image.color = Color.white;
-                image.type = Image.Type.Simple;
+                image.type = Image.Type.Sliced;
+                image.pixelsPerUnitMultiplier = 4f;
             }
             else image.color = color;
             return obj;

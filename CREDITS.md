@@ -18,6 +18,7 @@ The terrain and environment prop sheets under `docs/concept-art/client-ready-aud
 
 - Six Sunleaf zone backgrounds, StaticMossyLedge, MovingTealPlatform, the Sunleaf UI panel and ThornHazard were generated with OpenAI image generation for this project. Original PNGs remain in Unity; native sprite crops preserve their source textures. The thorn cluster was generated on 16 September and corrected to genuine transparency before import. Visual direction and validation are recorded in `docs/PLAYTEST-2026-09-16.md`.
 - Thirteen deterministic music/SFX WAVs were authored through the project's original procedural generator. Source, manifest, hashes and technical checks are in `docs/audio/sunleaf-procedural/`. Listening and final mix acceptance remain pending.
+- `ProgressionProps.png` was generated with OpenAI image generation on 16 September 2026 for the checkpoint lantern and Hero Seed crystal. Its native Unity sprite crops preserve the original RGBA sheet. Visual direction and alpha validation are recorded in the playtest document.
 
 ## Release requirement
 
