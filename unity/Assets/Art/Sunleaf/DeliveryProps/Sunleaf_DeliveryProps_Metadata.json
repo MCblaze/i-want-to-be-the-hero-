@@ -1,0 +1,58 @@
+{
+  "package": "Sunleaf DeliveryProps Batch A",
+  "status": "gate_source_supplied_pending_visual_review",
+  "baseline": "41aece5",
+  "canonicalProject": "C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity",
+  "owner": "Bezi",
+  "integrationOwner": "Codex",
+  "folderBoundary": "Assets/Art/Sunleaf/DeliveryProps",
+  "mainContract": {
+    "standardTargetBoundsWorld": { "width": 0.96, "height": 0.96 },
+    "gateColliderBoundsWorld": { "width": 0.30, "height": 4.60 },
+    "gateColliderPosition": { "x": 40.25, "y": -1.2 },
+    "universalPixelsPerUnit": null,
+    "note": "32 PPU is unproven and is not an accepted Main contract. Review measured source pixels against desired world size per asset."
+  },
+  "assets": [
+    {
+      "name": "CodexGateSource",
+      "sourcePath": "Assets/Art/Sunleaf/DeliveryGenerated/SunleafRuneBarrier.png",
+      "spritePath": "Assets/Art/Sunleaf/DeliveryGenerated/SunleafRuneBarrierSprite.asset",
+      "measuredSourcePixels": { "width": 191, "height": 1290 },
+      "sourcePixelsPerUnit": 280.43478,
+      "calculatedVisualWorldSize": { "width": 0.681, "height": 4.60 },
+      "desiredColliderWorldSize": { "width": 0.30, "height": 4.60 },
+      "colliderPosition": { "x": 40.25, "y": -1.2 },
+      "ownership": "Codex",
+      "status": "supplied_pending_final_visual_review"
+    },
+    { "name": "Sunleaf_RuneInset_A", "proposedSourcePixels": { "width": 64, "height": 64 }, "desiredWorldSize": { "width": 0.96, "height": 0.96 }, "measurementStatus": "final_source_pending", "assignment": "dormant gate rune" },
+    { "name": "Sunleaf_RuneInset_B", "proposedSourcePixels": { "width": 64, "height": 64 }, "desiredWorldSize": { "width": 0.96, "height": 0.96 }, "measurementStatus": "final_source_pending", "assignment": "active gate rune" },
+    { "name": "Sunleaf_SwordTarget_A", "proposedSourcePixels": { "width": 64, "height": 80 }, "desiredWorldSize": { "width": 0.96, "height": 0.96 }, "measurementStatus": "final_source_pending", "assignment": "sword target skin" },
+    { "name": "Sunleaf_WandTarget_A", "proposedSourcePixels": { "width": 64, "height": 80 }, "desiredWorldSize": { "width": 0.96, "height": 0.96 }, "measurementStatus": "final_source_pending", "assignment": "Sunseed Wand target skin" },
+    { "name": "Sunleaf_ShrineAccent_A", "proposedSourcePixels": { "width": 96, "height": 112 }, "desiredWorldSize": { "width": 0.96, "height": 0.96 }, "measurementStatus": "final_source_pending", "assignment": "shrine accent" }
+  ],
+  "generation": {
+    "available": false,
+    "retries": 0,
+    "finalDeliveryPropsSourcesCreated": false,
+    "note": "No generation retries; no DeliveryProps artwork fabricated."
+  },
+  "loganWeaponPoseProof": {
+    "sourceSheet": "Assets/Resources/Art/Animations/logan-animations.png",
+    "manifest": "Assets/Resources/Art/Animations/manifest.json",
+    "sourceFrames": {
+      "costumeBaseline": [0, 1, 2, 3],
+      "locomotion": [4, 5, 6, 7],
+      "combatReferenceUnverified": [12, 13, 14, 15],
+      "airborne": [8, 9, 10, 11]
+    },
+    "firstPoses": [
+      "Logan_Sword_Idle_F_R1",
+      "Logan_Sword_Attack_F_R1",
+      "Logan_Wand_Aim_F_R1",
+      "Logan_Wand_Fire_F_R1"
+    ],
+    "rules": ["preserve costume", "preserve per-frame feet baseline", "stable collider", "consistent weapon-hand alignment", "explicit action/facing/revision names"]
+  }
+}

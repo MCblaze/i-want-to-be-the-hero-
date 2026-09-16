@@ -23,3 +23,6 @@ The terrain and environment prop sheets under `docs/concept-art/client-ready-aud
 ## Release requirement
 
 Every music track, sound effect, font, image, animation and third-party package included in the client build must have an attributable source and release-compatible license recorded here. Unknown provenance blocks external delivery.
+
+### Sunleaf delivery props — 16 September 2026
+Original AI-generated sources using Codex built-in image generation: SunleafRuneBarrier.png, SwordTarget.png, WandTarget.png under Assets/Art/Sunleaf/DeliveryGenerated. Art direction: orthographic mossy charcoal-green stone, lime moss, bronze/gold leaf rune, upper-left light, transparent RGBA; slender magical barrier and square weapon-emblem plaques. WandTarget is an edit of SwordTarget preserving the frame and replacing the sword/disk with a teal Sunseed-wand emblem. Original source files retained; Unity uses native Sprite crops. These assets are not a claim of final client approval.

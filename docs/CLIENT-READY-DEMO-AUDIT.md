@@ -1,7 +1,7 @@
 # Client-ready demo audit
 
-**Audit date:** 15 September 2026  
-**Baseline:** `49255b9`  
+**Audit date:** 16 September 2026
+**Baseline:** `41aece5` plus delivery production changes
 **Status:** Functional six-zone prototype; final production art, sound and client qualification remain incomplete.
 
 ## Verified foundation
@@ -12,7 +12,7 @@ The earlier ability results applied to the movement lab. Main did not reference 
 
 Platform walk lines were aligned to existing collider tops; small ledges now use a detail crop instead of compressing a full terrain illustration. Five thorn skins replace hazard placeholders, and camera-filling zone backgrounds replace exposed rectangular card edges. Main's viewport-dependent camera bounds are covered by regression checks. These repairs improve the prototype; they do not qualify it as client-ready or establish the requested 10–15 minute duration.
 
-Follow-up: added pause/resume/restart controls, cleared paused input, accurate weapon/evade HUD, touch weapon swap, nine-slice UI framing, and transparent checkpoint/Seed artwork. Removed the unreachable duplicate Spark preview and repaired ambient particles that rendered as opaque squares. Standalone device/focus-loss checks and final menu styling remain open; see the playtest record for evidence.
+Follow-up: added pause/resume/restart controls, cleared paused input, accurate weapon/evade HUD, touch weapon swap, nine-slice UI framing, and transparent checkpoint/Seed artwork. Removed the unreachable duplicate Spark preview and repaired ambient particles that rendered as opaque squares. Standalone start, weapon swap, pause/resume and focus-loss checks now pass. HUD/menu layout repairs and six underpass fixes are saved; physical-device qualification and final presentation review remain open. See the playtest record.
 
 - One editable Main scene with Trailhead, Broken Steps, Canopy Lift, Spark Shrine, Gate Return and Guardian Court.
 - Movement, double jump, backflip/evade, sword/wand choice, Spark, checkpoint, gate, Guardian, victory and restart loops.
@@ -32,21 +32,21 @@ Follow-up: added pause/resume/restart controls, cleared paused input, accurate w
 
 ### Terrain, platforms and landmarks — release blocker
 
-- Replace flat colored platform bodies with a modular mossy-stone skin while retaining the accepted colliders.
+- Mossy-stone skins are integrated and six low ledges have been raised for clearance. Remaining work: visual consistency, variation and complete route accessibility review.
 - Add readable caps, corners, undersides, broken variants, slopes, spikes and a distinct teal moving-platform family.
 - Give every zone one authored landmark: canopy threshold, broken masonry rhythm, lift structure, Spark shrine, gate/cache frame and Guardian court.
 - Preserve bright platform tops, unobscured hazards and the existing measured jump contract.
 
 ### Background, lighting and world motion — release blocker
 
-- Replace the single flattened backdrop plus tinted rectangles with authored six-band coverage across the full x=0–51 route.
+- Six background bands and coverage/crossfades are implemented across x=0–51. Expand coverage with the route and finish per-zone depth/art review.
 - Add foreground foliage exclusions, fog/depth cards, contact shadows and restrained painted-light overlays using the current built-in renderer.
 - Add grass/canopy/water loops, leaf drift, landing/air-jump/weapon impacts, checkpoint/Spark/gate/boss effects, all respecting reduced effects.
 - Do not migrate to URP until a separate renderer proof has matching sprite/normal assets and measured benefit.
 
 ### Audio and presentation — release blocker
 
-- Unity currently contains no project music or SFX assets; its scene AudioSource has no clip.
+- A 13-clip procedural audio foundation and audio director are integrated. Final listening/mix, footsteps and victory treatment remain open.
 - Add original/licensed exploration, danger and victory loops plus jump, air jump, backflip, switch, sword, wand, damage, checkpoint, Spark, gate, boss and victory cues.
 - Add mixer routing, Music/SFX volume controls and muted-audio visual equivalents.
 - Replace rectangular runtime UI styling with a coherent panel/icon kit; add pause, display and input guidance.
@@ -76,3 +76,8 @@ Two AI-assisted concept sheets were generated during this audit: a mossy stone t
 ## Definition of client-ready
 
 The demo is ready to send only when every required visual and audio asset is integrated, all automated checks pass after integration, the Windows package carries correct identity and documentation, all third-party or generated assets have accepted provenance, and the controller/five-player/client checks have recorded evidence. Missing human evidence must remain marked **Not run**.
+
+
+## Active delivery plan
+
+See [Client delivery execution](CLIENT-DELIVERY-EXECUTION-20260916.md). Bezi owns scoped proposal/specification work; Codex generates missing sources, integrates and verifies. Bezi's connected generation capability is unavailable; this does not block Codex image generation. Required human playtest and client acceptance evidence remains open.
