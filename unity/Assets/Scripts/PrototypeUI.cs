@@ -94,6 +94,8 @@ namespace IWantToBeTheHero
         private GameObject victoryPanel;
         private GameObject pausePanel;
         private Button resumeButton;
+        private Button startButton;
+        private Button replayButton;
         private Slider musicSlider;
         private Slider effectsSlider;
         private Text musicLevel;
@@ -133,10 +135,12 @@ namespace IWantToBeTheHero
             BuildTitle(root);
             BuildVictory(root);
             BuildPause(root);
+            SelectMenu(startButton);
         }
 
         private void Update()
         {
+            RestoreMenuFocus();
             if (game.Hero == null) return;
             hudPanel.SetActive(game.Started && !game.Won);
             health.text = $"LOGAN   HP {game.Hero.Health}/{game.Hero.MaxHealth}";
@@ -155,6 +159,7 @@ namespace IWantToBeTheHero
         {
             pausePanel.SetActive(false);
             titlePanel.SetActive(false);
+            if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
             victoryPanel.SetActive(false);
             touchRoot.SetActive(Application.isMobilePlatform);
             FlashMessage("SUNLEAF RUINS\nFind the Hero Spark", 2f);
@@ -185,6 +190,7 @@ namespace IWantToBeTheHero
             // Leave the Guardian's kneel and Logan's celebration visible first.
             yield return new WaitForSeconds(1.8f);
             victoryPanel.SetActive(true);
+            SelectMenu(replayButton);
         }
 
         public void FlashMessage(string text, float duration)
@@ -269,11 +275,15 @@ namespace IWantToBeTheHero
                 "The Hero Spark is waiting in the Sunleaf Ruins. Find it, master its power, and prove your courage to the ancient Mossback Guardian.",
                 18, new Color(1f, .93f, .75f), new Vector2(.10f, .45f), new Vector2(.90f, .60f), Vector2.zero, Vector2.zero, TextAnchor.MiddleLeft);
             var start = Button("Begin the quest", card.transform, new Vector2(.10f, .32f), new Vector2(.90f, .42f));
+            startButton = start;
             start.onClick.AddListener(game.StartQuest);
             var reduced = Button("Reduced effects", card.transform, new Vector2(.10f, .23f), new Vector2(.48f, .30f));
             reduced.onClick.AddListener(() => { AccessibilitySettings.SetReducedEffects(!AccessibilitySettings.ReducedEffects); ShowAccessibilityStatus(); });
             var mute = Button("Mute audio", card.transform, new Vector2(.52f, .23f), new Vector2(.90f, .30f));
             mute.onClick.AddListener(() => { AccessibilitySettings.SetMutedAudio(!AccessibilitySettings.MutedAudio); ShowAccessibilityStatus(); });
+            LinkMenu(start, reduced, mute);
+            var reducedNav = reduced.navigation; reducedNav.selectOnRight = mute; reduced.navigation = reducedNav;
+            var muteNav = mute.navigation; muteNav.selectOnLeft = reduced; mute.navigation = muteNav;
             accessibilityStatus = Label("Accessibility Status", card.transform, "", 13, new Color(.8f, .9f, .82f),
                 new Vector2(.10f, .18f), new Vector2(.90f, .22f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             UpdateAccessibilityStatus();
@@ -320,15 +330,19 @@ namespace IWantToBeTheHero
                 if (game.Audio != null) game.Audio.SaveVolumeSettings();
                 game.ResetQuest();
             });
+            Button quitButton = null;
             if (canQuit)
             {
                 var quit = Button("Quit game", card.transform, new Vector2(.52f, .13f), new Vector2(.88f, .21f));
+                quitButton = quit;
                 quit.onClick.AddListener(() =>
                 {
                     if (game.Audio != null) game.Audio.SaveVolumeSettings();
                     Application.Quit();
                 });
             }
+            if (quitButton != null) LinkMenu(musicSlider, effectsSlider, resumeButton, restart, quitButton);
+            else LinkMenu(musicSlider, effectsSlider, resumeButton, restart);
             pausePanel.SetActive(false);
         }
 
@@ -389,8 +403,42 @@ namespace IWantToBeTheHero
             Label("Time", card.transform, "", 17, new Color(1f, .93f, .75f),
                 new Vector2(.10f, .29f), new Vector2(.90f, .49f), Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             var again = Button("Play again", card.transform, new Vector2(.26f, .13f), new Vector2(.74f, .25f));
+            replayButton = again;
+            LinkMenu(again);
             again.onClick.AddListener(game.ResetQuest);
             victoryPanel.SetActive(false);
+        }
+
+        private static void SelectMenu(Selectable control)
+        {
+            if (EventSystem.current == null || control == null) return;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(control.gameObject);
+        }
+
+        private void RestoreMenuFocus()
+        {
+            var events = EventSystem.current;
+            if (events == null) return;
+            var selected = events.currentSelectedGameObject;
+            if (selected != null && selected.activeInHierarchy) return;
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) < .5f &&
+                Mathf.Abs(Input.GetAxisRaw("Vertical")) < .5f && !Input.GetButtonDown("Submit")) return;
+            if (pausePanel.activeSelf) SelectMenu(resumeButton);
+            else if (victoryPanel.activeSelf) SelectMenu(replayButton);
+            else if (titlePanel.activeSelf) SelectMenu(startButton);
+        }
+
+        private static void LinkMenu(params Selectable[] controls)
+        {
+            for (int i = 0; i < controls.Length; i++)
+            {
+                var navigation = new Navigation { mode = Navigation.Mode.Explicit };
+                navigation.selectOnUp = controls[(i + controls.Length - 1) % controls.Length];
+                navigation.selectOnDown = controls[(i + 1) % controls.Length];
+                // Sliders consume left/right for values, up/down changes control.
+                controls[i].navigation = navigation;
+            }
         }
 
         private static GameObject Panel(string name, Transform parent, Color color, Vector2 anchorMin, Vector2 anchorMax, Vector2 anchored, Vector2 size, Vector2 pivot)
@@ -440,6 +488,9 @@ namespace IWantToBeTheHero
         {
             var obj = Panel(label, parent, new Color(.85f, .29f, .2f), anchorMin, anchorMax, Vector2.zero, Vector2.zero, new Vector2(.5f, .5f));
             var button = obj.AddComponent<Button>();
+            var colors = button.colors;
+            colors.selectedColor = new Color(.08f, .43f, .38f, 1f);
+            button.colors = colors;
             Label("Label", obj.transform, label.ToUpperInvariant(), 18, Color.white, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, TextAnchor.MiddleCenter);
             return button;
         }

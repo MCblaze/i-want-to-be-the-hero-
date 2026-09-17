@@ -114,7 +114,9 @@ namespace IWantToBeTheHero
             if (Started && !Won)
                 Elapsed += Time.deltaTime;
 
-            if (!Started && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)))
+            if (!Started && (UnityEngine.EventSystems.EventSystem.current == null ||
+                UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == null) &&
+                (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)))
                 StartQuest();
 
             if (Started && !Won && Input.GetKeyDown(KeyCode.R))
@@ -225,7 +227,7 @@ namespace IWantToBeTheHero
             Hero.UnlockSpark();
             Audio?.TryPlay(AudioCueId.Pickup);
             if (sparkGate != null) Destroy(sparkGate);
-            UI.FlashMessage("HERO SPARK FOUND!\nJump again in midair · Move + evade to dash · Neutral evade to backflip", 4f);
+            UI.FlashMessage("HERO SPARK FOUND!\nJump again in midair Â· Move + evade to dash Â· Neutral evade to backflip", 4f);
         }
 
         public string CurrentObjective()
@@ -394,6 +396,7 @@ namespace IWantToBeTheHero
             var heroCollider = heroObject.AddComponent<CapsuleCollider2D>();
             heroCollider.size = new Vector2(.52f, 1.15f);
             heroCollider.offset = new Vector2(0f, -.03f);
+            heroCollider.sharedMaterial = Resources.Load<PhysicsMaterial2D>("Physics/HeroNoFriction");
             Hero = heroObject.AddComponent<HeroController>();
             Hero.Game = this;
             Hero.InitializeRespawn(heroObject.transform.position);
@@ -729,9 +732,17 @@ namespace IWantToBeTheHero
 
         private void FixedUpdate()
         {
-            if (Game == null || !Game.Started || Game.Won)
+            if (Game == null || !Game.Started)
             {
                 body.linearVelocity = Vector2.zero;
+                return;
+            }
+            if (Game.Won)
+            {
+                // Victory can occur during a jump or dash. Stop player-driven
+                // movement, but let gravity bring Logan onto the court floor.
+                attackRemaining = dashRemaining = flipRemaining = 0f;
+                body.linearVelocity = new Vector2(0f, Mathf.Clamp(body.linearVelocity.y, -15f, 0f));
                 return;
             }
 

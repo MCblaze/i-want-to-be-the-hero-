@@ -1,0 +1,8 @@
+Result: No forward progress for 12 seconds outside combat
+Furthest X: 81.94
+Real elapsed: 30.35
+Game elapsed: 30.51
+Deaths: 0
+Spark: False
+Position: (81.94, -1.20, 0.00)
+Automated diagnostic policy, not human timing or full qualification.

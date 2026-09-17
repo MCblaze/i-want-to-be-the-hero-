@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-16 22:52:49Z" end-time="2026-09-16 22:52:54Z" duration="5.1940309">
+  <test-suite type="TestSuite" id="1000" name="I Want to Be the Hero" fullname="I Want to Be the Hero" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-09-16 22:52:49Z" end-time="2026-09-16 22:52:54Z" duration="5.194031" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1049" name="IWantToBeTheHero.EditorTests.dll" fullname="C:/Users/marvi/Documents/GitHub/i-want-to-be-the-hero-/unity/Library/ScriptAssemblies/IWantToBeTheHero.EditorTests.dll" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-09-16 22:52:51Z" end-time="2026-09-16 22:52:54Z" duration="3.591660" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40476" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1050" name="IWantToBeTheHero" fullname="IWantToBeTheHero" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-09-16 22:52:51Z" end-time="2026-09-16 22:52:54Z" duration="3.563581" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1051" name="Tests" fullname="IWantToBeTheHero.Tests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-09-16 22:52:51Z" end-time="2026-09-16 22:52:54Z" duration="3.559324" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1012" name="AudioFinishTests" fullname="IWantToBeTheHero.Tests.AudioFinishTests" classname="IWantToBeTheHero.Tests.AudioFinishTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-16 22:51:13Z" end-time="2026-09-16 22:51:15Z" duration="1.715064" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1015" name="Footsteps_IgnorePlatformTransportAndEvade" fullname="IWantToBeTheHero.Tests.AudioFinishTests.Footsteps_IgnorePlatformTransportAndEvade" methodname="Footsteps_IgnorePlatformTransportAndEvade" classname="IWantToBeTheHero.Tests.AudioFinishTests" runstate="Runnable" seed="863454582" result="Passed" start-time="2026-09-16 22:49:37Z" end-time="2026-09-16 22:50:16Z" duration="39.194770" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="MixSettings_AreReloadedByANewDirector" fullname="IWantToBeTheHero.Tests.AudioFinishTests.MixSettings_AreReloadedByANewDirector" methodname="MixSettings_AreReloadedByANewDirector" classname="IWantToBeTheHero.Tests.AudioFinishTests" runstate="Runnable" seed="1931599858" result="Passed" start-time="2026-09-16 22:50:16Z" end-time="2026-09-16 22:50:45Z" duration="28.731053" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="VictoryCrossfade_ObeysMuteMixAndDoesNotLoop" fullname="IWantToBeTheHero.Tests.AudioFinishTests.VictoryCrossfade_ObeysMuteMixAndDoesNotLoop" methodname="VictoryCrossfade_ObeysMuteMixAndDoesNotLoop" classname="IWantToBeTheHero.Tests.AudioFinishTests" runstate="Runnable" seed="582773848" result="Passed" start-time="2026-09-16 22:50:45Z" end-time="2026-09-16 22:51:15Z" duration="29.391633" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1016" name="DeliveryCandidateTests" fullname="IWantToBeTheHero.Tests.DeliveryCandidateTests" classname="IWantToBeTheHero.Tests.DeliveryCandidateTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-16 22:52:51Z" end-time="2026-09-16 22:52:54Z" duration="3.403633" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1019" name="CandidateBootstrapsRemoteEncounterAndCamera_RestartKeepsCandidate" fullname="IWantToBeTheHero.Tests.DeliveryCandidateTests.CandidateBootstrapsRemoteEncounterAndCamera_RestartKeepsCandidate" methodname="CandidateBootstrapsRemoteEncounterAndCamera_RestartKeepsCandidate" classname="IWantToBeTheHero.Tests.DeliveryCandidateTests" runstate="Runnable" seed="1056457009" result="Passed" start-time="2026-09-16 22:51:15Z" end-time="2026-09-16 22:51:53Z" duration="38.397542" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="EveryCheckpoint_RealTriggerThenFall_LandsWithoutRespawnLoop" fullname="IWantToBeTheHero.Tests.DeliveryCandidateTests.EveryCheckpoint_RealTriggerThenFall_LandsWithoutRespawnLoop" methodname="EveryCheckpoint_RealTriggerThenFall_LandsWithoutRespawnLoop" classname="IWantToBeTheHero.Tests.DeliveryCandidateTests" runstate="Runnable" seed="612103090" result="Failed" start-time="2026-09-16 22:51:53Z" end-time="2026-09-16 22:52:23Z" duration="29.727634" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Checkpoint 2
+  Expected: 94.0f +/- 0.200000003f
+  But was:  44.5f
+]]></message>
+                <stack-trace><![CDATA[at IWantToBeTheHero.Tests.DeliveryCandidateTests+<EveryCheckpoint_RealTriggerThenFall_LandsWithoutRespawnLoop>d__8.MoveNext () [0x00282] in C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Assets\Tests\Editor\DeliveryCandidateTests.cs:81
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1018" name="FourMandatoryPits_AreOpenAndFallsReturnToInitialSpawn" fullname="IWantToBeTheHero.Tests.DeliveryCandidateTests.FourMandatoryPits_AreOpenAndFallsReturnToInitialSpawn" methodname="FourMandatoryPits_AreOpenAndFallsReturnToInitialSpawn" classname="IWantToBeTheHero.Tests.DeliveryCandidateTests" runstate="Runnable" seed="1052394337" result="Passed" start-time="2026-09-16 22:52:23Z" end-time="2026-09-16 22:52:54Z" duration="30.901105" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\marvi\Documents\GitHub\i-want-to-be-the-hero-\unity\Logs\hero-lifecycle-results.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,8 @@
+Result: Victory reached through normal gameplay inputs
+Furthest X: 282.87
+Real elapsed: 77.77
+Game elapsed: 77.87
+Deaths: 1
+Spark: True
+Position: (282.90, -0.79, 0.00)
+Automated diagnostic policy, not human timing or full qualification.

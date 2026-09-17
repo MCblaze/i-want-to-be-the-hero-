@@ -1,0 +1,62 @@
+realSeconds,gameSeconds,x,y,health,spark,weapon,bossHealth,deaths,decision
+0.00,0.00,2.000,-2.790,5,False,Sword,10,0,advance
+0.50,0.66,4.881,-2.790,5,False,Sword,10,0,advance
+1.00,1.16,7.365,-2.790,5,False,Sword,10,0,advance
+1.51,1.65,9.832,-2.790,5,False,Sword,10,0,advance
+2.02,2.17,12.416,-2.790,5,False,Sword,10,0,advance
+2.52,2.66,14.889,-2.790,5,False,Sword,10,0,advance
+3.03,3.16,17.412,-2.790,5,False,Sword,10,0,advance
+3.54,3.70,20.084,-2.790,5,False,Sword,10,0,advance
+4.04,4.18,22.479,-2.790,5,False,Sword,10,0,advance
+4.54,4.70,25.096,-2.789,5,False,Sword,10,0,advance
+5.05,5.19,25.864,-2.789,5,False,SunseedWand,10,0,advance
+5.55,5.71,26.472,-2.789,5,False,SunseedWand,10,0,combat spacing
+6.05,6.20,28.015,-2.789,5,False,SunseedWand,10,0,advance
+6.56,6.72,30.607,-2.789,5,False,SunseedWand,10,0,advance
+7.06,7.22,33.123,-2.789,5,False,SunseedWand,10,0,advance
+7.57,7.71,35.013,-2.789,5,False,SunseedWand,10,0,combat spacing
+8.08,8.23,35.013,-2.789,5,False,SunseedWand,10,0,combat spacing
+8.59,8.72,36.001,-2.789,5,False,SunseedWand,10,0,advance
+9.09,9.23,38.521,-2.789,5,False,SunseedWand,10,0,advance
+9.59,9.75,41.134,-2.789,5,False,SunseedWand,10,0,advance
+10.09,10.25,43.649,-2.789,5,False,SunseedWand,10,0,advance
+10.59,10.74,46.108,-2.788,5,False,SunseedWand,10,0,advance
+11.09,11.24,48.624,-2.788,5,False,SunseedWand,10,0,advance
+11.59,11.74,51.113,-2.788,5,False,SunseedWand,10,0,advance
+12.10,12.25,53.653,-2.144,5,False,SunseedWand,10,0,advance
+12.61,12.75,56.286,-0.795,5,False,SunseedWand,10,0,advance
+13.12,13.26,58.854,1.134,5,False,SunseedWand,10,0,advance
+13.62,13.76,61.268,-1.100,5,False,SunseedWand,10,0,advance
+14.12,14.28,63.824,1.031,5,False,SunseedWand,10,0,advance
+14.62,14.78,66.429,-0.857,5,False,SunseedWand,10,0,advance
+15.12,15.28,68.543,-2.790,5,False,SunseedWand,10,0,advance
+15.63,15.78,71.087,-2.790,5,False,SunseedWand,10,0,advance
+16.13,16.27,73.536,-2.790,5,False,SunseedWand,10,0,advance
+16.63,16.78,76.086,-2.787,5,False,SunseedWand,10,0,advance
+17.13,17.28,78.578,-2.787,5,False,SunseedWand,10,0,combat spacing
+17.64,17.79,79.029,-2.787,5,False,SunseedWand,10,0,combat spacing
+18.14,18.30,80.655,-0.554,5,False,SunseedWand,10,0,advance
+18.64,18.79,81.941,-1.202,5,False,SunseedWand,10,0,advance
+19.16,19.29,81.941,-1.202,5,False,SunseedWand,10,0,advance
+19.67,19.82,81.941,-1.202,5,False,SunseedWand,10,0,advance
+20.17,20.32,81.941,-1.202,5,False,SunseedWand,10,0,advance
+20.68,20.83,81.941,-1.202,5,False,SunseedWand,10,0,advance
+21.20,21.32,81.941,-1.202,5,False,SunseedWand,10,0,advance
+21.71,21.85,81.941,-1.202,5,False,SunseedWand,10,0,advance
+22.21,22.37,81.941,-1.202,5,False,SunseedWand,10,0,advance
+22.73,22.86,81.941,-1.202,5,False,SunseedWand,10,0,advance
+23.23,23.36,81.941,-1.202,5,False,SunseedWand,10,0,advance
+23.73,23.89,81.941,-1.202,5,False,SunseedWand,10,0,advance
+24.24,24.37,81.941,-1.202,5,False,SunseedWand,10,0,advance
+24.74,24.90,81.941,-1.202,5,False,SunseedWand,10,0,advance
+25.24,25.40,81.941,-1.202,5,False,SunseedWand,10,0,advance
+25.75,25.90,81.941,-1.202,5,False,SunseedWand,10,0,advance
+26.25,26.41,81.941,-1.202,5,False,SunseedWand,10,0,advance
+26.75,26.91,81.941,-1.202,5,False,SunseedWand,10,0,advance
+27.25,27.41,81.941,-1.202,5,False,SunseedWand,10,0,advance
+27.76,27.91,81.941,-1.202,5,False,SunseedWand,10,0,advance
+28.26,28.42,81.941,-1.202,5,False,SunseedWand,10,0,advance
+28.76,28.91,81.941,-1.202,5,False,SunseedWand,10,0,advance
+29.27,29.40,81.941,-1.202,5,False,SunseedWand,10,0,advance
+29.78,29.91,81.941,-1.202,5,False,SunseedWand,10,0,advance
+30.28,30.43,81.941,-1.202,5,False,SunseedWand,10,0,advance

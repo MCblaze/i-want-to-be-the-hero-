@@ -1,0 +1,71 @@
+realSeconds,gameSeconds,x,y,health,spark,weapon,bossHealth,deaths,decision
+0.00,0.00,2.000,-2.790,5,False,Sword,10,0,advance
+0.50,0.67,4.942,-2.790,5,False,Sword,10,0,advance
+1.00,1.17,7.458,-2.790,5,False,Sword,10,0,advance
+1.52,1.69,10.030,-2.790,5,False,Sword,10,0,advance
+2.02,2.18,12.509,-2.790,5,False,Sword,10,0,advance
+2.52,2.67,14.931,-2.790,5,False,Sword,10,0,advance
+3.02,3.19,17.541,-2.790,5,False,Sword,10,0,advance
+3.52,3.69,20.037,-2.790,5,False,Sword,10,0,advance
+4.03,4.19,22.561,-2.790,5,False,Sword,10,0,advance
+4.53,4.70,25.116,-2.789,5,False,Sword,10,0,advance
+5.03,5.20,25.958,-2.789,5,False,SunseedWand,10,0,combat spacing
+5.53,5.70,26.501,-2.789,5,False,SunseedWand,10,0,combat spacing
+6.04,6.20,28.268,-2.789,5,False,SunseedWand,10,0,advance
+6.56,6.70,30.770,-2.789,5,False,SunseedWand,10,0,advance
+7.06,7.23,33.455,-2.789,5,False,SunseedWand,10,0,advance
+7.56,7.73,34.981,-2.789,5,False,SunseedWand,10,0,combat spacing
+8.07,8.22,34.981,-2.789,5,False,SunseedWand,10,0,combat spacing
+8.58,8.74,36.355,-2.789,5,False,SunseedWand,10,0,advance
+9.08,9.25,38.912,-2.789,5,False,SunseedWand,10,0,advance
+9.58,9.75,41.401,-2.789,5,False,SunseedWand,10,0,advance
+10.08,10.25,43.937,-2.789,5,False,SunseedWand,10,0,advance
+10.58,10.75,46.441,-2.789,5,False,SunseedWand,10,0,advance
+11.09,11.25,48.945,-2.789,5,False,SunseedWand,10,0,advance
+11.59,11.77,51.517,-2.789,5,False,SunseedWand,10,0,advance
+12.10,12.28,54.097,-1.442,5,False,SunseedWand,10,0,advance
+12.62,12.77,56.649,-1.090,5,False,SunseedWand,10,0,advance
+13.12,13.28,59.228,1.081,5,False,SunseedWand,10,0,advance
+13.62,13.79,61.434,-1.099,5,False,SunseedWand,10,0,advance
+14.12,14.28,63.846,1.100,5,False,SunseedWand,10,0,advance
+14.62,14.79,66.480,-1.121,5,False,SunseedWand,10,0,advance
+15.14,15.29,68.604,-2.790,5,False,SunseedWand,10,0,advance
+15.65,15.80,71.161,-2.790,5,False,SunseedWand,10,0,advance
+16.15,16.32,73.764,-2.790,5,False,SunseedWand,10,0,advance
+16.65,16.82,76.288,-2.790,5,False,SunseedWand,10,0,advance
+17.15,17.31,78.729,-2.790,5,False,SunseedWand,10,0,combat spacing
+17.65,17.82,79.136,-2.790,5,False,SunseedWand,10,0,advance
+18.15,18.32,80.663,-0.587,5,False,SunseedWand,10,0,advance
+18.65,18.82,82.001,-2.788,5,False,SunseedWand,10,0,advance
+19.16,19.30,83.851,-2.788,5,False,SunseedWand,10,0,combat spacing
+19.66,19.83,83.851,-2.788,5,False,SunseedWand,10,0,combat spacing
+20.16,20.32,84.527,-2.788,5,False,SunseedWand,10,0,advance
+20.66,20.82,87.050,-2.788,5,False,SunseedWand,10,0,advance
+21.16,21.33,89.564,-2.788,5,False,SunseedWand,10,0,advance
+21.67,21.83,91.827,-3.094,5,False,SunseedWand,10,0,advance
+22.18,22.35,93.291,-7.258,5,False,SunseedWand,10,0,advance
+# Respawn observed at (44.50, -2.80); furthest=93.53
+22.68,22.84,46.140,-2.790,5,False,SunseedWand,10,1,advance
+23.18,23.33,48.600,-2.790,5,False,SunseedWand,10,1,advance
+23.69,23.84,51.141,-2.790,5,False,SunseedWand,10,1,advance
+24.19,24.36,53.752,-2.031,5,False,SunseedWand,10,1,advance
+24.70,24.87,56.410,-0.864,5,False,SunseedWand,10,1,advance
+25.20,25.36,58.874,1.133,5,False,SunseedWand,10,1,advance
+25.70,25.86,61.280,-1.100,5,False,SunseedWand,10,1,advance
+26.20,26.37,63.248,0.558,5,False,SunseedWand,10,1,advance
+26.70,26.88,65.840,2.540,5,False,SunseedWand,10,1,advance
+27.21,27.37,68.408,0.722,5,False,SunseedWand,10,1,advance
+27.71,27.88,70.611,-2.790,5,False,SunseedWand,10,1,advance
+28.21,28.39,73.149,-2.790,5,False,SunseedWand,10,1,advance
+28.72,28.89,75.664,-2.790,5,False,SunseedWand,10,1,advance
+29.22,29.39,78.172,-2.790,5,False,SunseedWand,10,1,advance
+29.72,29.88,80.634,-0.897,5,False,SunseedWand,10,1,advance
+30.23,30.39,83.203,-0.778,5,False,SunseedWand,10,1,advance
+30.74,30.88,85.775,1.026,5,False,SunseedWand,10,1,advance
+31.24,31.40,87.954,-2.719,4,False,SunseedWand,10,1,combat spacing
+31.74,31.90,87.488,-2.790,4,False,SunseedWand,10,1,combat spacing
+32.24,32.41,87.696,-2.790,4,False,SunseedWand,10,1,advance
+32.74,32.92,90.237,-2.794,4,False,SunseedWand,10,1,advance
+33.25,33.40,92.450,-3.712,4,False,SunseedWand,10,1,advance
+# Respawn observed at (44.50, -2.80); furthest=93.53
+33.75,33.91,44.524,-2.791,5,False,SunseedWand,10,2,advance

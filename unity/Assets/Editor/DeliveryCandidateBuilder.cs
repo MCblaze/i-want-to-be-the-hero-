@@ -65,7 +65,7 @@ public static class DeliveryCandidateBuilder
             Floor(groundTemplate, rooms, interval.x, interval.y, -3.4f, groundWidth, cropFolder);
         Floor(groundTemplate, rooms, 100f, 118f, -5f, groundWidth, cropFolder);
         Floor(groundTemplate, rooms, 124f, 142f, -5f, groundWidth, cropFolder);
-        float[] ledgeX = { 11f, 20f, 43f, 56f, 62f, 64f, 83f, 91f, 100f, 114f, 122f, 137f, 155f, 162f, 164f, 173f, 183f, 185f, 207f, 210f, 220f, 227f, 248f, 255f };
+        float[] ledgeX = { 11f, 20f, 43f, 56f, 62f, 64f, 83f, 100f, 114f, 122f, 137f, 155f, 162f, 164f, 173f, 183f, 185f, 207f, 210f, 220f, 227f, 248f, 255f };
         foreach (float x in ledgeX)
         {
             float top = x == 64f || x == 164f || x == 210f ? -.2f : x == 183f || x == 185f || x == 227f ? -.3f : -1.8f;
@@ -201,23 +201,29 @@ public static class DeliveryCandidateBuilder
             Rect rect = source.rect;
             float ratio = Mathf.Clamp01((right - bounds.min.x) / bounds.size.x);
             float width = Mathf.Max(1f, Mathf.Floor(rect.width * ratio));
-            float sourcePivotX = source.pivot.x;
             var cropped = Sprite.Create(source.texture, new Rect(rect.x, rect.y, width, rect.height),
                 new Vector2(.5f, source.pivot.y / rect.height), source.pixelsPerUnit, 0, SpriteMeshType.FullRect);
             cropped.name = source.name + " candidate edge";
             AssetDatabase.CreateAsset(cropped, AssetDatabase.GenerateUniqueAssetPath(cropFolder + "/Edge.asset"));
             // Keep the source left edge planted while changing width/pivot.
-            float localShift = (width * .5f - sourcePivotX) / source.pixelsPerUnit;
+            float worldWidth = bounds.size.x * width / rect.width;
             var visualObject = new GameObject(renderer.name + " cropped visual");
             visualObject.transform.SetParent(renderer.transform.parent, false);
-            visualObject.transform.localPosition = renderer.transform.localPosition;
             visualObject.transform.localRotation = renderer.transform.localRotation;
-            visualObject.transform.localScale = renderer.transform.localScale;
-            visualObject.transform.position += renderer.transform.TransformVector(new Vector3(localShift, 0f, 0f));
+            var parentScale = visualObject.transform.parent.lossyScale;
+            visualObject.transform.localScale = new Vector3(
+                worldWidth / (width / source.pixelsPerUnit) / parentScale.x,
+                bounds.size.y / (rect.height / source.pixelsPerUnit) / parentScale.y, 1f);
+            visualObject.transform.position = new Vector3(bounds.min.x + worldWidth * .5f,
+                bounds.min.y + source.pivot.y / rect.height * bounds.size.y, renderer.transform.position.z);
             var visual = visualObject.AddComponent<SpriteRenderer>();
             EditorUtility.CopySerialized(renderer, visual);
             visual.sprite = cropped;
+            // CopySerialized also copies Sliced size; retaining it stretches a
+            // narrow edge back across the entire old module and conceals pits.
+            visual.drawMode = SpriteDrawMode.Simple;
             renderer.enabled = false;
         }
     }
 }
+

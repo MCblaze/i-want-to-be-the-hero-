@@ -71,8 +71,24 @@ namespace IWantToBeTheHero.Tests
                     checkpoint.marker.name + " left foot lacks safe ground.");
                 Assert.That(HasStaticSupport(spawn.x + .22f, spawn.y - .5f, .9f), Is.True,
                     checkpoint.marker.name + " right foot lacks safe ground.");
-                MoveHero(new Vector2(checkpoint.marker.transform.position.x, -2.75f));
-                yield return new WaitForSeconds(.15f); // Allow the actual checkpoint trigger to run.
+                var markerRenderer = checkpoint.marker.GetComponent<SpriteRenderer>();
+                Assert.That(markerRenderer, Is.Not.Null);
+                // A presentation-only sentinel lets the test observe the actual
+                // OnTriggerEnter activation, instead of assuming a teleport plus
+                // a fixed delay has produced a new physics contact.
+                Color awaitingActivation = new Color(.17f, .29f, .43f, 1f);
+                markerRenderer.color = awaitingActivation;
+                var trigger = checkpoint.marker.GetComponents<Collider2D>().First(c => c.isTrigger);
+                Physics2D.SyncTransforms();
+                // Approach from the cleared/right side: approaching checkpoint2
+                // from x92.5 would itself begin inside the pit being regressed.
+                MoveHero(new Vector2(trigger.bounds.max.x + .65f, -2.75f));
+                yield return new WaitForFixedUpdate();
+                MobileInput.Set(MobileAction.Left, true);
+                yield return Until(() => markerRenderer.color != awaitingActivation,
+                    checkpoint.marker.name + " must activate from a genuine crossing of its trigger.");
+                MobileInput.Reset();
+                Game.Hero.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 int oldBoss = Game.Boss.GetInstanceID();
                 MoveHero(new Vector2(spawn.x, -9f));
                 yield return Until(() => Game.Boss.GetInstanceID() != oldBoss, "Kill plane must trigger a real respawn.");
