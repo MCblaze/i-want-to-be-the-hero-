@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ee60854c8f546478f30806e965780e, type: 3}
+  m_Name: 02 - Wildflowers - Auto Connect
+  m_EditorClassIdentifier: IWantToBeTheHero.Runtime::IWantToBeTheHero.SunleafPlatformTile
+  connectionGroup: Sunleaf Mossy Platforms
+  fixedVariation: 1
+  standaloneSprites:
+  - {fileID: 21300000, guid: ba2c6ae61c5504b40bd26595057aca2c, type: 2}
+  - {fileID: 21300000, guid: cf4ed585fd880374da0d40d792601f90, type: 2}
+  - {fileID: 21300000, guid: 7cf231ed6c327434387bba27bfd5bb75, type: 2}
+  - {fileID: 21300000, guid: 63d1c9b0f84180d4a9692fb6555558a6, type: 2}
+  leftEndSprites:
+  - {fileID: 21300000, guid: 903fc90bc3f655645a09388adc1f14dc, type: 2}
+  - {fileID: 21300000, guid: ab6b95e448c130c4ca517540fe833244, type: 2}
+  - {fileID: 21300000, guid: d112520f12a6dff468fcf635728b79f4, type: 2}
+  - {fileID: 21300000, guid: 60932e66d218bce4f94658dda8e2ef6c, type: 2}
+  middleSprites:
+  - {fileID: 21300000, guid: 6f784b10b46548146b2f223c655a06c9, type: 2}
+  - {fileID: 21300000, guid: c99af293b0b19a9488ef0020c7e5e015, type: 2}
+  - {fileID: 21300000, guid: 80a4773ee10abac449b8e377c76b9ff5, type: 2}
+  - {fileID: 21300000, guid: b77e84e84e21c314eb3b8a82b9829110, type: 2}
+  rightEndSprites:
+  - {fileID: 21300000, guid: 28bb5feac8840e94384ca09635eb6cef, type: 2}
+  - {fileID: 21300000, guid: b03142a5582811d4e99558bf1f63e595, type: 2}
+  - {fileID: 21300000, guid: 8b4b04c42507d4842ae292a4dc0251ad, type: 2}
+  - {fileID: 21300000, guid: f872f1713859f2b45bdcb01663b4b4d5, type: 2}
